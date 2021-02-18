@@ -11,7 +11,7 @@ module.exports = {
     // },
     entry: {
         index: './src/js/index.js',
-        // otro: './src/js/otro.js',
+        test: './src/js/test.js',
     },
     output: {
         filename: 'js/[name].js',
@@ -21,7 +21,7 @@ module.exports = {
         new HtmlWebpackPlugin({
             filename: 'index.html',
             template: './src/index.html',
-            chunks: ['main']
+            chunks: ['index']
         }),
         new HtmlWebpackPlugin({
             filename: 'test.html',
@@ -29,7 +29,7 @@ module.exports = {
             chunks: ['test']
         }),
         new MiniCssExtractPlugin({
-            filename: 'styles/main.css'
+            filename: 'styles/[name].css'
         }),
         new webpack.ProvidePlugin({
             $: 'jquery',
