@@ -23,6 +23,11 @@ module.exports = {
             template: './src/index.html',
             chunks: ['main']
         }),
+        new HtmlWebpackPlugin({
+            filename: 'test.html',
+            template: 'src/html/test.html',
+            chunks: ['test']
+        }),
         new MiniCssExtractPlugin({
             filename: 'styles/main.css'
         }),
