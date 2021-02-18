@@ -1,12 +1,12 @@
 const config = require('./webpack.base.config');
-const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const webpack = require('webpack');
 
-config.plugins.push(new CleanWebpackPlugin());
+config.plugins.push(new webpack.SourceMapDevToolPlugin({}));
 config.module.rules.push(
     {
         test: /\.(sa|sc|c)ss$/,
         use: [
-            MiniCssExtractPlugin.loader,
+            'style-loader',
             'css-loader',
             'sass-loader',
         ]
@@ -14,13 +14,17 @@ config.module.rules.push(
     {
         test: /\.css$/,
         use: [
-            MiniCssExtractPlugin.loader,
+            'style-loader',
             'css-loader'
         ]
     }
 );
 
 module.exports = {
-    mode: 'production',
-    ...config
+    mode: 'development',
+    ...config,
+    devServer: {
+        compress: true,
+        port: 9000
+    }
 };
