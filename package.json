@@ -12,7 +12,8 @@
   "license": "ISC",
   "dependencies": {
     "@popperjs/core": "^2.7.0",
-    "bootstrap": "^5.0.0-beta2"
+    "bootstrap": "^5.0.0-beta2",
+    "handlebars": "^4.7.7"
   },
   "devDependencies": {
     "@babel/core": "^7.12.16",
@@ -22,6 +23,7 @@
     "css-loader": "^5.0.2",
     "file-loader": "^6.2.0",
     "glob": "^7.1.6",
+    "handlebars-loader": "^1.7.1",
     "html-webpack-plugin": "^5.1.0",
     "mini-css-extract-plugin": "^1.3.7",
     "node-sass": "^5.0.0",
