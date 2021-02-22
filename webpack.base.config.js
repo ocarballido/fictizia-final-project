@@ -3,7 +3,6 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const webpack = require('webpack');
 const glob = require('glob');
-const fs = require('fs');
 
 const entries = {};
 const plugins = [];
@@ -13,18 +12,18 @@ const regName = /.*\/(.+?)\.js/;
 const files = glob.sync('./src/js/*.js', {});
 
 files.forEach((e) => {
-    const name = e.replace(regName, '$1');
-    entries[name] = e;
+    const page = e.replace(regName, '$1');
+    entries[page] = e;
     plugins.push(
         new HtmlWebpackPlugin({
-            filename: `${name}.html`,
-            template: `${templateFolder}/base.ejs`,
+            filename: `${page}.html`,
+            template: `${templateFolder}/base.hbs`,
             templateParameters: {
-                title: `Title of ${name} page`,
-                description: `Description of ${name} page`,
-                content: fs.readFileSync(`${templateFolder}/${name}.ejs`)
+                title: `Title of ${page} page`,
+                description: `Description of ${page} page`,
+                [`is${page.slice(0, 1).toUpperCase()}${page.slice(1)}`]: true                
             },
-            chunks: [name]
+            chunks: [page]
         }),
     );
 });
@@ -62,6 +61,15 @@ module.exports = {
                 loader: 'file-loader',
                 options: {
                     name: '[name].[ext]'
+                }
+            },
+            {
+                test: /\.hbs$/,
+                use: {
+                    loader: 'handlebars-loader',
+                    options: {
+                        partialDirs: [ path.join(__dirname, 'src/templates/partials') ]
+                    }
                 }
             }
         ]
