@@ -3,7 +3,7 @@
 Bootstrap 5 Boilerplate es un simple proyecto basado en bootstrap 5 para comenzar a trabajar 1 minuto más tarde de que te lo descargues.
 
 ## ¿Que necesitas?
-- Node.js
+- [npm](https://www.npmjs.com/get-npm)
 
 ## ¿Cómo comenzar?
 ##### Instala los módulos necesarios
@@ -32,3 +32,9 @@ npm run dev
 ## Construido con
 - [Bootstrap 5](https://getbootstrap.com/)
 - [Handlebar](https://handlebarsjs.com/)
+
+## Compilar carpeta /dist
+Ejecutanto el siguiente comendo, se creará la carpeta dist con toda la estructura de tu web.
+```sh
+npm run build
+```
