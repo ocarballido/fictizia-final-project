@@ -6,11 +6,11 @@ Bootstrap 5 Boilerplate es un simple proyecto basado en bootstrap 5 para comenza
 - [npm](https://www.npmjs.com/get-npm)
 
 ## ¿Cómo comenzar?
-#### Instala los módulos necesarios
+### Instala los módulos necesarios
 ```sh
 npm install
 ```
-#### Ve creando ficheros .hbs
+### Ve creando ficheros .hbs
 - Crea el fichero src/templates/partials/personal.hbs
 - Añade el contenido en el fichero. Puede ser un simple código HTML, o puedes basar tu código en handlerbar
 - Al final de src/templates/base.hbs añade la condición
@@ -19,12 +19,13 @@ npm install
      {{> personal }}
 {{/if}}
 ```
-- Crea el fichero src/js/personal.js en en él
+- **Importante**: Crea el fichero src/js/personal.js. Este fichero es obligatorio, debe ser un homólo del .hbs creado
   - Escribe el JS que tu documento necesite
   - Añade ficheros externos (jpg, png, svg, scss)
-- Si quieres estilos personalizados para esta página, crea el fichero src/scss/personal.scss e impórtalo como hemos indicado en la línea anterior
+  - Para añadir estilos, debes importarlos en este fichero js
+- Si quieres estilos personalizados para esta página, crea el fichero src/scss/personal.scss e impórtalo como hemos indicado en la línea anterior. En este fichero scss, podrás importar de manera selectiva los [componentes Bootstrap que necesites](https://getbootstrap.com/docs/5.0/customize/sass/)
 
-#### Arrancar el servidor local:
+### Arrancar el servidor local:
 ```sh
 npm run dev
 ```
