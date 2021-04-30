@@ -1,5 +1,44 @@
+@import "./theme.scss";
+
 @import "~bootstrap/scss/bootstrap";
 
 html, body {
     height: 100%;
+}
+
+.list-group-flush > .list-group-item:last-child {
+    border-width: 0 0 1px;
+}
+
+.avatar {
+    align-items: center;
+    display: flex;
+    height: 40px;
+    justify-content: center;
+    width: 40px;
+    span {
+        font-size: 1.2rem;
+    }
+}
+
+.productList-item {
+    background-color: transparent;
+    border-color: #6c757d;
+}
+
+#productsForm {
+    .form-control, .form-select {
+        background-color: $dark;
+        border-color: $secondary;
+        color: $secondary;
+    }
+}
+
+#summary {
+    background-color: #303438;
+}
+
+.summeryList-item {
+    background-color: transparent;
+    border-color: #6c757d;
 }

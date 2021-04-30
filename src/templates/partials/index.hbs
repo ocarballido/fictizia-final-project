@@ -1,6 +1,436 @@
-<div class="container h-100 d-flex justify-content-center align-items-center p-5">
-    <div class="">
-        <h1 class="display-4 text-black-50">Hello Bootstrap 5 Boilerplate</h1>
-        <a href="http://oscarballido.com/"><img src="oscarballido_logo.png" alt="ocarballido.com" height="96"></a>
-    </div>
+<div class="row h-100 g-0">
+	<!-- Users -->
+	<div class="col-md-auto col-xl-4 bg-white p-4">
+		<h3 class="mb-3">Usuarios invitados</h3>
+		<ul id="usersList" class="list-group list-group-flush mb-3">
+			<li class="list-group-item usersList-item p-0">
+				<div class="d-flex align-items-center py-3">
+					<div class="flex-shrink-0">
+						<span class="avatar text-white rounded-circle bg-danger"><span>I</span></span>
+					</div>
+					<div class="flex-grow-1 mx-3">
+						<h6 class="m-0">Iván</h6>
+						<p class="m-0 text-danger"><small>Saldo negativo | Debe pagar</small></p>
+					</div>
+					<span class="badge bg-danger rounded-pill">-24 <span>€</span></span>
+				</div>
+				<div class="d-flex align-items-center py-3">
+					<div class="flex-shrink-0">
+						<span class="avatar text-white rounded-circle bg-danger"><span>L</span></span>
+					</div>
+					<div class="flex-grow-1 mx-3">
+						<h6 class="m-0">Lily</h6>
+						<p class="m-0 text-danger"><small>Saldo negativo | Debe pagar</small></p>
+					</div>
+					<span class="badge bg-danger rounded-pill">-24 <span>€</span></span>
+				</div>
+				<div class="d-flex align-items-center py-3">
+					<div class="flex-shrink-0">
+						<span class="avatar text-white rounded-circle bg-danger"><span>Y</span></span>
+					</div>
+					<div class="flex-grow-1 mx-3">
+						<h6 class="m-0">Yami</h6>
+						<p class="m-0 text-danger"><small>Saldo negativo | Debe pagar</small></p>
+					</div>
+					<span class="badge bg-danger rounded-pill">-24 <span>€</span></span>
+				</div>
+			</li>
+			<li class="list-group-item usersList-item p-0">
+				<div class="d-flex align-items-center py-3">
+					<div class="flex-shrink-0">
+						<span class="avatar text-white rounded-circle bg-danger"><span>O</span></span>
+					</div>
+					<div class="flex-grow-1 mx-3">
+						<h6 class="m-0">Orelvis</h6>
+						<p class="m-0 text-danger"><small>Saldo negativo | Debe pagar</small></p>
+					</div>
+					<span class="badge bg-danger rounded-pill">-18 <span>€</span></span>
+				</div>
+			</li>
+			<li class="list-group-item usersList-item p-0">
+				<div class="d-flex align-items-center py-3">
+					<div class="flex-shrink-0">
+						<span class="avatar text-white rounded-circle bg-success"><span>S</span></span>
+					</div>
+					<div class="flex-grow-1 mx-3">
+						<h6 class="m-0">Sergio</h6>
+						<p class="m-0 text-success"><small>Saldo positivo | Debe recibir</small></p>
+					</div>
+					<span class="badge bg-success rounded-pill">14 <span>€</span></span>
+				</div>
+			</li>
+			<li class="list-group-item usersList-item p-0">
+				<div class="d-flex align-items-center py-3">
+					<div class="flex-shrink-0">
+						<span class="avatar text-white rounded-circle bg-success"><span>S</span></span>
+					</div>
+					<div class="flex-grow-1 mx-3">
+						<h6 class="m-0">Susana</h6>
+						<p class="m-0 text-success"><small>Saldo positivo | Debe recibir</small></p>
+					</div>
+					<span class="badge bg-success rounded-pill">12 <span>€</span></span>
+				</div>
+			</li>
+			<li class="list-group-item usersList-item p-0">
+				<div class="d-flex align-items-center py-3">
+					<div class="flex-shrink-0">
+						<span class="avatar text-white rounded-circle bg-success"><span>L</span></span>
+					</div>
+					<div class="flex-grow-1 mx-3">
+						<h6 class="m-0">Liudmila</h6>
+						<p class="m-0 text-success"><small>Saldo positivo | Debe recibir</small></p>
+					</div>
+					<span class="badge bg-success rounded-pill">8 <span>€</span></span>
+				</div>
+				<div class="d-flex align-items-center py-3">
+					<div class="flex-shrink-0">
+						<span class="avatar text-white rounded-circle bg-success"><span>O</span></span>
+					</div>
+					<div class="flex-grow-1 mx-3">
+						<h6 class="m-0">Oscar</h6>
+						<p class="m-0 text-success"><small>Saldo positivo | Debe recibir</small></p>
+					</div>
+					<span class="badge bg-success rounded-pill">8 <span>€</span></span>
+				</div>
+			</li>
+		</ul>
+		<form action="" class="mb-2 d-grid needs-validation" novalidate>
+			<input type="text" class="form-control mb-2" id="addUserInpu" placeholder="Añadir un invitado">
+			<button id="addUserButton" class="btn btn-primary btn-block" type="button" id="button-addon2">Añadir</button>
+		</form>
+	</div>
+	<!-- /Users -->
+
+	<!-- Products and Summary -->
+	<div class="col-md">
+		<div class="row g-0 h-100">
+			<!-- Products -->
+			<div id="products" class="col-xl col-12 p-4 bg-dark text-white">
+				<h3 class="mb-3 text-white fw-light">Lista de compra</h3>
+				<ul id="productsList" class="list-group list-group-flush mb-3">
+					<li class="list-group-item p-0 productList-item">
+						<div class="d-flex align-items-center py-3">
+							<div class="flex-grow-0">
+								<h6 class="m-0">Havana Club</h6>
+							</div>
+							<div class="flex-shrink-0 mx-3">
+								<span class="badge bg-secondary text-dark">Oscar | Liudmila</span>
+							</div>
+							<div class="flex-grow-1 text-end">
+								<h6 class="m-0 fw-bold"><span class="producto-prize">40</span> €</h6>
+							</div>
+						</div>
+					</li>
+					<li class="list-group-item p-0 productList-item">
+						<div class="d-flex align-items-center py-3">
+							<div class="flex-grow-0">
+								<h6 class="m-0">Tamales</h6>
+							</div>
+							<div class="flex-shrink-0 mx-3">
+								<span class="badge bg-secondary text-dark">Sergio</span>
+							</div>
+							<div class="flex-grow-1 text-end">
+								<h6 class="m-0 fw-bold"><span class="producto-prize">14</span> €</h6>
+							</div>
+						</div>
+					</li>
+					<li class="list-group-item p-0 productList-item">
+						<div class="d-flex align-items-center py-3">
+							<div class="flex-grow-0">
+								<h6 class="m-0">Malanga</h6>
+							</div>
+							<div class="flex-shrink-0 mx-3">
+								<span class="badge bg-secondary text-dark">Oscar | Liudmila</span>
+							</div>
+							<div class="flex-grow-1 text-end">
+								<h6 class="m-0 fw-bold"><span class="producto-prize">4.25</span> €</h6>
+							</div>
+						</div>
+					</li>
+					<li class="list-group-item p-0 productList-item">
+						<div class="d-flex align-items-center py-3">
+							<div class="flex-grow-0">
+								<h6 class="m-0">Cerveza</h6>
+							</div>
+							<div class="flex-shrink-0 mx-3">
+								<span class="badge bg-secondary text-dark">Iván | Lily | Yami</span>
+							</div>
+							<div class="flex-grow-1 text-end">
+								<h6 class="m-0 fw-bold"><span class="producto-prize">15</span> €</h6>
+							</div>
+						</div>
+					</li>
+					<li class="list-group-item p-0 productList-item">
+						<div class="d-flex align-items-center py-3">
+							<div class="flex-grow-0">
+								<h6 class="m-0">Refrescos</h6>
+							</div>
+							<div class="flex-shrink-0 mx-3">
+								<span class="badge bg-secondary text-dark">Sergio</span>
+							</div>
+							<div class="flex-grow-1 text-end">
+								<h6 class="m-0 fw-bold"><span class="producto-prize">6.48</span> €</h6>
+							</div>
+						</div>
+					</li>
+					<li class="list-group-item p-0 productList-item">
+						<div class="d-flex align-items-center py-3">
+							<div class="flex-grow-0">
+								<h6 class="m-0">Jamón</h6>
+							</div>
+							<div class="flex-shrink-0 mx-3">
+								<span class="badge bg-secondary text-dark">Sergio</span>
+							</div>
+							<div class="flex-grow-1 text-end">
+								<h6 class="m-0 fw-bold"><span class="producto-prize">21</span> €</h6>
+							</div>
+						</div>
+					</li>
+					<li class="list-group-item p-0 productList-item">
+						<div class="d-flex align-items-center py-3">
+							<div class="flex-grow-0">
+								<h6 class="m-0">Queso</h6>
+							</div>
+							<div class="flex-shrink-0 mx-3">
+								<span class="badge bg-secondary text-dark">Oscar | Liudmila</span>
+							</div>
+							<div class="flex-grow-1 text-end">
+								<h6 class="m-0 fw-bold"><span class="producto-prize">16</span> €</h6>
+							</div>
+						</div>
+					</li>
+					<li class="list-group-item p-0 productList-item">
+						<div class="d-flex align-items-center py-3">
+							<div class="flex-grow-0">
+								<h6 class="m-0">Havana Club</h6>
+							</div>
+							<div class="flex-shrink-0 mx-3">
+								<span class="badge bg-secondary text-dark">Oscar | Liudmila</span>
+							</div>
+							<div class="flex-grow-1 text-end">
+								<h6 class="m-0 fw-bold"><span class="producto-prize">40</span> €</h6>
+							</div>
+						</div>
+					</li>
+					<li class="list-group-item p-0 productList-item">
+						<div class="d-flex align-items-center py-3">
+							<div class="flex-grow-0">
+								<h6 class="m-0">Tamales</h6>
+							</div>
+							<div class="flex-shrink-0 mx-3">
+								<span class="badge bg-secondary text-dark">Sergio</span>
+							</div>
+							<div class="flex-grow-1 text-end">
+								<h6 class="m-0 fw-bold"><span class="producto-prize">14</span> €</h6>
+							</div>
+						</div>
+					</li>
+					<li class="list-group-item p-0 productList-item">
+						<div class="d-flex align-items-center py-3">
+							<div class="flex-grow-0">
+								<h6 class="m-0">Malanga</h6>
+							</div>
+							<div class="flex-shrink-0 mx-3">
+								<span class="badge bg-secondary text-dark">Oscar | Liudmila</span>
+							</div>
+							<div class="flex-grow-1 text-end">
+								<h6 class="m-0 fw-bold"><span class="producto-prize">4.25</span> €</h6>
+							</div>
+						</div>
+					</li>
+					<li class="list-group-item p-0 productList-item">
+						<div class="d-flex align-items-center py-3">
+							<div class="flex-grow-0">
+								<h6 class="m-0">Cerveza</h6>
+							</div>
+							<div class="flex-shrink-0 mx-3">
+								<span class="badge bg-secondary text-dark">Iván | Lily | Yami</span>
+							</div>
+							<div class="flex-grow-1 text-end">
+								<h6 class="m-0 fw-bold"><span class="producto-prize">15</span> €</h6>
+							</div>
+						</div>
+					</li>
+					<li class="list-group-item p-0 productList-item">
+						<div class="d-flex align-items-center py-3">
+							<div class="flex-grow-0">
+								<h6 class="m-0">Refrescos</h6>
+							</div>
+							<div class="flex-shrink-0 mx-3">
+								<span class="badge bg-secondary text-dark">Sergio</span>
+							</div>
+							<div class="flex-grow-1 text-end">
+								<h6 class="m-0 fw-bold"><span class="producto-prize">6.48</span> €</h6>
+							</div>
+						</div>
+					</li>
+					<li class="list-group-item p-0 productList-item">
+						<div class="d-flex align-items-center py-3">
+							<div class="flex-grow-0">
+								<h6 class="m-0">Jamón</h6>
+							</div>
+							<div class="flex-shrink-0 mx-3">
+								<span class="badge bg-secondary text-dark">Sergio</span>
+							</div>
+							<div class="flex-grow-1 text-end">
+								<h6 class="m-0 fw-bold"><span class="producto-prize">21</span> €</h6>
+							</div>
+						</div>
+					</li>
+					<li class="list-group-item p-0 productList-item">
+						<div class="d-flex align-items-center py-3">
+							<div class="flex-grow-0">
+								<h6 class="m-0">Queso</h6>
+							</div>
+							<div class="flex-shrink-0 mx-3">
+								<span class="badge bg-secondary text-dark">Oscar | Liudmila</span>
+							</div>
+							<div class="flex-grow-1 text-end">
+								<h6 class="m-0 fw-bold"><span class="producto-prize">16</span> €</h6>
+							</div>
+						</div>
+					</li>
+				</ul>
+				<form id="productsForm" class="mb-2 needs-validation">
+					<div class="row g-2">
+						<div class="col-md-12 col-lg">
+							<input type="text" class="form-control" id="addProductInpu" placeholder="Producto">
+						</div>
+						<div class="col-md-12 col-lg">
+							<input type="text" class="form-control" id="productPrizeInpu" placeholder="Precio">
+						</div>
+						<div class="col-md-12 col-lg">
+							<select class="form-select">
+								<option value="oscar" selected>Oscar</option>
+								<option value="liudmmila">Liudmila</option>
+								<option value="ivan">Iván</option>
+								<option value="lily">Lily</option>
+								<option value="sergio">Sergio</option>
+								<option value="susana">Susana</option>
+								<option value="yami">Yami</option>
+								<option value="orelvis">Orelvis</option>
+							</select>
+						</div>
+						<div class="col-md-12 col-lg-auto d-grid d-lg-block">
+							<button id="addProductButton" class="btn btn-primary btn-block" type="button" id="button-addon2">Añadir</button>
+						</div>
+					</div>
+				</form>
+			</div>
+			<!-- /Products -->
+
+			<!-- Summary -->
+			<div id="summary" class="col-xl col-12 p-4 text-white">
+				<h3 class="mb-3 text-white fw-light">Resumen</h3>
+				<ul id="usersList" class="list-group list-group-flush mb-3">
+					<li class="list-group-item usersList-item p-0 summeryList-item">
+						<div class="row align-items-center g-2">
+							<div class="col">
+								<div class="d-flex align-items-center py-3">
+									<div class="flex-shrink-0">
+										<span class="avatar text-white rounded-circle bg-danger"><span>O</span></span>
+									</div>
+									<div class="flex-grow-1 mx-3">
+										<h6 class="m-0">Orelvis</h6>
+									</div>
+									<span class="badge bg-primary rounded-pill">12 <span>€</span></span>
+									<i class="bi bi-arrow-right" style="font-size: 1.5rem; color: white; margin-left: 8px"></i>
+								</div>
+							</div>
+							<div class="col-auto">
+								<div class="d-flex align-items-center py-3">
+									<div class="flex-shrink-0">
+										<span class="avatar text-white rounded-circle bg-success"><span>L</span></span>
+									</div>
+									<div class="flex-grow-1 mx-3">
+										<h6 class="m-0">Liudmila</h6>
+									</div>
+								</div>
+							</div>
+						</div>
+					</li>
+					<li class="list-group-item usersList-item p-0 summeryList-item">
+						<div class="row align-items-center g-2">
+							<div class="col">
+								<div class="d-flex align-items-center py-3">
+									<div class="flex-shrink-0">
+										<span class="avatar text-white rounded-circle bg-danger"><span>I</span></span>
+									</div>
+									<div class="flex-grow-1 mx-3">
+										<h6 class="m-0">Iván</h6>
+									</div>
+									<span class="badge bg-primary rounded-pill">8 <span>€</span></span>
+									<i class="bi bi-arrow-right" style="font-size: 1.5rem; color: white; margin-left: 8px"></i>
+								</div>
+							</div>
+							<div class="col-auto">
+								<div class="d-flex align-items-center py-3">
+									<div class="flex-shrink-0">
+										<span class="avatar text-white rounded-circle bg-success"><span>S</span></span>
+									</div>
+									<div class="flex-grow-1 mx-3">
+										<h6 class="m-0">Sergio</h6>
+									</div>
+								</div>
+							</div>
+						</div>
+					</li>
+					<li class="list-group-item usersList-item p-0 summeryList-item">
+						<div class="row align-items-center g-2">
+							<div class="col">
+								<div class="d-flex align-items-center py-3">
+									<div class="flex-shrink-0">
+										<span class="avatar text-white rounded-circle bg-danger"><span>Y</span></span>
+									</div>
+									<div class="flex-grow-1 mx-3">
+										<h6 class="m-0">Yami</h6>
+									</div>
+									<span class="badge bg-primary rounded-pill">22 <span>€</span></span>
+									<i class="bi bi-arrow-right" style="font-size: 1.5rem; color: white; margin-left: 8px"></i>
+								</div>
+							</div>
+							<div class="col-auto">
+								<div class="d-flex align-items-center py-3">
+									<div class="flex-shrink-0">
+										<span class="avatar text-white rounded-circle bg-success"><span>O</span></span>
+									</div>
+									<div class="flex-grow-1 mx-3">
+										<h6 class="m-0">Oscar</h6>
+									</div>
+								</div>
+							</div>
+						</div>
+					</li>
+					<li class="list-group-item usersList-item p-0 summeryList-item">
+						<div class="row align-items-center g-2">
+							<div class="col">
+								<div class="d-flex align-items-center py-3">
+									<div class="flex-shrink-0">
+										<span class="avatar text-white rounded-circle bg-danger"><span>L</span></span>
+									</div>
+									<div class="flex-grow-1 mx-3">
+										<h6 class="m-0">Lily</h6>
+									</div>
+									<span class="badge bg-primary rounded-pill">12 <span>€</span></span>
+									<i class="bi bi-arrow-right" style="font-size: 1.5rem; color: white; margin-left: 8px"></i>
+								</div>
+							</div>
+							<div class="col-auto">
+								<div class="d-flex align-items-center py-3">
+									<div class="flex-shrink-0">
+										<span class="avatar text-white rounded-circle bg-success"><span>S</span></span>
+									</div>
+									<div class="flex-grow-1 mx-3">
+										<h6 class="m-0">Susana</h6>
+									</div>
+								</div>
+							</div>
+						</div>
+					</li>
+				</ul>
+			</div>
+			<!-- /Summary -->
+		</div>
+	</div>
+	<!-- /Products and Summary -->
 </div>
