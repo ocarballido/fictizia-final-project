@@ -10,14 +10,38 @@ html, body {
     border-width: 0 0 1px;
 }
 
-.avatar {
-    align-items: center;
-    display: flex;
-    height: 40px;
-    justify-content: center;
-    width: 40px;
-    span {
-        font-size: 1.2rem;
+.usersItem {
+    .avatar {
+        align-items: center;
+        border-radius: 50%;
+        color: white;
+        display: flex;
+        height: 40px;
+        justify-content: center;
+        width: 40px;
+        span {
+            font-size: 1.2rem;
+        }
+    }
+    .btn-remove-user {
+        align-items: center;
+        border-radius: 50%;
+        // color: white;
+        display: none;
+        height: 40px;
+        justify-content: center;
+        width: 40px;
+        display: none;
+    }
+    &:hover {
+        cursor: pointer;
+        .avatar {
+            display: none;
+        }
+        .btn-remove-user {
+            display: inline-flex;
+            transform: rotate(90deg);
+        }
     }
 }
 
