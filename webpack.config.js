@@ -1,5 +1,6 @@
 const config = require('./webpack.base.config');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 config.plugins.push(new CleanWebpackPlugin());
 config.module.rules.push(
