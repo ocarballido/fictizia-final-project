@@ -95,6 +95,9 @@ html, body {
     }
 }
 
+#productsList {
+    margin: 0;
+}
 .productItem {
     align-items: center;
     background-color: transparent;
@@ -102,7 +105,7 @@ html, body {
     color: white;
     display: flex;
     padding: 16px 0;
-    .usersItem-title {
+    .productItem-title {
         flex-grow: 0;
         margin: 0;
     }
@@ -126,6 +129,13 @@ html, body {
         margin: 0;
         text-align: right;
     }
+}
+#productItem-total {
+    .productItem-price {
+        font-size: 1.5rem;
+        font-weight: 300;
+    }
+    margin-bottom: 1rem;
 }
 
 #productsForm {
@@ -182,4 +192,12 @@ html, body {
 .summeryList-item {
     background-color: transparent;
     border-color: #6c757d;
+}
+#controls {
+    bottom: 0;
+    padding: 1rem;
+    position: fixed;
+    text-align: right;
+    width: 100%;
+    z-index: 9999;
 }
