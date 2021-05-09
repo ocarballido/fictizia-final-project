@@ -99,6 +99,7 @@ class DataModel {
     // Debe tener un métoido deleteUser() --> Eliminar usuario
     // Debe tener un métoido addProduct() --> Añadir producto
     // Debe tener un métoido deleteProduct() --> Eliminar producto
+    // Debe tener un método para sobreescribir en localStorage updateStorage()
     // Debe tener un métoido calcDebtPerUser() --> Añadir calcular el saldo de cada usuario.
     //      Basado en la cantidad que cueste el producto
     //      Basado en la cantidad de usuarios
