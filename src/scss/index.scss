@@ -10,6 +10,12 @@ html, body {
     border-width: 0 0 1px;
 }
 
+#usersAlert, #productsAlert, #summaryAlert {
+    font-size: .85rem;
+    margin: 0 auto;
+    max-width: 500px;
+}
+
 .usersItem {
     align-items: center;
     border-bottom: 1px solid rgba(0, 0, 0, 0.075);
@@ -94,9 +100,6 @@ html, body {
     }
 }
 
-#productsList {
-    margin: 0;
-}
 .productItem {
     align-items: center;
     background-color: transparent;
