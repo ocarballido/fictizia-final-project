@@ -33,10 +33,12 @@ const dataExample = {
 
 // Debo tener una class User:
 class User {
-    constructor(name, money = 0, status = 'pending') {
+    constructor(name, expenses = 0, status = 'pending', globalDebt = 0, realDebt = 0) {
         this.name = name
-        this.money = money
+        this.expenses = expenses
         this.status = status
+        this.globalDebt = globalDebt
+        this.realDebt = realDebt
     }
     // Debe tener un getter getInitialLetter() para sacar la inicial del nombre (Para la UI)
 }
@@ -103,6 +105,85 @@ class DataModel {
     // Debe tener un métoido calcDebtPerUser() --> Añadir calcular el saldo de cada usuario.
     //      Basado en la cantidad que cueste el producto
     //      Basado en la cantidad de usuarios
+    //      Mantiene actualizado el objeto realDebt de cada usuario
     // Debe tener un métido para hacer un toggle del status del usuario (positive/negative)
     // Debe tener un métoido restart() --> Eliminar toda información y comenzar de nuevo
+}
+
+const test = {
+    oscar: {
+        expenses: 100,
+        globalDebt: {
+            toPepe: 10,
+            toChini: 5,
+            toBolo: 3,
+            toPaco: 1
+        },
+        realDebt: {
+            toPepe: 0,          // Me debe --> No le pago
+            toChini: 0,         // Me debe --> No le pago
+            toBolo: 0,          // Me debe --> No le pago
+            toPaco: 0           // Me debe --> No le pago
+        }
+    },
+    pepe: {
+        expenses: 50,
+        globalDebt: {
+            toOscar: 20,
+            toChini: 5,
+            toBolo: 3,
+            toPaco: 1
+        },
+        realDebt: {
+            toOscar: 10,        // Le debo --> 20 - 10 = 10
+            toChini: 15,        // Me debe --> No le pago
+            toBolo: 3,          // Me debe --> No le pago
+            toPaco: 3           // Me debe --> No le pago
+        }
+    },
+    chini: {
+        expenses: 25,
+        globalDebt: {
+            toOscar: 20,
+            toPepe: 10,
+            toBolo: 3,
+            toPaco: 1
+        },
+        realDebt: {
+            toOscar: 15,        // Le debo --> 20 - 5 = 15
+            toPepe: 5,          // Le debo --> 10 - 5 = 5
+            toBolo: 3,          // Me debe --> No le pago
+            toPaco: 3           // Me debe --> No le pago
+        }
+    },
+    bolo: {
+        expenses: 15,
+        globalDebt: {
+            toOscar: 20,
+            toPepe: 10,
+            toChini: 5,
+            toPaco: 1
+        },
+        realDebt: {
+            toOscar: 17,        // Le debo --> 20 - 3 = 17
+            toPepe: 7,          // Le debo --> 10 - 3 = 7
+            toChini: 2,         // Le debo --> 5 - 3 = 2
+            toPaco: 3           // Me debe --> No le pago
+        }
+    },
+    paco: {
+        expenses: 5,
+        globalDebt: {
+            toOscar: 20,
+            toPepe: 10,
+            toChini: 5,
+            toBolo: 3,
+        },
+        realDebt: {
+            toOscar: 19,        // Le debo --> 20 - 1 = 19
+            toPepe: 9,          // Le debo --> 10 - 1 = 9
+            toChini: 4,         // Le debo --> 5 - 1 = 4
+            toBolo: 2,          // Le debo --> 3 - 1 = 2
+        }
+    },
 }
