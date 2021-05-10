@@ -7,11 +7,11 @@
 	<!-- Users -->
 	<div class="col-md-auto col-xl-4 bg-white p-4">
 		<h3 class="mb-3">Usuarios invitados</h3>
-		<div id="usersAlert" class="alert alert-info" role="alert">
-			Los usuarios añadidos a la lista, irán actualizando sus datos de saldo de manera tal que tendremos deudores (<span class="fw-bold text-danger"><i class="bi bi-circle-fill"></i></span> quien debe dinero) y beneficiarios (<span class="fw-bold text-success"><i class="bi bi-circle-fill"></i></span> quien recibe dinero).
-		</div>
+		{{!-- <div id="usersAlert" class="alert alert-info" role="alert">
+			<b>Añade invitados a la party.</b><br>Sus saldos se irán actualizando de manera tal que habrán deudores (<span class="fw-bold text-danger"><i class="bi bi-circle-fill"></i></span> <b>quien debe dinero</b>) y beneficiarios (<span class="fw-bold text-success"><i class="bi bi-circle-fill"></i></span> <b>quien recibe dinero</b>).
+		</div> --}}
 		<ul id="usersList" class="list-unstyled">
-			{{!-- <li class="usersItem negative">
+			<li class="usersItem negative">
 				<div class="usersItem-avatar-button">
 					<span class="avatar"><span>I</span></span>
 					<button type="button" class="btn btn-outline-danger btn-remove-user"><i class="bi bi-x" style="font-size: 1.8rem;"></i></button>
@@ -98,7 +98,7 @@
 					<p class="usersItem-info_content"><small>Saldo negativo | Debe pagar</small></p>
 				</div>
 				<span class="userItem-badge">8 €</span>
-			</li> --}}
+			</li>
 		</ul>
 		<form action="" class="mb-2 d-grid needs-validation" novalidate>
 			<input type="text" class="form-control mb-2" id="addUserInpu" placeholder="Añadir un invitado" required>
@@ -114,11 +114,11 @@
 			<!-- Products -->
 			<div id="products" class="col-xl col-12 p-4 bg-dark text-white">
 				<h3 class="mb-3 text-white fw-light">Lista de compra</h3>
-				<div id="productsAlert" class="alert alert-info" role="alert">
-					Los productos añadidos, deben ser asignados a un usuario (<b>el que hizo la compra</b>) para hacer el cálculo de los saldos. De esta manera se podrá calcular qué invitados deben aportar dinero, su cantidad y a qué invitado. <b>Sólo podrás añadir productos, una vez que hayas añadido, al menos un invitado.</b>
-				</div>
+				{{!-- <div id="productsAlert" class="alert alert-info" role="alert">
+					<b>Añade productos comprados.</b><br>Deben ser asignados a un usuario (<b>el que hizo la compra</b>) para hacer el cálculo de los saldos. <b>Sólo podrás añadir productos, una vez que hayas añadido, al menos un invitado.</b>
+				</div> --}}
 				<ul id="productsList" class="list-unstyled">
-					{{!-- <li class="productItem positive">
+					<li class="productItem positive">
 						<h6 class="productItem-title">Havana Club</h6>
 						<span class="productItem-badge">Oscar</span>
 						<h6 class="productItem-price">40 €</h6>
@@ -173,9 +173,9 @@
 						<div class="deleteProduct">
 							<button type="button" class="btn btn-danger btn-sm btn-deleteProduct">Eliminar</button>
 						</div>
-					</li> --}}
+					</li>
 				</ul>
-				{{!-- <h6 id="productItem-total" class="productItem-price text-end">76 €</h6>  --}}
+				<h6 id="productItem-total" class="productItem-price text-end">76 €</h6> 
 				<form id="productsForm" class="mb-2 needs-validation" novalidate>
 					<div class="row g-2">
 						<div class="col-lg-12">
@@ -212,11 +212,11 @@
 			<!-- Summary -->
 			<div id="summary" class="col-xl col-12 p-4 text-white">
 				<h3 class="mb-3 text-white fw-light">Resumen</h3>
-				<div id="summaryAlert" class="alert alert-info" role="alert">
+				{{!-- <div id="summaryAlert" class="alert alert-info" role="alert">
 					Un resumen indicando deudores, beneficiarios y la cantidad a transferir.
-				</div>
+				</div> --}}
 				<ul id="summaryList" class="list-unstyled">
-					{{!-- <li class="summaryItem positive">
+					<li class="summaryItem positive">
 						<h6 class="summaryItem-title">Iván</h6>
 						<span class="summaryItem-badge">12 €</span>
 						<i class="summaryItem-icon bi bi-arrow-right"></i>
@@ -239,7 +239,7 @@
 						<span class="summaryItem-badge">16 €</span>
 						<i class="summaryItem-icon bi bi-arrow-right"></i>
 						<h6 class="summaryItem-price">Oscar</h6>
-					</li> --}}
+					</li>
 				</ul>
 			</div>
 			<!-- /Summary -->
