@@ -3,12 +3,30 @@ const dataExample = {
         {
             name: 'Oscar',
             money: 22,
-            status: 'positive'
+            status: 'positive',
+            expenses: 60,
+            globalDebt: {
+                chini: 11,
+                // ...
+            },
+            realDebt: {
+                chini: 0,
+                // ...
+            }
         },
         {
             name: 'Chini',
             money: -22,
-            status: 'negative'
+            status: 'negative',
+            expenses: 22,
+            globalDebt: {
+                oscar: 30,
+                // ...
+            },
+            realDebt: {
+                oscar: 22,
+                // ...
+            }
         },
         // ...
     ],
@@ -33,14 +51,16 @@ const dataExample = {
 
 // Debo tener una class User:
 class User {
-    constructor(name, expenses = 0, status = 'pending', globalDebt = {}, realDebt = {}) {
+    constructor(name, money, expenses = 0, status = 'pending', globalDebt = {}, realDebt = {}) {
         this.name = name
+        this.money = money
         this.expenses = expenses
         this.status = status
         this.globalDebt = globalDebt
         this.realDebt = realDebt
     }
     // Debe tener un getter getInitialLetter() para sacar la inicial del nombre (Para la UI)
+    // Debe tener un método que calcule el dinero que debe (expenses - la sume de lo que debe)
 }
 
 // Debo tener una class Product:
