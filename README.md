@@ -28,18 +28,18 @@ app
 │   ├── sdsdsd
 │   └── sdsdsd
 ├── src
-│   └── assets
-│   └── js
+│   ├── assets
+│   ├── js
 │   │   ├── controller.js
 │   │   ├── model.js
 │   │   └── view.js
-│   └── scss
+│   ├── scss
 │   │   ├── index.scss
 │   │   └── theme.js
 │   └── templates
-│   │   └── partials
-│   │   │   └── index.hbs
-│   │   └── base.hbs
+│       ├── partials
+│       │   └── index.hbs
+│       └── base.hbs
 └── index.js
 ```
 
