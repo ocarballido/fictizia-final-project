@@ -20,8 +20,32 @@ $ npm install
 $ npm run dev
 ```
 
+## Como usar
+Estructura del proyecto:
+```sh
+app
+├── dist
+│   ├── sdsdsd
+│   ├── sdsdsd
+│   └── sdsdsd
+├── src
+│   └── assets
+│   └── js
+│   │   ├── controller.js
+│   │   ├── model.js
+│   │   └── view.js
+│   └── scss
+│   │   ├── index.scss
+│   │   └── theme.js
+│   └── templates
+│   │   └── partials
+│   │   │   └── index.hbs
+│   │   └── base.hbs
+└── index.js
+```
+
 ## Compilar carpeta /dist
 Ejecutanto el siguiente comendo, se creará la carpeta dist con toda la estructura de tu web.
 ```sh
-npm run build
+$ npm run build
 ```
