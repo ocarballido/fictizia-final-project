@@ -33,7 +33,7 @@ const dataExample = {
 
 // Debo tener una class User:
 class User {
-    constructor(name, expenses = 0, status = 'pending', globalDebt = 0, realDebt = 0) {
+    constructor(name, expenses = 0, status = 'pending', globalDebt = {}, realDebt = {}) {
         this.name = name
         this.expenses = expenses
         this.status = status
