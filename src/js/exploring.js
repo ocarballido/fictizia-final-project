@@ -103,5 +103,6 @@ class DataModel {
     // Debe tener un métoido calcDebtPerUser() --> Añadir calcular el saldo de cada usuario.
     //      Basado en la cantidad que cueste el producto
     //      Basado en la cantidad de usuarios
+    // Debe tener un métido para hacer un toggle del status del usuario (positive/negative)
     // Debe tener un métoido restart() --> Eliminar toda información y comenzar de nuevo
 }
