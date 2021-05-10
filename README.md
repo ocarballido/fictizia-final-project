@@ -13,7 +13,6 @@ Calcular presupuesto de una actividad, dependiendo de la cantidad de invitados y
 ## Instalación
 - [npm](https://www.npmjs.com/get-npm)
 
-#### Instala los módulos necesarios
 ```sh
 $ cd ../folder
 $ npm install
