@@ -44,7 +44,7 @@ app
 ```
 
 ## Compilar carpeta /dist
-Ejecutanto el siguiente comendo, se creará la carpeta dist con toda la estructura de tu web.
+Se creará la carpeta dist con toda la estructura de la app.
 ```sh
 $ npm run build
 ```
