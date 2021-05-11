@@ -51,16 +51,11 @@ const dataExample = {
 
 // Debo tener una class User:
 class User {
-    constructor(name, money, expenses = 0, status = 'pending', globalDebt = {}, realDebt = {}) {
+    constructor(name, expenses = 0) {
         this.name = name
-        this.money = money
         this.expenses = expenses
-        this.status = status
-        this.globalDebt = globalDebt
-        this.realDebt = realDebt
     }
     // Debe tener un getter getInitialLetter() para sacar la inicial del nombre (Para la UI)
-    // Debe tener un método que calcule el dinero que debe (expenses - la sume de lo que debe)
 }
 
 // Debo tener una class Product:
@@ -70,8 +65,8 @@ class Product {
         this.productEuro = productEuro
         this.productCents = productCents
         this.productBuyer = productBuyer
+        this.productPrizeCents = (this.productEuro * 100) + this.productCents;
     }
-    // Debe tener un getter para obtener el cálculo en céntimos del producto. Esto lo daremos formato del tipo 2,50 € mas adelante
 }
 
 // Debo tener una class SummaryItem:
