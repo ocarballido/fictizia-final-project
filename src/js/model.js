@@ -1,8 +1,8 @@
 class User {
-    constructor(name) {
+    constructor(name, expenses = 0) {
         this.name = name
         // this.money = money
-        // this.expenses = expenses
+        this.expenses = expenses
         // this.status = status
         // this.globalDebt = globalDebt
         // this.realDebt = realDebt
@@ -11,9 +11,6 @@ class User {
     getInitialLetter() {
         return this.name[0].toUppercase();
     }
-    // getMoneyDebt() {
-    //     return this.expenses
-    // }
 }
 
 class Product {
@@ -22,10 +19,7 @@ class Product {
         this.productEuro = productEuro
         this.productCents = productCents
         this.productBuyer = productBuyer
-    }
-    // Get prize in cents
-    get productPrizeCents() {
-        return (this.productEuro * 100) + this.productCents;
+        this.productPrizeCents = (this.productEuro * 100) + this.productCents;
     }
 }
 
@@ -40,9 +34,11 @@ class SummaryItem {
 // De tener una class que manejara el modelo de datos
 class Model {
     constructor() {
-        this.usersList = []
-        this.productsList = []
-        this.summaryList = []
+        this.data = {
+            usersList: [],
+            productsList: [],
+            summaryList: []
+        }
     }
 
     // Testing
@@ -51,24 +47,30 @@ class Model {
     }
 
     // Add new user
-    addUser() {
-        const user = new User(userName);
-        user.
-        this.userList.push(user);
+    addUser(userName) {
+        const user = new User(userName.toLowerCase());
+        this.data.usersList.push(user);
     }
 
     // Delete user from list
     deleteUser() {}
 
     // Add new product
-    addProduct() {}
+    addProduct(productTitle, productEuro, productCents, productBuyer) {
+        const product = new Product(productTitle, productEuro, productCents, productBuyer);
+        this.data.productsList.push(product);
+        const userMatch = this.data.usersList.findIndex((user) => {
+            return user.name === productBuyer.toLowerCase();
+        });
+        this.data.usersList[userMatch].expenses = product.productPrizeCents;
+    }
 
     // Delete product from list
     deleteProduct() {}
 
-    // Order userList
-    orderUserList() {
-        this.userList.sort((a, b) => {
+    // Order usersList
+    orderUsersList() {
+        this.usersList.sort((a, b) => {
             return (a.status === b.status)? 0 : b? -1 : 1;
         });
     }

@@ -14,6 +14,14 @@ class Controller {
 
 const app = new Controller(model, view)
 
-app.testing();
+// Test adding user
+app.model.addUser('Oscar');
+app.model.addUser('Pepe');
+
+// Test adding product
+app.model.addProduct('Ron', 10, 20, 'oscar');
+// app.model.addProduct('Sal', 8, 12, 'Pepe');
+
+console.log(app.model.data);
 
 export { app };
