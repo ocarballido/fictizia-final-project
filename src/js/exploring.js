@@ -39,7 +39,7 @@ const dataExample = {
         }
         // ...
     ],
-    summayList: [
+    summaryList: [
         {
             userDebtorName: 'Chini',
             userBeneficiaryName: 'Oscar',
@@ -83,39 +83,12 @@ class SummaryItem {
     }
 }
 
-// Debo tener una class UserList:
-class UserList {
-    constructor(userList) {
-        this.userList = userList
-    }
-    // Debe tener un métoido para ordenar
-    //      Primero: Deudores
-    //      Segundo: Beneficiarios
-}
-
-// Debo tener una class ProductList:
-class ProductList {
-    constructor(productList) {
-        this.productList = productList
-    }
-    // Debe tener un getter getTotal() para obtener el total de gastos en productos
-}
-
-// Debo tener una class SummeyList:
-class SummeyList {
-    constructor(summayList) {
-        this.summayList = summayList
-    }
-    // Debe tener un métoido para ordenar
-    //      De mayor cantidad de deuda a menor
-}
-
 // De tener una class que manejara el modelo de datos
 class DataModel {
     constructor() {
         this.userList = []
         this.productList = []
-        this.summayList = []
+        this.summaryList = []
     }
     // Debe tener un métoido addUser() --> Añadir usuario
     // Debe tener un métoido deleteUser() --> Eliminar usuario
@@ -126,7 +99,13 @@ class DataModel {
     //      Basado en la cantidad que cueste el producto
     //      Basado en la cantidad de usuarios
     //      Mantiene actualizado el objeto realDebt de cada usuario
+    // Debe tener un métoido para ordenar
+    //      Primero: Deudores
+    //      Segundo: Beneficiarios
     // Debe tener un métido para hacer un toggle del status del usuario (positive/negative)
+    // Debe tener un método getTotal() para obtener el total de gastos en productos
+    // Debe tener un métoido orderSummary() para ordenar la lista de mayor deudor a menor
+    //      De mayor cantidad de deuda a menor
     // Debe tener un métoido restart() --> Eliminar toda información y comenzar de nuevo
 }
 
