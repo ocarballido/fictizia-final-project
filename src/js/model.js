@@ -108,18 +108,19 @@ class Model {
         const debtPortionPerUser = product.productPrizeCents / this.data.usersList.length;
         this.data.usersList.forEach((user, index) => {
             if (user.globalDebt.hasOwnProperty(productBuyerID)) {
-                if (user.globalDebt[productBuyerID] < this.data.usersList[productBuyer].globalDebt[user.id]) {
-                    user.realDebt = {
-                        ...user.realDebt,
-                        [productBuyerID]: 0
-                    }
-                } else {
-                    user.realDebt = {
-                        ...user.realDebt,
-                        [productBuyerID]: user.globalDebt[productBuyerID] - this.data.usersList[productBuyer].globalDebt[user.id]
-                    }
-                    console.log(this.data.usersList[productBuyer].globalDebt[productBuyerID], user.globalDebt[productBuyerID])
-                }
+                // if (user.globalDebt[productBuyerID] < this.data.usersList[productBuyer].globalDebt[user.id]) {
+                //     user.realDebt = {
+                //         ...user.realDebt,
+                //         [productBuyerID]: 0
+                //     }
+                // } else {
+                //     user.realDebt = {
+                //         ...user.realDebt,
+                //         [productBuyerID]: user.globalDebt[productBuyerID] - this.data.usersList[productBuyer].globalDebt[user.id]
+                //     }
+                //     console.log(this.data.usersList[productBuyer].globalDebt[productBuyerID], user.globalDebt[productBuyerID])
+                // }
+                console.log('exist');
             }
         });
     }
