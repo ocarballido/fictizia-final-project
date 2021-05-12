@@ -4,8 +4,8 @@ class User {
         // this.money = money
         this.expenses = expenses
         // this.status = status
-        // this.globalDebt = globalDebt
-        // this.realDebt = realDebt
+        this.globalDebt = {}
+        this.realDebt = {}
     }
     // Get initial letter
     getInitialLetter() {
@@ -41,14 +41,10 @@ class Model {
         }
     }
 
-    // Testing
-    testModel() {
-        console.log('Testing model');
-    }
-
     // Add new user
     addUser(userName) {
         const user = new User(userName.toLowerCase());
+        user.id = this.data.usersList.length > 0 ? this.data.usersList[this.data.usersList.length - 1].id + 1 : 1;
         this.data.usersList.push(user);
     }
 
@@ -59,10 +55,73 @@ class Model {
     addProduct(productTitle, productEuro, productCents, productBuyer) {
         const product = new Product(productTitle, productEuro, productCents, productBuyer);
         this.data.productsList.push(product);
+        this.addUsersExpenses(product);
+        this.addUsersGlobalDebt(product);
+        this.addUsersReallDebt(product)
+    }
+
+    // Add each user expenses
+    addUsersExpenses(product) {
         const userMatch = this.data.usersList.findIndex((user) => {
-            return user.name === productBuyer.toLowerCase();
+            return user.id === product.productBuyer;
         });
-        this.data.usersList[userMatch].expenses = product.productPrizeCents;
+        this.data.usersList[userMatch].expenses += product.productPrizeCents;
+    }
+
+    // Add each user global debt
+    addUsersGlobalDebt(product) {
+        this.data.usersList.forEach(user => {
+            if (user.id !== product.productBuyer) {
+                if (!user.globalDebt[product.productBuyer]) {
+                    user.globalDebt = {
+                        ...user.globalDebt,
+                        [product.productBuyer]: product.productPrizeCents / this.data.usersList.length
+                    }
+                } else {
+                    let debtValue = user.globalDebt[product.productBuyer]
+                    user.globalDebt = {
+                        ...user.globalDebt,
+                        [product.productBuyer]: debtValue + product.productPrizeCents / this.data.usersList.length
+                    }
+                }
+                
+            }
+        });
+    }
+
+    // Add each user real debt
+    // addUsersReallDebt(product) {
+    //     this.data.usersList.reduce((acc, actualUser) => {
+    //         if (actualUser.globalDebt.hasOwnProperty(acc.name)) {
+    //             console.log('yes')
+    //         }
+    //     });
+    // }
+    addUsersReallDebt(product) {
+        // Get buyer ID, this way we can know the buyr
+        const productBuyerID = product.productBuyer;
+        // Find buyer index
+        const productBuyer = this.data.usersList.findIndex((user) => {
+            return user.id === productBuyerID;
+        });
+        // Get debt portion per user
+        const debtPortionPerUser = product.productPrizeCents / this.data.usersList.length;
+        this.data.usersList.forEach((user, index) => {
+            if (user.globalDebt.hasOwnProperty(productBuyerID)) {
+                if (user.globalDebt[productBuyerID] < this.data.usersList[productBuyer].globalDebt[user.id]) {
+                    user.realDebt = {
+                        ...user.realDebt,
+                        [productBuyerID]: 0
+                    }
+                } else {
+                    user.realDebt = {
+                        ...user.realDebt,
+                        [productBuyerID]: user.globalDebt[productBuyerID] - this.data.usersList[productBuyer].globalDebt[user.id]
+                    }
+                    console.log(this.data.usersList[productBuyer].globalDebt[productBuyerID], user.globalDebt[productBuyerID])
+                }
+            }
+        });
     }
 
     // Delete product from list
@@ -75,11 +134,29 @@ class Model {
         });
     }
 
+    // Calculate (This is the chicken of the chicken with rice)
+    calcDebtPerUser() {
+        const users = this.data.usersList;
+        this.data.productsList.forEach(product => {
+            let productBuyer = product.productBuyer.toLowerCase();
+            let productPize = product.productPrizeCents;
+            // console.log(product);
+            for (const user of users) {
+                if (!user.name.toLowerCase() === productBuyer) {
+                    // user.expenses += productPize;
+                    // console.log(user, user.name, productBuyer, user.expenses);
+                    // console.log(productBuyer, user);
+                    user.globalDebt = {
+                        ...user.globalDebt,
+                        [product.productBuyer]: product.productPrizeCents / users.length
+                    }
+                }
+            }
+        });
+    }
+
     // Update data in localStorage
     updateStorage() {}
-
-    // Calculate (This is the chicken of the chicken with rice)
-    calcDebtPerUser() {}
 
     // Toggle user status (positive/negative)
     toggleStatus() {}

@@ -5,11 +5,6 @@ class View {
         // this.users = this.document.querySelector('#usersList');
     }
 
-    // Testing
-    testView () {
-        console.log('Testing view');
-    }
-
     // get element from the DOM
     getDomElement (selector) {
         const element = document.querySelector(selector);

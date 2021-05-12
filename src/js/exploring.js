@@ -108,76 +108,76 @@ const test = {
     oscar: {
         expenses: 100,
         globalDebt: {
-            toPepe: 10,
-            toChini: 5,
-            toBolo: 3,
-            toPaco: 1
+            Pepe: 10,
+            Chini: 5,
+            Bolo: 3,
+            Paco: 1
         },
         realDebt: {
-            toPepe: 0,          // Me debe --> No le pago
-            toChini: 0,         // Me debe --> No le pago
-            toBolo: 0,          // Me debe --> No le pago
-            toPaco: 0           // Me debe --> No le pago
+            Pepe: 0,          // Me debe --> No le pago
+            Chini: 0,         // Me debe --> No le pago
+            Bolo: 0,          // Me debe --> No le pago
+            Paco: 0           // Me debe --> No le pago
         }
     },
     pepe: {
         expenses: 50,
         globalDebt: {
-            toOscar: 20,
-            toChini: 5,
-            toBolo: 3,
-            toPaco: 1
+            Oscar: 20,
+            Chini: 5,
+            Bolo: 3,
+            Paco: 1
         },
         realDebt: {
-            toOscar: 10,        // Le debo --> 20 - 10 = 10
-            toChini: 15,        // Me debe --> No le pago
-            toBolo: 3,          // Me debe --> No le pago
-            toPaco: 3           // Me debe --> No le pago
+            Oscar: 10,        // Le debo --> 20 - 10 = 10
+            Chini: 15,        // Me debe --> No le pago
+            Bolo: 3,          // Me debe --> No le pago
+            Paco: 3           // Me debe --> No le pago
         }
     },
     chini: {
         expenses: 25,
         globalDebt: {
-            toOscar: 20,
-            toPepe: 10,
-            toBolo: 3,
-            toPaco: 1
+            Oscar: 20,
+            Pepe: 10,
+            Bolo: 3,
+            Paco: 1
         },
         realDebt: {
-            toOscar: 15,        // Le debo --> 20 - 5 = 15
-            toPepe: 5,          // Le debo --> 10 - 5 = 5
-            toBolo: 3,          // Me debe --> No le pago
-            toPaco: 3           // Me debe --> No le pago
+            Oscar: 15,        // Le debo --> 20 - 5 = 15
+            Pepe: 5,          // Le debo --> 10 - 5 = 5
+            Bolo: 3,          // Me debe --> No le pago
+            Paco: 3           // Me debe --> No le pago
         }
     },
     bolo: {
         expenses: 15,
         globalDebt: {
-            toOscar: 20,
-            toPepe: 10,
-            toChini: 5,
-            toPaco: 1
+            Oscar: 20,
+            Pepe: 10,
+            Chini: 5,
+            Paco: 1
         },
         realDebt: {
-            toOscar: 17,        // Le debo --> 20 - 3 = 17
-            toPepe: 7,          // Le debo --> 10 - 3 = 7
-            toChini: 2,         // Le debo --> 5 - 3 = 2
-            toPaco: 3           // Me debe --> No le pago
+            Oscar: 17,        // Le debo --> 20 - 3 = 17
+            Pepe: 7,          // Le debo --> 10 - 3 = 7
+            Chini: 2,         // Le debo --> 5 - 3 = 2
+            Paco: 3           // Me debe --> No le pago
         }
     },
     paco: {
         expenses: 5,
         globalDebt: {
-            toOscar: 20,
-            toPepe: 10,
-            toChini: 5,
-            toBolo: 3,
+            Oscar: 20,
+            Pepe: 10,
+            Chini: 5,
+            Bolo: 3,
         },
         realDebt: {
-            toOscar: 19,        // Le debo --> 20 - 1 = 19
-            toPepe: 9,          // Le debo --> 10 - 1 = 9
-            toChini: 4,         // Le debo --> 5 - 1 = 4
-            toBolo: 2,          // Le debo --> 3 - 1 = 2
+            Oscar: 19,        // Le debo --> 20 - 1 = 19
+            Pepe: 9,          // Le debo --> 10 - 1 = 9
+            Chini: 4,         // Le debo --> 5 - 1 = 4
+            Bolo: 2,          // Le debo --> 3 - 1 = 2
         }
     },
 }

@@ -6,10 +6,6 @@ class Controller {
         this.model = model
         this.view = view
     }
-    testing() {
-        this.model.testModel()
-        this.view.testView()
-    }
 }
 
 const app = new Controller(model, view)
@@ -17,10 +13,16 @@ const app = new Controller(model, view)
 // Test adding user
 app.model.addUser('Oscar');
 app.model.addUser('Pepe');
+app.model.addUser('chini');
+app.model.addUser('bolo');
+app.model.addUser('paco');
 
 // Test adding product
-app.model.addProduct('Ron', 10, 20, 'oscar');
-// app.model.addProduct('Sal', 8, 12, 'Pepe');
+app.model.addProduct('Ron', 1, 0, 1);
+app.model.addProduct('Sal', 0.5, 0, 2);
+app.model.addProduct('Sal', 0.25, 0, 3);
+app.model.addProduct('Sal', 0.15, 0, 4);
+app.model.addProduct('Sal', 0.05, 0, 5);
 
 console.log(app.model.data);
 
