@@ -1,7 +1,6 @@
 <div id="controls">
-	<button id="addProductButton" class="btn btn-success text-white shadow-lg" type="button">Exportar</button>
-	<button id="addProductButton" class="btn btn-primary shadow-lg" type="button">Nuevo</button>
-	{{!-- <button id="addProductButton" class="btn btn-primary btn-block" type="button">Añadir</button> --}}
+	{{!-- <button id="addProductButton" class="btn btn-success text-white shadow-lg" type="button">Exportar</button>
+	<button id="addProductButton" class="btn btn-primary shadow-lg" type="button">Nuevo</button> --}}
 </div>
 <div class="row h-100 g-0">
 	<!-- Users -->
@@ -11,7 +10,24 @@
 			<b>Añade invitados a la party.</b><br>Sus saldos se irán actualizando de manera tal que habrán deudores (<span class="fw-bold text-danger"><i class="bi bi-circle-fill"></i></span> <b>quien debe dinero</b>) y beneficiarios (<span class="fw-bold text-success"><i class="bi bi-circle-fill"></i></span> <b>quien recibe dinero</b>).
 		</div> --}}
 		<ul id="usersList" class="list-unstyled">
-			<li class="usersItem negative">
+			{{#each guest}}
+			<li class="usersItem {{guest.status}}">
+				<div class="usersItem-avatar-button">
+					<span class="avatar"><span>{{guest.getInitialLetter}}</span></span>
+					<button type="button" class="btn btn-outline-danger btn-remove-user"><i class="bi bi-x" style="font-size: 1.8rem;"></i></button>
+				</div>
+				<div class="usersItem-info">
+					<h6 class="usersItem-info_name">{{guest.name}}</h6>
+					<p class="usersItem-info_content">
+						<small>
+							Saldo {{guest.status}}
+						</small>
+					</p>
+				</div>
+				<span class="userItem-badge">-24 €</span>
+			</li>
+			{{/each}}
+			{{!-- <li class="usersItem negative">
 				<div class="usersItem-avatar-button">
 					<span class="avatar"><span>I</span></span>
 					<button type="button" class="btn btn-outline-danger btn-remove-user"><i class="bi bi-x" style="font-size: 1.8rem;"></i></button>
@@ -98,9 +114,9 @@
 					<p class="usersItem-info_content"><small>Saldo negativo | Debe pagar</small></p>
 				</div>
 				<span class="userItem-badge">8 €</span>
-			</li>
+			</li> --}}
 		</ul>
-		<form action="" class="mb-2 d-grid needs-validation" novalidate>
+		<form id="addUserForm" action="" class="mb-2 d-grid needs-validation" novalidate>
 			<input type="text" class="form-control mb-2" id="addUserInpu" placeholder="Añadir un invitado" required>
 			<div class="invalid-feedback mb-2">Añade usuario</div>
 			<button id="addUserButton" class="btn btn-primary" type="button" id="button-addon2">Añadir</button>
@@ -118,7 +134,7 @@
 					<b>Añade productos comprados.</b><br>Deben ser asignados a un usuario (<b>el que hizo la compra</b>) para hacer el cálculo de los saldos. <b>Sólo podrás añadir productos, una vez que hayas añadido, al menos un invitado.</b>
 				</div> --}}
 				<ul id="productsList" class="list-unstyled">
-					<li class="productItem positive">
+					{{!-- <li class="productItem positive">
 						<h6 class="productItem-title">Havana Club</h6>
 						<span class="productItem-badge">Oscar</span>
 						<h6 class="productItem-price">40 €</h6>
@@ -173,9 +189,9 @@
 						<div class="deleteProduct">
 							<button type="button" class="btn btn-danger btn-sm btn-deleteProduct">Eliminar</button>
 						</div>
-					</li>
+					</li> --}}
 				</ul>
-				<h6 id="productItem-total" class="productItem-price text-end">76 €</h6> 
+				{{!-- <h6 id="productItem-total" class="productItem-price text-end">76 €</h6>  --}}
 				<form id="productsForm" class="mb-2 needs-validation" novalidate>
 					<div class="row g-2">
 						<div class="col-lg-12">
@@ -190,7 +206,7 @@
 							<input type="number" class="form-control" min="0" max="99" id="productPrizeCentsInpu" placeholder="Precio céntimos">
 						</div> --}}
 						<div class="col-lg-12 col-xl col-xl">
-							<select class="form-select" required>
+							<select id="bindProductBuyer" class="form-select" required>
 								<option selected disabled value="">Asigna la compra</option>
 								<option value="oscar">Oscar</option>
 								<option value="liudmmila">Liudmila</option>
@@ -216,7 +232,7 @@
 					Un resumen indicando deudores, beneficiarios y la cantidad a transferir.
 				</div> --}}
 				<ul id="summaryList" class="list-unstyled">
-					<li class="summaryItem positive">
+					{{!-- <li class="summaryItem positive">
 						<h6 class="summaryItem-title">Iván</h6>
 						<span class="summaryItem-badge">12 €</span>
 						<i class="summaryItem-icon bi bi-arrow-right"></i>
@@ -239,7 +255,7 @@
 						<span class="summaryItem-badge">16 €</span>
 						<i class="summaryItem-icon bi bi-arrow-right"></i>
 						<h6 class="summaryItem-price">Oscar</h6>
-					</li>
+					</li> --}}
 				</ul>
 			</div>
 			<!-- /Summary -->
