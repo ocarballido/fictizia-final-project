@@ -1,5 +1,5 @@
 import '../scss/index.scss';
-import { app } from './controller';
+import { app } from './controllers/Controller';
 
 document.addEventListener('DOMContentLoaded', () => {
     console.log('loaded index');

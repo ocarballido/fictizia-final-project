@@ -1,6 +1,6 @@
-import { Guest } from './Guest';
+import { Guest } from '../Guest';
 
-export default class Model {
+class ApiServices {
     constructor() {
         this.data = {
             usersList: [],
@@ -11,10 +11,15 @@ export default class Model {
 
     // Add new user
     addUser(userName) {
-        const user = new Guest(userName.toLowerCase());
+        const user = new Guest(userName);
         this.data.usersList.push(user);
+        return user;
     }
 
     // Delete user from list
-    deleteUser() {}
-};
+    // deleteUser() {}
+}
+
+const apiServices = new ApiServices();
+
+export { apiServices };

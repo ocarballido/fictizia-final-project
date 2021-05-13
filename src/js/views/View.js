@@ -1,10 +1,11 @@
-export default class View {
+class View {
     constructor() {
         // Guests elements
         this.guestListUl = document.querySelector('#usersList');
         this.addGuestForm = document.querySelector('#addUserForm');
         this.addGuestInput = document.querySelector('#addUserInpu');
         this.addGuestButton = document.querySelector('#addUserButton');
+        this.singleUserTemplate = document.querySelector('#userItemTemplate').innerHTML;
 
         // Products elements
         this.productListUl = document.querySelector('#productsList');
@@ -18,7 +19,7 @@ export default class View {
         this.summaryListUl = document.querySelector('#summaryList');
     }
 
-    // Add user
+    // Add user action
     addUserAction(handler) {
         this.addGuestForm.addEventListener('submit', (event) => {
             event.preventDefault();
@@ -29,4 +30,17 @@ export default class View {
             }
         });
     }
+
+    // Render single user
+    renderSingleUser(user) {
+        const userText = this.singleUserTemplate
+            .replace('[[userId]]', user.id)
+            .replace('[[userName]]', user.name)
+            .replace('[[userDedtText]]', 'Saldo 0')
+            .replace('[[userDept]]', '0')
+            .replace('[[userInitial]]', user.getInitialLetter());
+        this.guestListUl.innerHTML += userText;
+    }
 };
+
+export { View };

@@ -10,23 +10,6 @@
 			<b>Añade invitados a la party.</b><br>Sus saldos se irán actualizando de manera tal que habrán deudores (<span class="fw-bold text-danger"><i class="bi bi-circle-fill"></i></span> <b>quien debe dinero</b>) y beneficiarios (<span class="fw-bold text-success"><i class="bi bi-circle-fill"></i></span> <b>quien recibe dinero</b>).
 		</div> --}}
 		<ul id="usersList" class="list-unstyled">
-			{{#each guest}}
-			<li class="usersItem {{guest.status}}">
-				<div class="usersItem-avatar-button">
-					<span class="avatar"><span>{{guest.getInitialLetter}}</span></span>
-					<button type="button" class="btn btn-outline-danger btn-remove-user"><i class="bi bi-x" style="font-size: 1.8rem;"></i></button>
-				</div>
-				<div class="usersItem-info">
-					<h6 class="usersItem-info_name">{{guest.name}}</h6>
-					<p class="usersItem-info_content">
-						<small>
-							Saldo {{guest.status}}
-						</small>
-					</p>
-				</div>
-				<span class="userItem-badge">-24 €</span>
-			</li>
-			{{/each}}
 			{{!-- <li class="usersItem negative">
 				<div class="usersItem-avatar-button">
 					<span class="avatar"><span>I</span></span>
@@ -263,3 +246,17 @@
 	</div>
 	<!-- /Products and Summary -->
 </div>
+
+<template id="userItemTemplate">
+	<li class="usersItem positive" data-id="[[userId]]">
+		<div class="usersItem-avatar-button">
+			<span class="avatar"><span>[[userInitial]]</span></span>
+			<button type="button" class="btn btn-outline-danger btn-remove-user"><i class="bi bi-x" style="font-size: 1.8rem;"></i></button>
+		</div>
+		<div class="usersItem-info">
+			<h6 class="usersItem-info_name">[[userName]]</h6>
+			<p class="usersItem-info_content"><small>[[userDedtText]]</small></p>
+		</div>
+		<span class="userItem-badge">[[userDept]]</span>
+	</li>
+</template>
