@@ -11,13 +11,11 @@ class Controller {
     }
 
     addUserHandler(userName) {
-        this.model.addUser(userName);
         console.log('yeah');
+        this.model.addUser(userName);
     }
 }
 
 const app = new Controller(new Model(), new View())
-
-// console.log(app.model.data);
 
 export { app };
