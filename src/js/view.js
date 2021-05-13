@@ -1,32 +1,32 @@
-import { Model } from "./model";
-
-class View {
+export default class View {
     constructor() {
         // Guests elements
-        this.guestListUl = this.getDomElement('#usersList');
-        this.addGuestForm = this.getDomElement('#addUserForm');
-        this.addGuestInput = this.getDomElement('#addUserInpu');
-        this.addGuestButton = this.getDomElement('#addUserButton');
+        this.guestListUl = document.querySelector('#usersList');
+        this.addGuestForm = document.querySelector('#addUserForm');
+        this.addGuestInput = document.querySelector('#addUserInpu');
+        this.addGuestButton = document.querySelector('#addUserButton');
 
         // Products elements
-        this.productListUl = this.getDomElement('#productsList');
-        this.addProductForm = this.getDomElement('#productsForm');
-        this.addProductInputName = this.getDomElement('#addProductInpu');
-        this.addProductPrice = this.getDomElement('#productPrizeEuroInpu');
-        this.bindProductBuyer = this.getDomElement('#bindProductBuyer');
-        this.addProductButton = this.getDomElement('#addProductButton');
+        this.productListUl = document.querySelector('#productsList');
+        this.addProductForm = document.querySelector('#productsForm');
+        this.addProductInputName = document.querySelector('#addProductInpu');
+        this.addProductPrice = document.querySelector('#productPrizeEuroInpu');
+        this.bindProductBuyer = document.querySelector('#bindProductBuyer');
+        this.addProductButton = document.querySelector('#addProductButton');
 
         // Summary elements
-        this.summaryListUl = this.getDomElement('#summaryList');
+        this.summaryListUl = document.querySelector('#summaryList');
     }
 
-    // get element from the DOM
-    getDomElement (selector) {
-        const element = document.querySelector(selector);
-        return element;
+    // Add user
+    addUserAction(handler) {
+        this.addGuestForm.addEventListener('submit', (event) => {
+            event.preventDefault();
+            const userName = event.target.elements.userName.value.trim();
+            if (userName.length > 0) {
+                handler(userName);
+                event.target.elements.userName.value = ''
+            }
+        });
     }
 };
-
-const view = new View();
-
-export { view };

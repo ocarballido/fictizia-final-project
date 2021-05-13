@@ -1,5 +1,5 @@
 import '../scss/index.scss';
-import {app} from './controller';
+import { app } from './controller';
 
 document.addEventListener('DOMContentLoaded', () => {
     console.log('loaded index');
@@ -40,3 +40,5 @@ const debts = test.reduce((obj, user) => {
     obj[user.id] = user.globalDebt;
     return obj;
 }, {});
+
+console.log(app.model.data);

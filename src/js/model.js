@@ -1,8 +1,6 @@
 import { Guest } from './Guest';
-import { Product } from './Product';
-import { SummaryItem } from './SummaryItem';
 
-class Model {
+export default class Model {
     constructor() {
         this.data = {
             usersList: [],
@@ -20,7 +18,3 @@ class Model {
     // Delete user from list
     deleteUser() {}
 };
-
-const model = new Model();
-
-export { model };
