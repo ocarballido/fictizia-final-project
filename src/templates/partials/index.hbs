@@ -182,27 +182,24 @@
 							<div class="invalid-feedback">Añade nombre de producto</div>
 						</div>
 						<div class="col-lg-6 ">
-							<input type="number" step="0.01" class="form-control" min="0" id="productPrizeEuroInpu" placeholder="Precio euros" required>
+							<input type="number" step="0.01" class="form-control" min="0" id="productPrizeInpu" placeholder="Precio euros" required>
 							<div class="invalid-feedback">Añade precio</div>
 						</div>
-						{{!-- <div class="col-lg-6 ">
-							<input type="number" class="form-control" min="0" max="99" id="productPrizeCentsInpu" placeholder="Precio céntimos">
-						</div> --}}
 						<div class="col-lg-12 col-xl col-xl">
 							<select id="bindProductBuyer" class="form-select" required>
 								<option selected disabled value="">Asigna la compra</option>
-								<option value="oscar">Oscar</option>
+								{{!-- <option value="oscar">Oscar</option>
 								<option value="liudmmila">Liudmila</option>
 								<option value="ivan">Iván</option>
 								<option value="lily">Lily</option>
 								<option value="sergio">Sergio</option>
 								<option value="susana">Susana</option>
 								<option value="yami">Yami</option>
-								<option value="orelvis">Orelvis</option>
+								<option value="orelvis">Orelvis</option> --}}
 							</select>
 							<div class="invalid-feedback">Asigna la compra a un usuario</div>
 						</div>
-						<button id="addProductButton" class="btn btn-primary btn-block" type="button" id="button-addon2">Añadir</button>
+						<button id="addProductButton" class="btn btn-primary btn-block" type="submit" id="button-addon2">Añadir</button>
 					</div>
 				</form>
 			</div>
@@ -258,5 +255,16 @@
 			<p class="guestsItem-info_content"><small>[[guestDedtText]]</small></p>
 		</div>
 		<span class="guestItem-badge">[[guestDept]]</span>
+	</li>
+</template>
+
+<template id="productItemTemplate">
+	<li class="productItem" data-id="[[productId]]">
+		<h6 class="productItem-title">[[productTitle]]</h6>
+		<span class="productItem-badge">[[productBuyer]]</span>
+		<h6 class="productItem-price">[[productPrice]]</h6>
+		<div class="deleteProduct">
+			<button type="button" class="btn btn-danger btn-sm btn-deleteProduct">Eliminar</button>
+		</div>
 	</li>
 </template>

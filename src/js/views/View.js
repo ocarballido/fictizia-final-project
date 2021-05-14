@@ -53,12 +53,38 @@ class View {
             .replace('[[guestDept]]', '0')
             .replace('[[guestInitial]]', guest.getInitialLetter());
         this.guestListUl.innerHTML += guestText;
+
+        // Adding option to add producto select nuyer
+        const option = document.createElement("option");
+        option.text = guest.name;
+        option.value = guest.id;
+        this.bindProductBuyer.add(option);
     }
 
     // Render single guest
     renderDeleteGuest(guestId) {
         const guestToDelete = document.querySelector(`[data-id="${guestId}"]`);
         guestToDelete.remove();
+
+        // Removing option to add producto select nuyer
+        this.bindProductBuyer.remove(guestId);
+    }
+
+    // addProduct action
+    addProductAction(handler) {
+        this.addProductForm.addEventListener('submit', (event) => {
+            event.preventDefault();
+            // if (guestName.length > 0) {
+            //     handler(guestName);
+            //     event.target.elements.guestName.value = ''
+            // }
+            if (!this.addProductForm.checkValidity()) {
+                event.preventDefault()
+                event.stopPropagation()
+            }
+      
+            this.addProductForm.classList.add('was-validated')
+        });
     }
 };
 

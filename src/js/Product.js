@@ -1,9 +1,8 @@
 class Product {
-    constructor(productTitle, productEuro, productBuyer) {
+    constructor(productTitle, productPrice, productBuyer) {
         this.productTitle = productTitle;
-        this.productEuro = productEuro;
+        this.productPrice = productPrice * 100;
         this.productBuyer = productBuyer;
-        this.productPrizeCents = this.productEuro * 100;
     }
 }
 

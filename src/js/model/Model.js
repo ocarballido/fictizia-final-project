@@ -10,6 +10,11 @@ class Model {
     deleteGuest(guestId) {
         return apiServices.deleteGuest(guestId);
     }
+
+    // Add new product
+    addProduct(productTitle, productPrice, productBuyer) {
+        return apiServices.addProduct(productTitle, productPrice, productBuyer);
+    }
 };
 
 export { Model };

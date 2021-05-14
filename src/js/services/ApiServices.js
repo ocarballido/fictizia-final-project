@@ -1,4 +1,5 @@
 import { Guest } from '../Guest';
+import { Product } from '../Product';
 
 class ApiServices {
     constructor() {
@@ -23,6 +24,15 @@ class ApiServices {
         });
         this.data.guestsList.splice(guestToDeleteIndex, 1);
     }
+
+    // Add new product
+    addProduct(productTitle, productPrice, productBuyer) {
+        const product = new Product(productTitle, productPrice, productBuyer);
+        this.data.productsList.push(product);
+        return product;
+    }
+
+    // Delete product from list
 }
 
 const apiServices = new ApiServices();

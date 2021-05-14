@@ -11,6 +11,8 @@ class Controller {
         this.view.addGuestAction(this.addGuestHandler.bind(this));
         // Binding view deleteGuest action
         this.view.deleteGuestAction(this.deleteGuestHandler.bind(this));
+        // Binding view addProduct action
+        this.view.addProductAction(this.addProductHandler.bind(this));
     }
 
     // addGuestHandler
@@ -25,7 +27,13 @@ class Controller {
     deleteGuestHandler(guestId) {
         const guestToDelete = this.model.deleteGuest(guestId);
         this.view.renderDeleteGuest(guestId);
-        // console.log(guestId);
+    }
+
+    // addProductHandler
+    addProductHandler(productTitle, productPrice, productBuyer) {
+        const productAdded = this.model.addProduct(productTitle, productPrice, productBuyer);
+        // this.view.renderSingleGuest(productAdded);
+        console.log(productAdded);
     }
 }
 
