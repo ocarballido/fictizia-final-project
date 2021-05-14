@@ -1,13 +1,13 @@
 import { apiServices } from '../services/ApiServices';
 
 class Model {
-    // Add new user
-    addUser(userName) {
-        return apiServices.addUser(userName);
+    // Add new guest
+    addGuest(guestName) {
+        return apiServices.addGuest(guestName);
     }
 
-    // Delete user from list
-    // deleteUser() {}
+    // Delete guest from list
+    // deleteGuest() {}
 };
 
 export { Model };

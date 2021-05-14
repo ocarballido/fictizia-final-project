@@ -10,34 +10,34 @@ html, body {
     border-width: 0 0 1px;
 }
 
-#usersAlert, #productsAlert, #summaryAlert {
+#guestsAlert, #productsAlert, #summaryAlert {
     font-size: .85rem;
     margin: 0 auto;
     max-width: 500px;
 }
 
-.usersItem {
+.guestsItem {
     align-items: center;
     border-bottom: 1px solid rgba(0, 0, 0, 0.075);
     display: flex;
     padding: 16px 0;
-    .usersItem-avatar-button {
+    .guestsItem-avatar-button {
         flex-shrink: 0;
     }
-    .userItem-badge {
+    .guestItem-badge {
         border-radius: 50rem;
         color: white;
         font-size: .75rem;
         font-weight: 600;
         padding: 1px 8px;
     }
-    .usersItem-info {
+    .guestsItem-info {
         flex-grow: 1;
         margin: 0 16px;
-        .usersItem-info_name {
+        .guestsItem-info_name {
             margin: 0;
         }
-        .usersItem-info_content {
+        .guestsItem-info_content {
             margin: 0;
         }
     }
@@ -45,11 +45,11 @@ html, body {
         .avatar {
             background-color: $danger;
         }
-        .userItem-badge {
+        .guestItem-badge {
             background-color: $danger;
         }
-        .usersItem-info {
-            .usersItem-info_content {
+        .guestsItem-info {
+            .guestsItem-info_content {
                 color: $danger;
             }
         }
@@ -58,11 +58,11 @@ html, body {
         .avatar {
             background-color: $success;
         }
-        .userItem-badge {
+        .guestItem-badge {
             background-color: $success;
         }
-        .usersItem-info {
-            .usersItem-info_content {
+        .guestsItem-info {
+            .guestsItem-info_content {
                 color: $success;
             }
         }
@@ -79,7 +79,7 @@ html, body {
             font-size: 1.2rem;
         }
     }
-    .btn-remove-user {
+    .btn-remove-guest {
         align-items: center;
         border-radius: 50%;
         // color: white;
@@ -93,7 +93,7 @@ html, body {
         .avatar {
             display: none;
         }
-        .btn-remove-user {
+        .btn-remove-guest {
             display: inline-flex;
             transform: rotate(90deg);
         }

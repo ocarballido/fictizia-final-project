@@ -6,15 +6,15 @@ class Controller {
         this.model = model;
         this.view = view;
 
-        // Binding view actions
-        this.view.addUserAction(this.addUserHandler.bind(this));
+        // Binding view addGuest action
+        this.view.addGuestAction(this.addGuestHandler.bind(this));
     }
 
-    // addUserHandler
-    addUserHandler(userName) {
-        const userAdded = this.model.addUser(userName);
-        this.view.renderSingleUser(userAdded);
-        // console.log(userAdded);
+    // addGuestHandler
+    addGuestHandler(guestName) {
+        const guestAdded = this.model.addGuest(guestName);
+        this.view.renderSingleGuest(guestAdded);
+        // console.log(guestAdded);
     }
 }
 

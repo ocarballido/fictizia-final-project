@@ -85,7 +85,7 @@ class DataModel {
         this.productList = []
         this.summaryList = []
     }
-    // Debe tener un métoido addUser() --> Añadir usuario
+    // Debe tener un métoido addGuest() --> Añadir usuario
     // Debe tener un métoido deleteUser() --> Eliminar usuario
     // Debe tener un métoido addProduct() --> Añadir producto
     // Debe tener un métoido deleteProduct() --> Eliminar producto

@@ -1,11 +1,11 @@
 class View {
     constructor() {
         // Guests elements
-        this.guestListUl = document.querySelector('#usersList');
-        this.addGuestForm = document.querySelector('#addUserForm');
-        this.addGuestInput = document.querySelector('#addUserInpu');
-        this.addGuestButton = document.querySelector('#addUserButton');
-        this.singleUserTemplate = document.querySelector('#userItemTemplate').innerHTML;
+        this.guestListUl = document.querySelector('#guestsList');
+        this.addGuestForm = document.querySelector('#addGuestForm');
+        this.addGuestInput = document.querySelector('#addGuestInpu');
+        this.addGuestButton = document.querySelector('#addGuestButton');
+        this.singleGuestTemplate = document.querySelector('#guestItemTemplate').innerHTML;
 
         // Products elements
         this.productListUl = document.querySelector('#productsList');
@@ -19,27 +19,27 @@ class View {
         this.summaryListUl = document.querySelector('#summaryList');
     }
 
-    // Add user action
-    addUserAction(handler) {
+    // addGuest action
+    addGuestAction(handler) {
         this.addGuestForm.addEventListener('submit', (event) => {
             event.preventDefault();
-            const userName = event.target.elements.userName.value.trim();
-            if (userName.length > 0) {
-                handler(userName);
-                event.target.elements.userName.value = ''
+            const guestName = event.target.elements.guestName.value.trim();
+            if (guestName.length > 0) {
+                handler(guestName);
+                event.target.elements.guestName.value = ''
             }
         });
     }
 
-    // Render single user
-    renderSingleUser(user) {
-        const userText = this.singleUserTemplate
-            .replace('[[userId]]', user.id)
-            .replace('[[userName]]', user.name)
-            .replace('[[userDedtText]]', 'Saldo 0')
-            .replace('[[userDept]]', '0')
-            .replace('[[userInitial]]', user.getInitialLetter());
-        this.guestListUl.innerHTML += userText;
+    // Render single guest
+    renderSingleGuest(guest) {
+        const guestText = this.singleGuestTemplate
+            .replace('[[guestId]]', guest.id)
+            .replace('[[guestName]]', guest.name)
+            .replace('[[guestDedtText]]', 'Saldo 0')
+            .replace('[[guestDept]]', '0')
+            .replace('[[guestInitial]]', guest.getInitialLetter());
+        this.guestListUl.innerHTML += guestText;
     }
 };
 
