@@ -17,8 +17,11 @@ class ApiServices {
     }
 
     // Delete guest from list
-    deleteGuest() {
-        //
+    deleteGuest(guestId) {
+        const guestToDeleteIndex = this.data.guestsList.findIndex(guest => {
+            return guest.id === guestId;
+        });
+        this.data.guestsList.splice(guestToDeleteIndex, 1);
     }
 }
 

@@ -5,6 +5,7 @@ class View {
         this.addGuestForm = document.querySelector('#addGuestForm');
         this.addGuestInput = document.querySelector('#addGuestInpu');
         this.addGuestButton = document.querySelector('#addGuestButton');
+        this.deleteGuestButton = document.querySelector('.btn-remove-guest');
         this.singleGuestTemplate = document.querySelector('#guestItemTemplate').innerHTML;
 
         // Products elements
@@ -31,6 +32,18 @@ class View {
         });
     }
 
+    // deleteGuest action
+    deleteGuestAction(handler) {
+        this.guestListUl.addEventListener('click', (event) => {
+            event.preventDefault();
+            const isDeletGuestButton = event.target.tagName.toLowerCase() === 'button' ||event.target.tagName.toLowerCase() === 'i';
+            if (isDeletGuestButton) {
+                const userId = event.target.closest('li').dataset.id;
+                handler(userId);
+            }
+        });
+    }
+
     // Render single guest
     renderSingleGuest(guest) {
         const guestText = this.singleGuestTemplate
@@ -40,6 +53,12 @@ class View {
             .replace('[[guestDept]]', '0')
             .replace('[[guestInitial]]', guest.getInitialLetter());
         this.guestListUl.innerHTML += guestText;
+    }
+
+    // Render single guest
+    renderDeleteGuest(guestId) {
+        const guestToDelete = document.querySelector(`[data-id="${guestId}"]`);
+        guestToDelete.remove();
     }
 };
 

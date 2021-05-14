@@ -7,7 +7,9 @@ class Model {
     }
 
     // Delete guest from list
-    // deleteGuest() {}
+    deleteGuest(guestId) {
+        return apiServices.deleteGuest(guestId);
+    }
 };
 
 export { Model };

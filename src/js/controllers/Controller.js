@@ -1,5 +1,6 @@
 import { Model } from '../model/Model';
 import { View } from '../views/View';
+import { apiServices } from '../services/ApiServices';
 
 class Controller {
     constructor(model, view) {
@@ -8,6 +9,8 @@ class Controller {
 
         // Binding view addGuest action
         this.view.addGuestAction(this.addGuestHandler.bind(this));
+        // Binding view deleteGuest action
+        this.view.deleteGuestAction(this.deleteGuestHandler.bind(this));
     }
 
     // addGuestHandler
@@ -15,6 +18,14 @@ class Controller {
         const guestAdded = this.model.addGuest(guestName);
         this.view.renderSingleGuest(guestAdded);
         // console.log(guestAdded);
+        console.log(apiServices.data);
+    }
+
+    // deleteGuestHandler
+    deleteGuestHandler(guestId) {
+        const guestToDelete = this.model.deleteGuest(guestId);
+        this.view.renderDeleteGuest(guestId);
+        // console.log(guestId);
     }
 }
 
