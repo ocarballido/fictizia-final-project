@@ -30,10 +30,9 @@ class Controller {
     }
 
     // addProductHandler
-    addProductHandler(productTitle, productPrice, productBuyer) {
-        const productAdded = this.model.addProduct(productTitle, productPrice, productBuyer);
-        // this.view.renderSingleGuest(productAdded);
-        console.log(productAdded);
+    addProductHandler(productTitle, productPrice, productBuyer, id) {
+        const productAdded = this.model.addProduct(productTitle, productPrice, productBuyer, id);
+        this.view.renderSingleProduct(productAdded);
     }
 }
 

@@ -12,9 +12,10 @@ class View {
         this.productListUl = document.querySelector('#productsList');
         this.addProductForm = document.querySelector('#productsForm');
         this.addProductInputName = document.querySelector('#addProductInpu');
-        this.addProductPrice = document.querySelector('#productPrizeEuroInpu');
+        this.addProductPrice = document.querySelector('#productPrizeInput');
         this.bindProductBuyer = document.querySelector('#bindProductBuyer');
         this.addProductButton = document.querySelector('#addProductButton');
+        this.singleProductTemplate = document.querySelector('#productItemTemplate').innerHTML;
 
         // Summary elements
         this.summaryListUl = document.querySelector('#summaryList');
@@ -27,7 +28,8 @@ class View {
             const guestName = event.target.elements.guestName.value.trim();
             if (guestName.length > 0) {
                 handler(guestName);
-                event.target.elements.guestName.value = ''
+                event.target.elements.guestName.value = '';
+                this.addProductForm.classList.remove("was-validated");
             }
         });
     }
@@ -74,17 +76,39 @@ class View {
     addProductAction(handler) {
         this.addProductForm.addEventListener('submit', (event) => {
             event.preventDefault();
-            // if (guestName.length > 0) {
-            //     handler(guestName);
-            //     event.target.elements.guestName.value = ''
-            // }
-            if (!this.addProductForm.checkValidity()) {
-                event.preventDefault()
+
+            const productValues = [];
+            
+            const productTitle = this.addProductInputName.value.trim();
+            const productPrice = this.addProductPrice.value;
+            const productBuyer = this.bindProductBuyer.options[this.bindProductBuyer.selectedIndex].text;
+            const productId = this.bindProductBuyer.value;
+
+            if (productTitle === '' || productPrice === '' || productBuyer === '') {
                 event.stopPropagation()
+                this.addProductForm.classList.add('was-validated');
+            } else {
+                this.addProductForm.classList.remove('was-validated');
+                productValues.push(productTitle);
+                productValues.push(productPrice);
+                productValues.push(productBuyer);
+                this.addProductInputName.value = '';
+                this.addProductPrice.value = '';
+                this.bindProductBuyer.value = '';
+                console.log(productBuyer);
+                handler(...productValues);
             }
-      
-            this.addProductForm.classList.add('was-validated')
         });
+    }
+
+    // Render single product
+    renderSingleProduct(product) {
+        const productText = this.singleProductTemplate
+            .replace('[[productId]]', product.productBuyer)
+            .replace('[[productTitle]]', product.productTitle)
+            .replace('[[productBuyer]]', product.productBuyer)
+            .replace('[[productPrice]]', product.productPrice)
+        this.productListUl.innerHTML += productText;
     }
 };
 

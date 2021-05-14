@@ -12,8 +12,8 @@ class Model {
     }
 
     // Add new product
-    addProduct(productTitle, productPrice, productBuyer) {
-        return apiServices.addProduct(productTitle, productPrice, productBuyer);
+    addProduct(productTitle, productPrice, productBuyer, id) {
+        return apiServices.addProduct(productTitle, productPrice, productBuyer, id);
     }
 };
 

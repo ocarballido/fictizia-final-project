@@ -26,8 +26,8 @@ class ApiServices {
     }
 
     // Add new product
-    addProduct(productTitle, productPrice, productBuyer) {
-        const product = new Product(productTitle, productPrice, productBuyer);
+    addProduct(productTitle, productPrice, productBuyer, id) {
+        const product = new Product(productTitle, productPrice, productBuyer, id);
         this.data.productsList.push(product);
         return product;
     }
