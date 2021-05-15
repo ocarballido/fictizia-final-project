@@ -1,5 +1,8 @@
 class View {
     constructor() {
+        // All
+        this.allLists = document.querySelector('#allLists');
+
         // Guests elements
         this.guestListUl = document.querySelector('#guestsList');
         this.addGuestForm = document.querySelector('#addGuestForm');
@@ -16,6 +19,8 @@ class View {
         this.bindProductBuyer = document.querySelector('#bindProductBuyer');
         this.addProductButton = document.querySelector('#addProductButton');
         this.singleProductTemplate = document.querySelector('#productItemTemplate').innerHTML;
+
+        this.ulLists = document.querySelectorAll('ul');
 
         // Summary elements
         this.summaryListUl = document.querySelector('#summaryList');
@@ -35,16 +40,17 @@ class View {
     }
 
     // deleteGuest action
-    deleteGuestAction(handler) {
-        this.guestListUl.addEventListener('click', (event) => {
-            event.preventDefault();
-            const isDeletGuestButton = event.target.tagName.toLowerCase() === 'button' ||event.target.tagName.toLowerCase() === 'i';
-            if (isDeletGuestButton) {
-                const userId = event.target.closest('li').dataset.id;
-                handler(userId);
-            }
-        });
-    }
+    // deleteGuestAction(handler) {
+    //     this.guestListUl.addEventListener('click', (event) => {
+    //         event.preventDefault();
+    //         const isDeletGuestButton = event.target.tagName.toLowerCase() === 'button' ||event.target.tagName.toLowerCase() === 'i';
+    //         if (isDeletGuestButton) {
+    //             const userId = event.target.closest('li').dataset.id;
+    //             handler(userId);
+    //             this.renderDeleteItem(event.currentTarget, userId);
+    //         }
+    //     });
+    // }
 
     // Render single guest
     renderSingleGuest(guest) {
@@ -63,39 +69,49 @@ class View {
         this.bindProductBuyer.add(option);
     }
 
-    // Render single guest
-    renderDeleteGuest(guestId) {
-        const guestToDelete = document.querySelector(`[data-id="${guestId}"]`);
-        guestToDelete.remove();
+    // Render delete single guest
+    // renderDeleteGuest(guestId) {
+    //     const guestToDelete = document.querySelector(`[data-id="${guestId}"]`);
+    //     guestToDelete.remove();
 
-        // Removing option to add producto select nuyer
-        this.bindProductBuyer.remove(guestId);
-    }
+    //     // Removing option to add product select nuyer
+    //     this.bindProductBuyer.remove(guestId);
+    // }
 
     // addProduct action
     addProductAction(handler) {
         this.addProductForm.addEventListener('submit', (event) => {
             event.preventDefault();
 
+            // Declare const to pass the handler
             const productValues = [];
             
+            // Declare product title
             const productTitle = this.addProductInputName.value.trim();
-            const productPrice = this.addProductPrice.value;
-            const productBuyer = this.bindProductBuyer.options[this.bindProductBuyer.selectedIndex].text;
-            const productId = this.bindProductBuyer.value;
 
+            // Declare product price
+            const productPrice = this.addProductPrice.value;
+
+            // Declare product buyer
+            const productBuyer = parseInt(this.bindProductBuyer.value);
+            // const productBuyer = this.bindProductBuyer.options[this.bindProductBuyer.selectedIndex].text;
+
+            // Form validation
             if (productTitle === '' || productPrice === '' || productBuyer === '') {
                 event.stopPropagation()
                 this.addProductForm.classList.add('was-validated');
             } else {
                 this.addProductForm.classList.remove('was-validated');
+
+                // Push values to handler
                 productValues.push(productTitle);
                 productValues.push(productPrice);
                 productValues.push(productBuyer);
                 this.addProductInputName.value = '';
                 this.addProductPrice.value = '';
                 this.bindProductBuyer.value = '';
-                console.log(productBuyer);
+
+                // Call handler
                 handler(...productValues);
             }
         });
@@ -104,11 +120,42 @@ class View {
     // Render single product
     renderSingleProduct(product) {
         const productText = this.singleProductTemplate
-            .replace('[[productId]]', product.productBuyer)
+            .replace('[[productId]]', product.id)
             .replace('[[productTitle]]', product.productTitle)
             .replace('[[productBuyer]]', product.productBuyer)
-            .replace('[[productPrice]]', product.productPrice)
+            .replace('[[productPrice]]', product.productPrice / 100)
         this.productListUl.innerHTML += productText;
+    }
+
+    // Delete item action
+    deleteItemAction(handler) {
+        this.allLists.addEventListener('click', (event) => {
+            const isDeletButton = event.target.classList.contains('btn-remove-guest') || event.target.classList.contains('bi') || event.target.classList.contains('btn-deleteProduct');
+            if (isDeletButton) {
+                const itemId = parseInt(event.target.closest('li').dataset.id);
+                const itemList = event.target.closest('ul').id;
+                handler(itemId, itemList);
+            }
+        });
+    }
+
+    // Render sdelete item
+    renderDeleteItem(itemId, itemList) {
+        if (itemList === this.guestListUl.id || itemList === this.productListUl.id) {
+            const itemToDeleteList = document.querySelector(`#${itemList}`);
+            const itemToDelete = itemToDeleteList.querySelector(`[data-id="${itemId}"]`);
+            itemToDelete.remove();
+            
+            if (itemList === 'guestsList') {
+                // Removing option to add producto select buyer
+                const option = this.bindProductBuyer.querySelector(`option[value="${itemId}"]`);
+                option.remove();
+
+                // Removing product from product list
+                const productBuyedByGuestRemoved = this.productListUl.querySelector(`[data-id="${itemId}"]`);
+                productBuyedByGuestRemoved.remove()
+            }
+        }
     }
 };
 
