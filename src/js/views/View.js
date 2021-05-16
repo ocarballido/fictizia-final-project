@@ -54,6 +54,7 @@ class View {
 
     // Render single guest
     renderSingleGuest(guest) {
+        // Find and replace template placeholders
         const guestText = this.singleGuestTemplate
             .replace('[[guestId]]', guest.id)
             .replace('[[guestName]]', guest.name)
@@ -62,7 +63,7 @@ class View {
             .replace('[[guestInitial]]', guest.getInitialLetter());
         this.guestListUl.innerHTML += guestText;
 
-        // Adding option to add producto select nuyer
+        // Adding option to add producto select buyer
         const option = document.createElement("option");
         option.text = guest.name;
         option.value = guest.id;
@@ -119,6 +120,7 @@ class View {
 
     // Render single product
     renderSingleProduct(product) {
+        // Find and replace template placeholders
         const productText = this.singleProductTemplate
             .replace('[[productId]]', product.id)
             .replace('[[productTitle]]', product.productTitle)

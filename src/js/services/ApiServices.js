@@ -42,9 +42,11 @@ class ApiServices {
 
     // Delete guest/peoduct from list
     deleteItem(itemId, itemList) {
+        // Find item index on corresponding list
         const itemToDeleteIndex = this.data[itemList].findIndex(item => {
             return item.id === itemId;
         });
+        // Removing item from corresponding list
         this.data[itemList].splice(itemToDeleteIndex, 1);
         if (itemList === 'guestsList') {
             this.data.productsList.splice(itemToDeleteIndex, 1);
