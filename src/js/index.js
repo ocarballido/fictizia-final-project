@@ -40,3 +40,44 @@ const debts = test.reduce((obj, user) => {
     obj[user.id] = user.globalDebt;
     return obj;
 }, {});
+
+const testDebt = [
+    {
+        id: 1,
+        name: 'Pepe',
+        expense: 300
+    },
+    {
+        id: 1,
+        name: 'Bolo',
+        globalDebt: {},
+    },
+    {
+        id: 1,
+        name: 'Chini',
+        globalDebt: {},
+    },
+];
+
+const addForTest = (arr, productBuyer, expense) => {
+    const totalBebt = arr.forEach((guest, index) => {
+        if (guest.id !== productBuyer) {
+            if (!guest.globalDebt[productBuyer]) {
+                debt = {
+                    ...debt,
+                    [guest.id]: {
+                        [productBuyer]: expense / arr.length,
+                    }
+                };
+            } else {
+                let debtValue = guest.globalDebt[productBuyer]
+                debt = {
+                    ...debt,
+                    [guest.id]: {
+                        [productBuyer]: debtValue + expense / arr.length,
+                    }
+                };
+            }
+        }
+    });
+};

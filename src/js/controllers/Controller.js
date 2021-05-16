@@ -35,12 +35,7 @@ class Controller {
 
     // addProductHandler
     addProductHandler(productTitle, productPrice, productBuyer) {
-        // Find guest based on product id
-        const guestBuyerIndex = apiServices.data.guestsList.findIndex(guest => {
-            return guest.id === productBuyer;
-        });
-        const guestBuyerId = apiServices.data.guestsList[guestBuyerIndex].name;
-        const productAdded = this.model.addProduct(productTitle, productPrice, productBuyer = guestBuyerId);
+        const productAdded = this.model.addProduct(productTitle, productPrice, productBuyer);
         this.view.renderSingleProduct(productAdded);
 
         // Sum of prices
