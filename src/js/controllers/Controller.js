@@ -9,12 +9,18 @@ class Controller {
 
         // Binding view addGuest action
         this.view.addGuestAction(this.addGuestHandler.bind(this));
+
         // Binding view deleteGuest action
         // this.view.deleteGuestAction(this.deleteGuestHandler.bind(this));
+
         // Binding view addProduct action
         this.view.addProductAction(this.addProductHandler.bind(this));
+
         // Binding view deleteItem action
         this.view.deleteItemAction(this.deleteItemHandler.bind(this));
+
+        // Binding view sum of product render
+        // this.view.renderSumOfProductPrices(this.renderSumOfProductPricesHandler.bind(this));
     }
 
     // addGuestHandler
@@ -39,6 +45,11 @@ class Controller {
         const guestBuyerId = apiServices.data.guestsList[guestBuyerIndex].name;
         const productAdded = this.model.addProduct(productTitle, productPrice, productBuyer = guestBuyerId);
         this.view.renderSingleProduct(productAdded);
+
+        // Sum of prices
+        this.renderSumOfProductPricesHandler();
+        
+        // this.view.renderSumOfProductPrices(productSum);
         console.log(apiServices.data);
     }
 
@@ -46,6 +57,15 @@ class Controller {
     deleteItemHandler(itemId, itemList) {
         this.model.deleteItem(itemId, itemList);
         this.view.renderDeleteItem(itemId, itemList);
+        this.renderSumOfProductPricesHandler();
+    }
+
+    // Sum of prices
+    renderSumOfProductPricesHandler() {
+        const productSum = apiServices.data.productsList.reduce((acc, currentProduct) => {
+            return (acc + currentProduct.productPrice);
+        }, 0);
+        this.view.renderSumOfProductPrices(productSum);
     }
 }
 

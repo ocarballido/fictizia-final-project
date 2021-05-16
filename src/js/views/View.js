@@ -19,6 +19,7 @@ class View {
         this.bindProductBuyer = document.querySelector('#bindProductBuyer');
         this.addProductButton = document.querySelector('#addProductButton');
         this.singleProductTemplate = document.querySelector('#productItemTemplate').innerHTML;
+        this.productsSumTotal = document.querySelector('#productsSumTotal');
 
         this.ulLists = document.querySelectorAll('ul');
 
@@ -115,6 +116,9 @@ class View {
                 // Call handler
                 handler(...productValues);
             }
+
+            // Render sum of prpduct prices
+            // this.renderSumOfProductPrices(productSum);
         });
     }
 
@@ -141,7 +145,7 @@ class View {
         });
     }
 
-    // Render sdelete item
+    // Render delete item
     renderDeleteItem(itemId, itemList) {
         if (itemList === this.guestListUl.id || itemList === this.productListUl.id) {
             const itemToDeleteList = document.querySelector(`#${itemList}`);
@@ -157,6 +161,16 @@ class View {
                 const productBuyedByGuestRemoved = this.productListUl.querySelector(`[data-id="${itemId}"]`);
                 productBuyedByGuestRemoved.remove()
             }
+        }
+    }
+
+    // Render calc sum of all producto price
+    renderSumOfProductPrices(productSum) {
+        this.productsSumTotal.firstElementChild.innerHTML = productSum / 100;
+        if (productSum > 0) {
+            this.productsSumTotal.classList.remove('d-none');
+        } else {
+            this.productsSumTotal.classList.add('d-none');
         }
     }
 };
