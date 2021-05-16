@@ -18,9 +18,6 @@ class Controller {
 
         // Binding view deleteItem action
         this.view.deleteItemAction(this.deleteItemHandler.bind(this));
-
-        // Binding view sum of product render
-        // this.view.renderSumOfProductPrices(this.renderSumOfProductPricesHandler.bind(this));
     }
 
     // addGuestHandler
