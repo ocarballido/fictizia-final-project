@@ -166,7 +166,7 @@ class View {
 
     // Render calc sum of all producto price
     renderSumOfProductPrices(productSum) {
-        this.productsSumTotal.firstElementChild.innerHTML = productSum / 100;
+        this.productsSumTotal.lastElementChild.innerHTML = productSum / 100;
         if (productSum > 0) {
             this.productsSumTotal.classList.remove('d-none');
         } else {
