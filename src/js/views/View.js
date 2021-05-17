@@ -1,3 +1,5 @@
+import Handlebars from 'handlebars';
+
 class View {
     constructor() {
         // All
@@ -9,7 +11,6 @@ class View {
         this.addGuestInput = document.querySelector('#addGuestInpu');
         this.addGuestButton = document.querySelector('#addGuestButton');
         this.deleteGuestButton = document.querySelector('.btn-remove-guest');
-        this.singleGuestTemplate = document.querySelector('#guestItemTemplate').innerHTML;
 
         // Products elements
         this.productListUl = document.querySelector('#productsList');
@@ -25,6 +26,11 @@ class View {
 
         // Summary elements
         this.summaryListUl = document.querySelector('#summaryList');
+
+        // Handlebars templates
+        this.singleGuestTemplate = Handlebars.compile(
+            document.querySelector('#guestItemTemplate').innerHTML
+        );
     }
 
     // addGuest action
@@ -55,14 +61,17 @@ class View {
 
     // Render single guest
     renderSingleGuest(guest) {
-        // Find and replace template placeholders
-        const guestText = this.singleGuestTemplate
-            .replace('[[guestId]]', guest.id)
-            .replace('[[guestName]]', guest.name)
-            .replace('[[guestDedtText]]', 'Saldo 0')
-            .replace('[[guestDept]]', '0')
-            .replace('[[guestInitial]]', guest.getInitialLetter());
-        this.guestListUl.innerHTML += guestText;
+        
+        this.guestListUl.insertAdjacentHTML(
+            'beforeend',
+            this.singleGuestTemplate({
+                guestId: guest.id,
+                guestName: guest.name,
+                guestDedtText: 'Saldo 0',
+                guestDept: '0',
+                guestInitial: guest.getInitialLetter()
+            })
+        );
 
         // Adding option to add producto select buyer
         const option = document.createElement("option");

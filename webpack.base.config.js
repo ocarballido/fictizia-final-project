@@ -2,40 +2,18 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const webpack = require('webpack');
-const glob = require('glob');
-
-const entries = {};
-const plugins = [];
-const templateFolder = './src/templates';
-const regName = /.*\/(.+?)\.js/;
-
-const files = glob.sync('./src/js/*.js', {});
-
-files.forEach((e) => {
-    const page = e.replace(regName, '$1');
-    entries[page] = e;
-    plugins.push(
-        new HtmlWebpackPlugin({
-            filename: `${page}.html`,
-            template: `${templateFolder}/base.hbs`,
-            templateParameters: {
-                title: `Title of ${page} page`,
-                description: `Description of ${page} page`,
-                [`is${page.slice(0, 1).toUpperCase()}${page.slice(1)}`]: true                
-            },
-            chunks: [page]
-        }),
-    );
-});
 
 module.exports = {
-    entry: entries,
+    entry: './src/js/index.js',
     output: {
         filename: 'js/[name].js',
         path: path.resolve(__dirname, './dist')
     },
     plugins: [
-        ...plugins,
+        new HtmlWebpackPlugin({
+            template: './src/templates/index.html',
+            title: 'Fictizia Final Project'
+        }),
         new MiniCssExtractPlugin({
             filename: 'styles/[name].css'
         }),
@@ -62,16 +40,12 @@ module.exports = {
                 options: {
                     name: '[name].[ext]'
                 }
-            },
-            {
-                test: /\.hbs$/,
-                use: {
-                    loader: 'handlebars-loader',
-                    options: {
-                        partialDirs: [ path.join(__dirname, 'src/templates/partials') ]
-                    }
-                }
             }
         ]
     },
+    resolve: {
+        alias: {
+            'handlebars': 'handlebars/dist/handlebars.js'
+        }
+    }
 };
