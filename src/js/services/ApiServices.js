@@ -55,10 +55,10 @@ class ApiServices {
         this.data[itemList].splice(itemToDeleteIndex, 1);
         // Removing products depending on user id
         if (itemList === 'guestsList') {
-            const unique = this.data.productsList.filter(product => {
+            this.data.productsList = this.data.productsList.filter(product => {
                 return product.productBuyerId !== itemId;
             });
-            this.data.productsList = unique;
+            // this.data.productsList = unique;
         }
     }
 
@@ -76,11 +76,20 @@ class ApiServices {
             }
         });
 
-        const putaDeuda = this.data.productsList.forEach(product => {
-            const productPortion = product.productPrice / numberOfGeusts;
-            const productGuestBuyer = product.productBuyer;
+        // const putaDeuda = this.data.productsList.forEach(product => {
+        //     const productPortion = product.productPrice / numberOfGeusts;
+        //     const productGuestBuyer = product.productBuyer;
             
-        });
+        // });
+
+        // const poderesPorHeroeId = this.data.productsList.reduce((acc, debt) => {
+        //     if (acc[debt.heroe]) {
+        //         acc[debt.heroe] = [...acc[debt.heroe], debt]
+        //     } else {
+        //         acc[debt.heroe] = [debt]
+        //     }
+        //     return acc
+        // }, {})
 
         // guestsDebtors.forEach(guestDeptor => {
         //     debtObject = {
