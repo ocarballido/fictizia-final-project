@@ -49,19 +49,6 @@ class View {
         });
     }
 
-    // deleteGuest action
-    // deleteGuestAction(handler) {
-    //     this.guestListUl.addEventListener('click', (event) => {
-    //         event.preventDefault();
-    //         const isDeletGuestButton = event.target.tagName.toLowerCase() === 'button' ||event.target.tagName.toLowerCase() === 'i';
-    //         if (isDeletGuestButton) {
-    //             const userId = event.target.closest('li').dataset.id;
-    //             handler(userId);
-    //             this.renderDeleteItem(event.currentTarget, userId);
-    //         }
-    //     });
-    // }
-
     // Render single guest
     renderSingleGuest(guest) {
         
@@ -82,15 +69,6 @@ class View {
         option.value = guest.id;
         this.bindProductBuyer.add(option);
     }
-
-    // Render delete single guest
-    // renderDeleteGuest(guestId) {
-    //     const guestToDelete = document.querySelector(`[data-id="${guestId}"]`);
-    //     guestToDelete.remove();
-
-    //     // Removing option to add product select nuyer
-    //     this.bindProductBuyer.remove(guestId);
-    // }
 
     // addProduct action
     addProductAction(handler) {
@@ -122,9 +100,6 @@ class View {
                 // Call handler
                 handler(productTitle, productPrice, productBuyerId);
             }
-
-            // Render sum of prpduct prices
-            // this.renderSumOfProductPrices(productSum);
         });
     }
 
@@ -140,13 +115,6 @@ class View {
                 productPrice: product.productPrice / 100
             })
         );
-        // Find and replace template placeholders
-        // const productText = this.singleProductTemplate
-        //     .replace('[[productId]]', product.id)
-        //     .replace('[[productTitle]]', product.productTitle)
-        //     .replace('[[productBuyer]]', product.productBuyer)
-        //     .replace('[[productPrice]]', product.productPrice / 100)
-        // this.productListUl.innerHTML += productText;
     }
 
     // Delete item action

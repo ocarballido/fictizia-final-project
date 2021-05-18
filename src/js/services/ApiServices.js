@@ -17,14 +17,6 @@ class ApiServices {
         return guest;
     }
 
-    // Delete guest from list
-    // deleteGuest(guestId) {
-    //     const guestToDeleteIndex = this.data.guestsList.findIndex(guest => {
-    //         return guest.id === guestId;
-    //     });
-    //     this.data.guestsList.splice(guestToDeleteIndex, 1);
-    // }
-
     // Add new product
     addProduct(productTitle, productPrice, productBuyerId, productBuyerName) {
         // Find guest based on productBuyer
@@ -36,14 +28,6 @@ class ApiServices {
         this.data.productsList.push(product);
         return product;
     }
-
-    // Delete product from list
-    // deleteProduct(productId) {
-    //     const productToDeleteIndex = this.data.productsList.findIndex(product => {
-    //         return product.id === productId;
-    //     });
-    //     this.data.productsList.splice(guestToDeleteIndex, 1);
-    // }
 
     // Delete guest/peoduct from list
     deleteItem(itemId, itemList) {
@@ -58,7 +42,6 @@ class ApiServices {
             this.data.productsList = this.data.productsList.filter(product => {
                 return product.productBuyerId !== itemId;
             });
-            // this.data.productsList = unique;
         }
     }
 
@@ -90,62 +73,6 @@ class ApiServices {
         //     }
         //     return acc
         // }, {})
-
-        // guestsDebtors.forEach(guestDeptor => {
-        //     debtObject = {
-        //         [productBuyerGuest.id]: {
-        //             [productBuyer]: 0
-        //         },
-        //         [productBuyer]: {
-        //             [productBuyerGuest.id]: productPricePortion
-        //         }
-        //     };
-        //     console.log(debtObject);
-        // });
-        // console.log(debtObject);
-
-        // const totalBebt = this.data.guestsList.forEach((guest, index) => {
-        //     if (guest.id !== productBuyer) {
-        //         if (!guest.globalDebt[productBuyer]) {
-        //             let buyerBebToMe = productPricePortion - productBuyerGuest.globalDebt[guest.id];
-        //             if (isNaN(buyerBebToMe)) {
-        //                 guest.globalDebt = {
-        //                     ...guest.globalDebt,
-        //                     [productBuyer]: productPricePortion
-        //                 };
-        //             } else if (buyerBebToMe < 0) {
-        //                 // productBuyerGuest.globalDebt[guest.id] = 0;
-        //                 guest.globalDebt = {
-        //                     ...guest.globalDebt,
-        //                     [productBuyer]: 0
-        //                 };
-        //             } else {
-        //                 // productBuyerGuest.globalDebt[guest.id] = productBuyerGuest.globalDebt[guest.id] - productPricePortion;
-        //                 guest.globalDebt = {
-        //                     ...guest.globalDebt,
-        //                     [productBuyer]: buyerBebToMe
-        //                 };
-        //             }
-                    
-        //         } else {
-        //             let debtValue = guest.globalDebt[productBuyer];
-        //             let buyerBebToMe = (debtValue + productPricePortion) - productBuyerGuest.globalDebt[guest.id];
-        //             if (buyerBebToMe < 0) {
-        //                 // productBuyerGuest.globalDebt[guest.id] = 0;
-        //                 guest.globalDebt = {
-        //                     ...guest.globalDebt,
-        //                     [productBuyer]: 0
-        //                 };
-        //             } else {
-        //                 // productBuyerGuest.globalDebt[guest.id] = productBuyerGuest.globalDebt[guest.id] - productPricePortion;
-        //                 guest.globalDebt = {
-        //                     ...guest.globalDebt,
-        //                     [productBuyer]: buyerBebToMe
-        //                 };
-        //             }
-        //         }
-        //     }
-        // });
     }
 }
 

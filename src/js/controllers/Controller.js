@@ -10,9 +10,6 @@ class Controller {
         // Binding view addGuest action
         this.view.addGuestAction(this.addGuestHandler.bind(this));
 
-        // Binding view deleteGuest action
-        // this.view.deleteGuestAction(this.deleteGuestHandler.bind(this));
-
         // Binding view addProduct action
         this.view.addProductAction(this.addProductHandler.bind(this));
 
@@ -26,12 +23,6 @@ class Controller {
         this.view.renderSingleGuest(guestAdded);
         console.log(apiServices.data);
     }
-
-    // deleteGuestHandler
-    // deleteGuestHandler(guestId) {
-    //     this.model.deleteGuest(guestId);
-    //     this.view.renderDeleteGuest(guestId);
-    // }
 
     // addProductHandler
     addProductHandler(productTitle, productPrice, productBuyer) {
