@@ -31,6 +31,9 @@ class View {
         this.singleGuestTemplate = Handlebars.compile(
             document.querySelector('#guestItemTemplate').innerHTML
         );
+        this.singleProductTemplate = Handlebars.compile(
+            document.querySelector('#productItemTemplate').innerHTML
+        );
     }
 
     // addGuest action
@@ -123,7 +126,7 @@ class View {
                 this.bindProductBuyer.value = '';
 
                 // Call handler
-                handler(...productValues);
+                handler(productTitle, productPrice, productBuyer);
             }
 
             // Render sum of prpduct prices
@@ -133,13 +136,22 @@ class View {
 
     // Render single product
     renderSingleProduct(product) {
+        this.productListUl.insertAdjacentHTML(
+            'beforeend',
+            this.singleProductTemplate({
+                productId: product.id,
+                productTitle: product.productTitle,
+                productBuyer: product.productBuyer,
+                productPrice: product.productPrice / 100
+            })
+        );
         // Find and replace template placeholders
-        const productText = this.singleProductTemplate
-            .replace('[[productId]]', product.id)
-            .replace('[[productTitle]]', product.productTitle)
-            .replace('[[productBuyer]]', product.productBuyer)
-            .replace('[[productPrice]]', product.productPrice / 100)
-        this.productListUl.innerHTML += productText;
+        // const productText = this.singleProductTemplate
+        //     .replace('[[productId]]', product.id)
+        //     .replace('[[productTitle]]', product.productTitle)
+        //     .replace('[[productBuyer]]', product.productBuyer)
+        //     .replace('[[productPrice]]', product.productPrice / 100)
+        // this.productListUl.innerHTML += productText;
     }
 
     // Delete item action
