@@ -106,27 +106,21 @@ class View {
             // Declare product price
             const productPrice = this.addProductPrice.value;
 
-            // Declare product buyer
-            const productBuyer = parseInt(this.bindProductBuyer.value);
-            // const productBuyer = this.bindProductBuyer.options[this.bindProductBuyer.selectedIndex].text;
+            // Declare product buyer id
+            const productBuyerId = parseInt(this.bindProductBuyer.value);
 
             // Form validation
-            if (productTitle === '' || productPrice === '' || productBuyer === '') {
+            if (productTitle === '' || productPrice === '' || productBuyerId === '') {
                 event.stopPropagation()
                 this.addProductForm.classList.add('was-validated');
             } else {
                 this.addProductForm.classList.remove('was-validated');
-
-                // Push values to handler
-                productValues.push(productTitle);
-                productValues.push(productPrice);
-                productValues.push(productBuyer);
                 this.addProductInputName.value = '';
                 this.addProductPrice.value = '';
                 this.bindProductBuyer.value = '';
 
                 // Call handler
-                handler(productTitle, productPrice, productBuyer);
+                handler(productTitle, productPrice, productBuyerId);
             }
 
             // Render sum of prpduct prices
@@ -140,8 +134,9 @@ class View {
             'beforeend',
             this.singleProductTemplate({
                 productId: product.id,
+                guestId: product.productBuyerId,
                 productTitle: product.productTitle,
-                productBuyer: product.productBuyer,
+                productBuyer: product.productBuyerName,
                 productPrice: product.productPrice / 100
             })
         );
@@ -177,10 +172,10 @@ class View {
                 // Removing option to add producto select buyer
                 const option = this.bindProductBuyer.querySelector(`option[value="${itemId}"]`);
                 option.remove();
+                // .querySelectorAll(`[data-id="${itemId}"]`)
 
                 // Removing product from product list
-                const productBuyedByGuestRemoved = this.productListUl.querySelector(`[data-id="${itemId}"]`);
-                productBuyedByGuestRemoved.remove()
+                this.productListUl.querySelectorAll(`[data-userid="${itemId}"]`).forEach(el => el.remove());
             }
         }
     }

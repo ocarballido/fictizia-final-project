@@ -26,13 +26,13 @@ class ApiServices {
     // }
 
     // Add new product
-    addProduct(productTitle, productPrice, productBuyer) {
+    addProduct(productTitle, productPrice, productBuyerId, productBuyerName) {
         // Find guest based on productBuyer
         const guestBuyerIndex = apiServices.data.guestsList.findIndex(guest => {
-            return guest.id === productBuyer;
+            return guest.id === productBuyerId;
         });
         const guestBuyerId = apiServices.data.guestsList[guestBuyerIndex].name;
-        const product = new Product(productTitle, productPrice, productBuyer = guestBuyerId);
+        const product = new Product(productTitle, productPrice, productBuyerId, productBuyerName = guestBuyerId);
         this.data.productsList.push(product);
         return product;
     }
@@ -51,65 +51,92 @@ class ApiServices {
         const itemToDeleteIndex = this.data[itemList].findIndex(item => {
             return item.id === itemId;
         });
-        // Removing item from corresponding list
+        // Removing item depending on item id
         this.data[itemList].splice(itemToDeleteIndex, 1);
+        // Removing products depending on user id
         if (itemList === 'guestsList') {
-            this.data.productsList.splice(itemToDeleteIndex, 1);
+            const unique = this.data.productsList.filter(product => {
+                return product.productBuyerId !== itemId;
+            });
+            this.data.productsList = unique;
         }
     }
 
     // Test
     test(productPrice, productBuyer) {
-        let productPricePortion = productPrice / this.data.guestsList.length;
+        const numberOfGeusts = this.data.guestsList.length;
+        const productPricePortion = productPrice / this.data.guestsList.length;
+        const productBuyerGuest = this.data.guestsList.find(guest => {
+            return guest.id === productBuyer;
+        });
 
-        let debt = {};
+        const guestsDebtors = this.data.guestsList.filter(buyer => {
+            if (buyer.id !== productBuyer) {
+                return buyer;
+            }
+        });
 
-        // Find buyer guest index
-        // const guestBuyerIndex = this.data.guestsList.findIndex(guest => guest.id === productBuyer);
+        const putaDeuda = this.data.productsList.forEach(product => {
+            const productPortion = product.productPrice / numberOfGeusts;
+            const productGuestBuyer = product.productBuyer;
+            
+        });
+
+        // guestsDebtors.forEach(guestDeptor => {
+        //     debtObject = {
+        //         [productBuyerGuest.id]: {
+        //             [productBuyer]: 0
+        //         },
+        //         [productBuyer]: {
+        //             [productBuyerGuest.id]: productPricePortion
+        //         }
+        //     };
+        //     console.log(debtObject);
+        // });
+        // console.log(debtObject);
 
         // const totalBebt = this.data.guestsList.forEach((guest, index) => {
         //     if (guest.id !== productBuyer) {
         //         if (!guest.globalDebt[productBuyer]) {
-        //             guest.globalDebt = {
-        //                 ...guest.globalDebt,
-        //                 [productBuyer]: productPricePortion
-        //             };
+        //             let buyerBebToMe = productPricePortion - productBuyerGuest.globalDebt[guest.id];
+        //             if (isNaN(buyerBebToMe)) {
+        //                 guest.globalDebt = {
+        //                     ...guest.globalDebt,
+        //                     [productBuyer]: productPricePortion
+        //                 };
+        //             } else if (buyerBebToMe < 0) {
+        //                 // productBuyerGuest.globalDebt[guest.id] = 0;
+        //                 guest.globalDebt = {
+        //                     ...guest.globalDebt,
+        //                     [productBuyer]: 0
+        //                 };
+        //             } else {
+        //                 // productBuyerGuest.globalDebt[guest.id] = productBuyerGuest.globalDebt[guest.id] - productPricePortion;
+        //                 guest.globalDebt = {
+        //                     ...guest.globalDebt,
+        //                     [productBuyer]: buyerBebToMe
+        //                 };
+        //             }
+                    
         //         } else {
-        //             let debtValue = guest.globalDebt[productBuyer]
-        //             guest.globalDebt = {
-        //                 ...guest.globalDebt,
-        //                 [productBuyer]: debtValue + productPricePortion
-        //             };
+        //             let debtValue = guest.globalDebt[productBuyer];
+        //             let buyerBebToMe = (debtValue + productPricePortion) - productBuyerGuest.globalDebt[guest.id];
+        //             if (buyerBebToMe < 0) {
+        //                 // productBuyerGuest.globalDebt[guest.id] = 0;
+        //                 guest.globalDebt = {
+        //                     ...guest.globalDebt,
+        //                     [productBuyer]: 0
+        //                 };
+        //             } else {
+        //                 // productBuyerGuest.globalDebt[guest.id] = productBuyerGuest.globalDebt[guest.id] - productPricePortion;
+        //                 guest.globalDebt = {
+        //                     ...guest.globalDebt,
+        //                     [productBuyer]: buyerBebToMe
+        //                 };
+        //             }
         //         }
         //     }
         // });
-
-        // const testTotalBebt = this.data.guestsList.forEach((guest, index) => {
-        //     if (guest.id !== productBuyer) {
-        //         if (!debt[productBuyer]) {
-        //             return {
-        //                 ...debt,
-        //                 [guest.id]: {
-        //                     [productBuyer]: productPricePortion,
-        //                 }
-        //             };
-        //         } else {
-        //             let debtValue = guest.globalDebt[productBuyer]
-        //             return {
-        //                 ...debt,
-        //                 [guest.id]: {
-        //                     [productBuyer]: debtValue + productPricePortion,
-        //                 }
-        //             };
-        //         }
-        //     }
-        // });
-
-        // console.log(product.id);
-        // console.log(product.productTitle);
-        // console.log(product.productPrice);
-        // console.log(product.productBuyer);
-        // console.log(productPricePortion);
     }
 }
 
