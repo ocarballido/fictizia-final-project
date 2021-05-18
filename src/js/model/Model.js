@@ -7,13 +7,18 @@ class Model {
     }
 
     // Add new product
-    addProduct(productTitle, productPrice, productBuyer) {
-        return apiServices.addProduct(productTitle, productPrice, productBuyer);
+    addProduct(productTitle, productPrice, productBuyerId) {
+        return apiServices.addProduct(productTitle, productPrice, productBuyerId);
     }
 
     // Delete guest/peoduct from list
     deleteItem(itemId, itemList) {
         return apiServices.deleteItem(itemId, itemList);
+    }
+
+    // Update guest expenses
+    calcGuestExpenses(productPrice, productBuyerId) {
+        apiServices.calcGuestExpenses(productPrice, productBuyerId);
     }
 };
 

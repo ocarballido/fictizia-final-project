@@ -51,7 +51,6 @@ class View {
 
     // Render single guest
     renderSingleGuest(guest) {
-        
         this.guestListUl.insertAdjacentHTML(
             'beforeend',
             this.singleGuestTemplate({
@@ -82,7 +81,7 @@ class View {
             const productTitle = this.addProductInputName.value.trim();
 
             // Declare product price
-            const productPrice = this.addProductPrice.value;
+            const productPrice = parseInt(this.addProductPrice.value * 100);
 
             // Declare product buyer id
             const productBuyerId = parseInt(this.bindProductBuyer.value);

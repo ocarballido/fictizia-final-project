@@ -25,26 +25,42 @@ class Controller {
     }
 
     // addProductHandler
-    addProductHandler(productTitle, productPrice, productBuyer) {
-        const productAdded = this.model.addProduct(productTitle, productPrice, productBuyer);
+    addProductHandler(productTitle, productPrice, productBuyerId) {
+        const productAdded = this.model.addProduct(productTitle, productPrice, productBuyerId);
         this.view.renderSingleProduct(productAdded);
 
         // Sum of prices
-        this.renderSumOfProductPricesHandler();
+        this.sumOfProductPricesHandler();
+
+        // Update guest expenses
+        this.model.calcGuestExpenses(productPrice, productBuyerId);
         
-        // this.view.renderSumOfProductPrices(productSum);
+        // apiServices.funckingDebt(productBuyerId);
+        // apiServices.globalDebt(productPrice, productBuyerId)
+
         console.log(apiServices.data);
     }
 
     // deleteGuestHandler
     deleteItemHandler(itemId, itemList) {
+        // Update model calcGuestExpenses
+        const productDeleted = apiServices.data.productsList.find(product => {
+            return product.id === itemId
+        });
+        this.model.calcGuestExpenses(-productDeleted.productPrice, productDeleted.productBuyerId);
+
+        // Update delete item in model
         this.model.deleteItem(itemId, itemList);
+
+        // Update delete item in view
         this.view.renderDeleteItem(itemId, itemList);
-        this.renderSumOfProductPricesHandler();
+
+        // Call sumOfProductPricesHandler
+        this.sumOfProductPricesHandler();
     }
 
     // Sum of prices
-    renderSumOfProductPricesHandler() {
+    sumOfProductPricesHandler() {
         const productSum = apiServices.data.productsList.reduce((acc, currentProduct) => {
             return (acc + currentProduct.productPrice);
         }, 0);
