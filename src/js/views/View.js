@@ -110,7 +110,7 @@ class View {
             const productBuyerId = parseInt(this.bindProductBuyer.value);
 
             // Form validation
-            if (productTitle === '' || productPrice === '' || productBuyerId === '') {
+            if (productTitle === '' || productPrice === '' || (productBuyerId === '' || isNaN(productBuyerId))) {
                 event.stopPropagation()
                 this.addProductForm.classList.add('was-validated');
             } else {
