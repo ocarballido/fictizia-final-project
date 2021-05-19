@@ -35,8 +35,7 @@ class Controller {
         // Update guest expenses
         this.model.calcGuestExpenses(productPrice, productBuyerId);
         
-        // apiServices.funckingDebt(productBuyerId);
-        // apiServices.globalDebt(productPrice, productBuyerId)
+        apiServices.globalDebt(productPrice, productBuyerId)
 
         console.log(apiServices.data);
     }

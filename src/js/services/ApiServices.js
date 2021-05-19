@@ -54,107 +54,40 @@ class ApiServices {
         this.data.guestsList[guestExpenceToUpdate].expenses += productPrice;
     }
 
-    // Test
-    // test(productPrice, productBuyerId) {
-    //     // const numberOfGeusts = this.data.guestsList.length;
-    //     const productPricePortion = productPrice / this.data.guestsList.length;
-    //     // const productBuyerIdGuest = this.data.guestsList.find(guest => {
-    //     //     return guest.id === productBuyerId;
-    //     // });
+    globalDebt(productPrice, productBuyerId) {
+        // Calc poprtion of product based on guest lebgth
+        const productPricePortion = productPrice / this.data.guestsList.length;
+        this.data.guestsList.forEach((guest, index, arr) => {
+            // Get buyer
+            const buyer = arr.find(buyer => buyer.id === productBuyerId);
 
-    //     // const guestsDebtors = this.data.guestsList.filter(buyer => {
-    //     //     if (buyer.id !== productBuyerId) {
-    //     //         return buyer;
-    //     //     }
-    //     // });
+            // Check if buyer own current guest money
+            const buyerDebtToCurrentGuest = buyer.globalDebt[guest.id] === undefined ? 0 : buyer.globalDebt[guest.id];
 
-    //     // const putaDeuda = this.data.productsList.forEach(product => {
-    //     //     const productPortion = product.productPrice / numberOfGeusts;
-    //     //     const productGuestBuyer = product.productBuyerId;
-            
-    //     // });
+            // Check if current guest is NOT the buyer
+            if (guest.id !== productBuyerId) {
+                // Check if current guest owns money to buyer
+                let currentGuestDebtToBuyer = guest.globalDebt[productBuyerId] === undefined ? 0 : guest.globalDebt[productBuyerId];
 
-    //     const globalDebt = this.data.guestsList.forEach((guest) => {
-    //         if (guest.id !== productBuyerId) {
-    //             if (!guest.globalDebt[productBuyerId]) {
-    //                 guest.globalDebt = {
-    //                     ...guest.globalDebt,
-    //                     [productBuyerId]: productPricePortion
-    //                 };
-    //             } else {
-    //                 let debtValue = guest.globalDebt[productBuyerId];
-    //                 guest.globalDebt = {
-    //                     ...guest.globalDebt,
-    //                     [productBuyerId]: debtValue + productPricePortion
-    //                 };
-    //             }
-    //         }
-    //     });
-    // }
+                // Calc rest debt between buyer and current guest
+                let restDebtBuyerCurrentGuest = (currentGuestDebtToBuyer + productPricePortion) - buyerDebtToCurrentGuest
 
-    // globalDebt(productPrice, productBuyerId) {
-    //     const productPricePortion = productPrice / this.data.guestsList.length;
-    //     this.data.guestsList.forEach((guest) => {
-    //         if (guest.id !== productBuyerId) {
-    //             if (!guest.globalDebt[productBuyerId]) {
-    //                 guest.globalDebt = {
-    //                     ...guest.globalDebt,
-    //                     [productBuyerId]: productPricePortion
-    //                 };
-    //             } else {
-    //                 let debtValue = guest.globalDebt[productBuyerId];
-    //                 guest.globalDebt = {
-    //                     ...guest.globalDebt,
-    //                     [productBuyerId]: debtValue + productPricePortion
-    //                 };
-    //             }
-    //         }
-    //     });
-    // }
+                // Updating current guest object
+                guest.globalDebt = {
+                    ...guest.globalDebt,
+                    balance: guest.globalDebt.balance === undefined ? restDebtBuyerCurrentGuest : guest.globalDebt.balance + restDebtBuyerCurrentGuest,
+                    [productBuyerId]: restDebtBuyerCurrentGuest
+                };
 
-    // funckingDebt(productBuyerId) {
-    //     const poderesPorHeroeId = this.data.productsList.reduce((acc, product, index) => {
-    //         if (acc[product.productBuyerId]) {
-    //             acc[product.productBuyerId] = {
-    //                 //...acc[product.productBuyerId],
-    //                 // expenses: [product.productBuyerId] === [product.id] ? this.expenses + product.productPrice : this.expenses + product.productPrice / 3,
-    //                 expenses: acc[product.productBuyerId].expenses + product.productPrice,
-    //                 [productBuyerId]: product.productPrice / 3
-    //             };
-    //             // acc[product.id] = {
-    //             //     expenses: product.productPrice,
-    //             // };
-    //         } else {
-    //             acc[product.productBuyerId] = {
-    //                 expenses: product.productPrice,
-    //             };
-    //         }
-    //         return acc
-    //     }, {})
-    //     console.log(poderesPorHeroeId);
-    // }
-
-    // funckingDebtFirst(productBuyerId) {
-    //     const poderesPorHeroeId = this.data.productsList.reduce((acc, product) => {
-    //         if (acc[product.productBuyerId]) {
-    //             acc[product.productBuyerId] = {
-    //                 //...acc[product.productBuyerId],
-    //                 // expenses: [product.productBuyerId] === [product.id] ? this.expenses + product.productPrice : this.expenses + product.productPrice / 3,
-    //                 expenses: acc[product.productBuyerId].expenses + product.productPrice,
-    //                 [productBuyerId]: product.productPrice / 3
-    //             };
-    //             // acc[product.id] = {
-    //             //     expenses: product.productPrice,
-    //             // };
-    //         } else {
-    //             acc[product.productBuyerId] = {
-    //                 expenses: product.productPrice,
-    //             };
-    //         }
-    //         return acc
-    //     }, {})
-    //     console.log(poderesPorHeroeId);
-    // }
+                // Updating buyer object
+                buyer.globalDebt = {
+                    ...buyer.globalDebt,
+                    balance: 0,
+                    [guest.id]: 0
+                }
+            }
+        });
+    }
 }
 
 const apiServices = new ApiServices();
