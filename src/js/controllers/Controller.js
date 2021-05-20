@@ -38,6 +38,7 @@ class Controller {
         // Update guests debt
         // apiServices.globalDebt(productPrice, productBuyerId)
         // apiServices.calcDebt();
+        apiServices.globalDebtBasedOnProduct();
 
         console.log(apiServices.data);
     }

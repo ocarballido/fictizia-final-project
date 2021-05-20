@@ -14,6 +14,8 @@ class ApiServices {
     addGuest(guestName) {
         const guest = new Guest(guestName);
         this.data.guestsList.push(guest);
+        const productGhost = new Product('Ghost', 0, guest.id, guest.name);
+        this.data.productsList.push(productGhost);
         return guest;
     }
 
@@ -93,6 +95,45 @@ class ApiServices {
                 }
             }
         });
+    }
+
+    globalDebtBasedOnProduct(productPrice, productBuyerId) {
+        const debtObject = this.data.productsList.reduce((acc, product, index, productsArray) => {
+            if (acc[product.productBuyerId]) {
+                acc[product.productBuyerId] = {
+                    ...acc[product.productBuyerId],
+                };
+
+                // Loop through all the ids
+                for (const userId in acc) {
+                    // If this id exist
+                    if (userId == product.productBuyerId) {
+                        acc[userId] = {
+                            ...acc[userId],
+                        }
+                    } else {
+                        console.log(product.productPrice / this.data.guestsList.length - acc[product.productBuyerId][userId]);
+
+                        // Check if buyer own current guest money
+                        const debtFromBuyer = acc[product.productBuyerId][userId] === undefined ? 0 : acc[product.productBuyerId][userId]
+                        const possibleDebt = product.productPrice / this.data.guestsList.length - debtFromBuyer
+                        acc[userId] = {
+                            ...acc[userId],
+                            [product.productBuyerId]: possibleDebt < 0 ? 0 : possibleDebt,
+                        }
+                        acc[product.productBuyerId] = {
+                            ...acc[product.productBuyerId],
+                            [userId]: 0
+                        }
+                    }
+                }
+
+            } else {
+                acc[product.productBuyerId] = {};
+            }
+            return acc
+        }, {})
+        console.log(debtObject);
     }
 
     // funckingDebtFirst() {
