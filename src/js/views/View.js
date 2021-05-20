@@ -119,7 +119,13 @@ class View {
     // Delete item action
     deleteItemAction(handler) {
         this.allLists.addEventListener('click', (event) => {
-            const isDeletButton = event.target.classList.contains('btn-remove-guest') || event.target.classList.contains('bi') || event.target.classList.contains('btn-deleteProduct');
+            const element = event.target;
+            const classes = element.classList;
+            const isDeletButton = (
+                classes.contains('btn-remove-guest') ||
+                classes.contains('bi') ||
+                classes.contains('btn-deleteProduct')
+            );
             if (isDeletButton) {
                 const itemId = parseInt(event.target.closest('li').dataset.id);
                 const itemList = event.target.closest('ul').id;
@@ -131,8 +137,7 @@ class View {
     // Render delete item
     renderDeleteItem(itemId, itemList) {
         if (itemList === this.guestListUl.id || itemList === this.productListUl.id) {
-            const itemToDeleteList = document.querySelector(`#${itemList}`);
-            const itemToDelete = itemToDeleteList.querySelector(`[data-id="${itemId}"]`);
+            const itemToDelete = document.querySelector(`#${itemList} [data-id="${itemId}"]`);
             itemToDelete.remove();
             
             if (itemList === 'guestsList') {
@@ -150,11 +155,12 @@ class View {
     // Render calc sum of all producto price
     renderSumOfProductPrices(productSum) {
         this.productsSumTotal.lastElementChild.innerHTML = productSum / 100;
-        if (productSum > 0) {
-            this.productsSumTotal.classList.remove('d-none');
-        } else {
-            this.productsSumTotal.classList.add('d-none');
-        }
+        this.productsSumTotal.classList.toggle('d-none', productSum <= 0);
+        // if (productSum > 0) {
+        //     this.productsSumTotal.classList.remove('d-none');
+        // } else {
+        //     this.productsSumTotal.classList.add('d-none');
+        // }
     }
 };
 

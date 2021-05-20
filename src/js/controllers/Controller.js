@@ -35,7 +35,9 @@ class Controller {
         // Update guest expenses
         this.model.calcGuestExpenses(productPrice, productBuyerId);
         
-        apiServices.globalDebt(productPrice, productBuyerId)
+        // Update guests debt
+        // apiServices.globalDebt(productPrice, productBuyerId)
+        // apiServices.calcDebt();
 
         console.log(apiServices.data);
     }
@@ -43,9 +45,7 @@ class Controller {
     // deleteGuestHandler
     deleteItemHandler(itemId, itemList) {
         // Update model calcGuestExpenses
-        const productDeleted = apiServices.data.productsList.find(product => {
-            return product.id === itemId
-        });
+        const productDeleted = apiServices.data.productsList.find(product => product.id === itemId);
         this.model.calcGuestExpenses(-productDeleted.productPrice, productDeleted.productBuyerId);
 
         // Update delete item in model

@@ -54,6 +54,12 @@ class ApiServices {
         this.data.guestsList[guestExpenceToUpdate].expenses += productPrice;
     }
 
+    calcDebt() {
+        this.data.productsList.forEach(product => {
+            this.globalDebt(product.productPrice, product.productBuyerId);
+        });
+    }
+
     globalDebt(productPrice, productBuyerId) {
         // Calc poprtion of product based on guest lebgth
         const productPricePortion = productPrice / this.data.guestsList.length;
@@ -88,6 +94,34 @@ class ApiServices {
             }
         });
     }
+
+    // funckingDebtFirst() {
+    //     const poderesPorHeroeId = this.data.productsList.reduce((acc, product, index, productsArray) => {
+    //         const guestsDebtors = productsArray.filter(buyer => {
+    //             if (buyer.id !== product.productBuyerId) {
+    //                 return buyer;
+    //             }
+    //         });
+    //         console.log(guestsDebtors);
+    //         if (acc[product.productBuyerId]) {
+    //             acc[product.productBuyerId] = {
+    //                 //...acc[product.productBuyerId],
+    //                 // expenses: [product.productBuyerId] === [product.id] ? this.expenses + product.productPrice : this.expenses + product.productPrice / 3,
+    //                 expenses: acc[product.productBuyerId].expenses + product.productPrice,
+    //                 [productBuyerId]: product.productPrice / 3
+    //             };
+    //             // acc[product.id] = {
+    //             //     expenses: product.productPrice,
+    //             // };
+    //         } else {
+    //             acc[product.productBuyerId] = {
+    //                 expenses: product.productPrice,
+    //             };
+    //         }
+    //         return acc
+    //     }, {})
+    //     // console.log(poderesPorHeroeId);
+    // }
 }
 
 const apiServices = new ApiServices();
