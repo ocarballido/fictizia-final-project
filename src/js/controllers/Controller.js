@@ -1,6 +1,5 @@
 import { Model } from '../model/Model';
 import { View } from '../views/View';
-import { apiServices } from '../services/ApiServices';
 
 class Controller {
     constructor(model, view) {
@@ -15,56 +14,70 @@ class Controller {
 
         // Binding view deleteItem action
         this.view.deleteItemAction(this.deleteItemHandler.bind(this));
+
+        // Load the data
+        this.model.loadData()
+            .then(() => {
+                this.view.renderGuests(this.model.getGuests());
+                this.view.renderProducts(this.model.getProducts());
+            });
     }
 
     // addGuestHandler
     addGuestHandler(guestName) {
-        const guestAdded = this.model.addGuest(guestName);
-        this.view.renderSingleGuest(guestAdded);
-        console.log(apiServices.data);
+        this.model.addGuest(guestName)
+            .then(guest => this.view.renderSingleGuest(guest));
     }
 
     // addProductHandler
     addProductHandler(productTitle, productPrice, productBuyerId) {
-        const productAdded = this.model.addProduct(productTitle, productPrice, productBuyerId);
-        this.view.renderSingleProduct(productAdded);
+        this.model.addProduct(productTitle, productPrice, productBuyerId)
+            .then(product => {
 
-        // Sum of prices
-        this.sumOfProductPricesHandler();
+                this.view.renderSingleProduct(product);
 
-        // Update guest expenses
-        this.model.calcGuestExpenses(productPrice, productBuyerId);
-        
-        // Update guests debt
-        // apiServices.globalDebt(productPrice, productBuyerId)
-        // apiServices.calcDebt();
-        apiServices.globalDebtBasedOnProduct();
+                // Sum of prices
+                /*this.sumOfProductPricesHandler();
 
-        console.log(apiServices.data);
+                // Update guest expenses
+                this.model.calcGuestExpenses(productPrice, productBuyerId);
+                
+                // Update guests debt
+                // apiServices.globalDebt(productPrice, productBuyerId)
+                // apiServices.calcDebt();
+                apiServices.globalDebtBasedOnProduct();
+
+                console.log(apiServices.data);*/
+
+            });
     }
 
     // deleteGuestHandler
     deleteItemHandler(itemId, itemList) {
-        // Update model calcGuestExpenses
-        const productDeleted = apiServices.data.productsList.find(product => product.id === itemId);
-        this.model.calcGuestExpenses(-productDeleted.productPrice, productDeleted.productBuyerId);
 
-        // Update delete item in model
-        this.model.deleteItem(itemId, itemList);
+        const itemDeleted = () => {
+            // Update delete item in view
+            this.view.renderDeleteItem(itemId, itemList);
+            // Call sumOfProductPricesHandler
+            //this.sumOfProductPricesHandler();
+        };
 
-        // Update delete item in view
-        this.view.renderDeleteItem(itemId, itemList);
-
-        // Call sumOfProductPricesHandler
-        this.sumOfProductPricesHandler();
+        if (itemList === 'guestsList') {
+            this.model.deleteGuest(itemId)
+                .then(() => itemDeleted())
+        } else {
+            this.model.deleteProduct(itemId)
+                .then(() => itemDeleted())
+        }
+        
     }
 
     // Sum of prices
     sumOfProductPricesHandler() {
-        const productSum = apiServices.data.productsList.reduce((acc, currentProduct) => {
+        /*const productSum = apiServices.data.productsList.reduce((acc, currentProduct) => {
             return (acc + currentProduct.productPrice);
         }, 0);
-        this.view.renderSumOfProductPrices(productSum);
+        this.view.renderSumOfProductPrices(productSum);*/
     }
 }
 

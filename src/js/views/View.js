@@ -49,6 +49,14 @@ class View {
         });
     }
 
+    renderGuests(guests) {
+        guests.forEach(guest => this.renderSingleGuest(guest));
+    }
+
+    renderProducts(products) {
+        products.forEach(product => this.renderSingleProduct(product));
+    }
+
     // Render single guest
     renderSingleGuest(guest) {
         this.guestListUl.insertAdjacentHTML(
@@ -67,6 +75,20 @@ class View {
         option.text = guest.name;
         option.value = guest.id;
         this.bindProductBuyer.add(option);
+    }
+
+    // Render single product
+    renderSingleProduct(product) {
+        this.productListUl.insertAdjacentHTML(
+            'beforeend',
+            this.singleProductTemplate({
+                productId: product.id,
+                guestId: product.productBuyerId,
+                productTitle: product.productTitle,
+                productBuyer: product.productBuyerName,
+                productPrice: product.productPrice / 100
+            })
+        );
     }
 
     // addProduct action
@@ -102,20 +124,6 @@ class View {
         });
     }
 
-    // Render single product
-    renderSingleProduct(product) {
-        this.productListUl.insertAdjacentHTML(
-            'beforeend',
-            this.singleProductTemplate({
-                productId: product.id,
-                guestId: product.productBuyerId,
-                productTitle: product.productTitle,
-                productBuyer: product.productBuyerName,
-                productPrice: product.productPrice / 100
-            })
-        );
-    }
-
     // Delete item action
     deleteItemAction(handler) {
         this.allLists.addEventListener('click', (event) => {
@@ -127,7 +135,7 @@ class View {
                 classes.contains('btn-deleteProduct')
             );
             if (isDeletButton) {
-                const itemId = parseInt(event.target.closest('li').dataset.id);
+                const itemId = +event.target.closest('li').dataset.id;
                 const itemList = event.target.closest('ul').id;
                 handler(itemId, itemList);
             }

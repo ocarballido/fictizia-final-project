@@ -1,0 +1,46 @@
+{
+  "guests": [
+    {
+      "id": 1,
+      "name": "Oscar"
+    },
+    {
+      "id": 2,
+      "name": "Alejo"
+    },
+    {
+      "id": 3,
+      "name": "Maykel"
+    },
+    {
+      "id": 4,
+      "name": "Migue"
+    }
+  ],
+  "products": [
+    {
+      "id": 1,
+      "title": "Ron",
+      "price": 2000,
+      "buyer": 1
+    },
+    {
+      "id": 2,
+      "title": "Cerveza",
+      "price": 2400,
+      "buyer": 2
+    },
+    {
+      "id": 3,
+      "title": "Hielo",
+      "price": 1000,
+      "buyer": 3
+    },
+    {
+      "id": 4,
+      "title": "Coca Cola",
+      "price": 500,
+      "buyer": 3
+    }
+  ]
+}
