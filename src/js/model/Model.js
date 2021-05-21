@@ -16,11 +16,12 @@ class Model {
         return apiServices.deleteItem(itemId, itemList);
     }
 
-    // Update guest expenses
-    calcGuestExpenses(productPrice, productBuyerId) {
-        apiServices.calcGuestExpenses(productPrice, productBuyerId);
+    // Sum of all prices
+    sumOfProductPrices() {
+        return apiServices.sumOfProductPrices();
     }
 
+    // Calc debt
     calcFuckingDebt() {
         return apiServices.calcFuckingDebt();
     }

@@ -5,7 +5,6 @@ class Guest {
         this.id = ++id;
         this.name = name;
         this.expenses = 0;
-        this.globalDebt = {};
     }
 
     // Get initial letter

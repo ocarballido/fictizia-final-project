@@ -19,26 +19,27 @@ class Controller {
 
     // addGuestHandler
     addGuestHandler(guestName) {
+        // Render
         const guestAdded = this.model.addGuest(guestName);
         this.view.renderSingleGuest(guestAdded);
+
+        // Update guests debt
+        this.calcFuckingDebt();
         console.log(apiServices.data);
     }
 
     // addProductHandler
     addProductHandler(productTitle, productPrice, productBuyerId) {
+        // AddProduct model
         const productAdded = this.model.addProduct(productTitle, productPrice, productBuyerId);
+
+        // Render product view
         this.view.renderSingleProduct(productAdded);
 
         // Sum of prices
         this.sumOfProductPricesHandler();
-
-        // Update guest expenses
-        this.model.calcGuestExpenses(productPrice, productBuyerId);
         
         // Update guests debt
-        // apiServices.globalDebt(productPrice, productBuyerId)
-        // apiServices.calcDebt();
-        // apiServices.globalDebtBasedOnProduct();
         this.calcFuckingDebt();
 
         console.log(apiServices.data);
@@ -46,10 +47,6 @@ class Controller {
 
     // deleteGuestHandler
     deleteItemHandler(itemId, itemList) {
-        // Update model calcGuestExpenses
-        const productDeleted = apiServices.data.productsList.find(product => product.id === itemId);
-        this.model.calcGuestExpenses(-productDeleted.productPrice, productDeleted.productBuyerId);
-
         // Update delete item in model
         this.model.deleteItem(itemId, itemList);
 
@@ -58,11 +55,15 @@ class Controller {
 
         // Call sumOfProductPricesHandler
         this.sumOfProductPricesHandler();
+
+        // Update guests debt
+        this.calcFuckingDebt();
     }
 
     // Sum of prices
     sumOfProductPricesHandler() {
-        const productSum = apiServices.data.productsList.reduce((acc, currentProduct) => {
+        const productsList = this.model.sumOfProductPrices();
+        const productSum = productsList.reduce((acc, currentProduct) => {
             return (acc + currentProduct.productPrice);
         }, 0);
         this.view.renderSumOfProductPrices(productSum);
