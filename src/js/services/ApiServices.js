@@ -112,18 +112,27 @@ class ApiServices {
                             ...acc[userId],
                         }
                     } else {
-                        console.log(product.productPrice / this.data.guestsList.length - acc[product.productBuyerId][userId]);
+                        // console.log(product.productPrice / this.data.guestsList.length - acc[product.productBuyerId][userId]);
+
+                        // const possibleDebt = product.productPrice / this.data.guestsList.length - debtFromBuyer
 
                         // Check if buyer own current guest money
                         const debtFromBuyer = acc[product.productBuyerId][userId] === undefined ? 0 : acc[product.productBuyerId][userId]
-                        const possibleDebt = product.productPrice / this.data.guestsList.length - debtFromBuyer
+
+                        // Check if current guest owns money to buyer
+                        const currentGuestDebtToBuyer = acc[userId][product.productBuyerId] === undefined ? 0 : acc[userId][product.productBuyerId];
+                        console.log(currentGuestDebtToBuyer);
+
+                        // Calc rest debt between buyer and current guest
+                        const restDebtBuyerCurrentGuest = (currentGuestDebtToBuyer + product.productPrice / this.data.guestsList.length) - debtFromBuyer
+
                         acc[userId] = {
                             ...acc[userId],
-                            [product.productBuyerId]: possibleDebt < 0 ? 0 : possibleDebt,
+                            [product.productBuyerId]: restDebtBuyerCurrentGuest < 0 ? 0 : restDebtBuyerCurrentGuest,
                         }
                         acc[product.productBuyerId] = {
                             ...acc[product.productBuyerId],
-                            [userId]: 0
+                            [userId]: restDebtBuyerCurrentGuest < 0 ? Math.abs(restDebtBuyerCurrentGuest) : 0
                         }
                     }
                 }
