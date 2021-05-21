@@ -38,7 +38,8 @@ class Controller {
         // Update guests debt
         // apiServices.globalDebt(productPrice, productBuyerId)
         // apiServices.calcDebt();
-        apiServices.globalDebtBasedOnProduct();
+        // apiServices.globalDebtBasedOnProduct();
+        this.calcFuckingDebt();
 
         console.log(apiServices.data);
     }
@@ -65,6 +66,43 @@ class Controller {
             return (acc + currentProduct.productPrice);
         }, 0);
         this.view.renderSumOfProductPrices(productSum);
+    }
+
+    calcFuckingDebt() {
+        const [guestsList, productsList] = this.model.calcFuckingDebt();
+
+        const expensesByBuyer = productsList.reduce((obj, product) => {
+            const buyerId = product.productBuyerId;
+            obj[buyerId] = obj[buyerId] || 0;
+            obj[buyerId] += product.productPrice
+            return obj;
+        }, {});
+
+        const totalBuyers = guestsList.length;
+        const shouldReceiveFromBuyers = guestsList.reduce((obj, buyer) => {
+            const buyerId = buyer.id;
+            obj[buyerId] = (expensesByBuyer[buyerId] || 0) / totalBuyers;
+            return obj;
+        }, {});
+
+        const debts = guestsList.map((buyer) => {
+            const buyerId = buyer.id;
+            const debts = guestsList.reduce((obj, debtor) => {
+                const debtorId = debtor.id;
+                if (buyerId !== debtorId) {
+                    const debt = shouldReceiveFromBuyers[debtorId] - shouldReceiveFromBuyers[buyerId];
+                    obj[debtorId] = debt < 0
+                        ? 0
+                        : debt;
+                }
+                return obj;
+            }, {});
+            return {
+                id: buyerId,
+                debts
+            };
+        });
+        console.log(debts);
     }
 }
 

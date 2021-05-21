@@ -20,6 +20,10 @@ class Model {
     calcGuestExpenses(productPrice, productBuyerId) {
         apiServices.calcGuestExpenses(productPrice, productBuyerId);
     }
+
+    calcFuckingDebt() {
+        return apiServices.calcFuckingDebt();
+    }
 };
 
 export { Model };

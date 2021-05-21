@@ -156,11 +156,6 @@ class View {
     renderSumOfProductPrices(productSum) {
         this.productsSumTotal.lastElementChild.innerHTML = productSum / 100;
         this.productsSumTotal.classList.toggle('d-none', productSum <= 0);
-        // if (productSum > 0) {
-        //     this.productsSumTotal.classList.remove('d-none');
-        // } else {
-        //     this.productsSumTotal.classList.add('d-none');
-        // }
     }
 };
 

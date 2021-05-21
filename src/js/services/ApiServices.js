@@ -144,6 +144,10 @@ class ApiServices {
         }, {})
         console.log(debtObject);
     }
+
+    calcFuckingDebt() {
+        return [this.data.guestsList, this.data.productsList];
+    }
 }
 
 const apiServices = new ApiServices();
