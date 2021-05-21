@@ -112,9 +112,6 @@ class ApiServices {
                             ...acc[userId],
                         }
                     } else {
-                        // console.log(product.productPrice / this.data.guestsList.length - acc[product.productBuyerId][userId]);
-
-                        // const possibleDebt = product.productPrice / this.data.guestsList.length - debtFromBuyer
 
                         // Check if buyer own current guest money
                         const debtFromBuyer = acc[product.productBuyerId][userId] === undefined ? 0 : acc[product.productBuyerId][userId]
@@ -126,10 +123,13 @@ class ApiServices {
                         // Calc rest debt between buyer and current guest
                         const restDebtBuyerCurrentGuest = (currentGuestDebtToBuyer + product.productPrice / this.data.guestsList.length) - debtFromBuyer
 
+                        // Update current user object
                         acc[userId] = {
                             ...acc[userId],
                             [product.productBuyerId]: restDebtBuyerCurrentGuest < 0 ? 0 : restDebtBuyerCurrentGuest,
                         }
+
+                        // Update current buyer object
                         acc[product.productBuyerId] = {
                             ...acc[product.productBuyerId],
                             [userId]: restDebtBuyerCurrentGuest < 0 ? Math.abs(restDebtBuyerCurrentGuest) : 0
@@ -144,34 +144,6 @@ class ApiServices {
         }, {})
         console.log(debtObject);
     }
-
-    // funckingDebtFirst() {
-    //     const poderesPorHeroeId = this.data.productsList.reduce((acc, product, index, productsArray) => {
-    //         const guestsDebtors = productsArray.filter(buyer => {
-    //             if (buyer.id !== product.productBuyerId) {
-    //                 return buyer;
-    //             }
-    //         });
-    //         console.log(guestsDebtors);
-    //         if (acc[product.productBuyerId]) {
-    //             acc[product.productBuyerId] = {
-    //                 //...acc[product.productBuyerId],
-    //                 // expenses: [product.productBuyerId] === [product.id] ? this.expenses + product.productPrice : this.expenses + product.productPrice / 3,
-    //                 expenses: acc[product.productBuyerId].expenses + product.productPrice,
-    //                 [productBuyerId]: product.productPrice / 3
-    //             };
-    //             // acc[product.id] = {
-    //             //     expenses: product.productPrice,
-    //             // };
-    //         } else {
-    //             acc[product.productBuyerId] = {
-    //                 expenses: product.productPrice,
-    //             };
-    //         }
-    //         return acc
-    //     }, {})
-    //     // console.log(poderesPorHeroeId);
-    // }
 }
 
 const apiServices = new ApiServices();
