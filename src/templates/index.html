@@ -228,28 +228,28 @@
                         </div> -->
                         <ul id="summaryList" class="list-unstyled">
                             <!-- <li class="summaryItem positive">
-                                <h6 class="summaryItem-title">Iván</h6>
+                                <h6 class="summaryItem-debtor">Iván</h6>
                                 <span class="summaryItem-badge">12 €</span>
                                 <i class="summaryItem-icon bi bi-arrow-right"></i>
-                                <h6 class="summaryItem-price">Liudmila</h6>
+                                <h6 class="summaryItem-beneficiary">Liudmila</h6>
                             </li>
                             <li class="summaryItem positive">
-                                <h6 class="summaryItem-title">Lily</h6>
+                                <h6 class="summaryItem-debtor">Lily</h6>
                                 <span class="summaryItem-badge">8 €</span>
                                 <i class="summaryItem-icon bi bi-arrow-right"></i>
-                                <h6 class="summaryItem-price">Susana</h6>
+                                <h6 class="summaryItem-beneficiary">Susana</h6>
                             </li>
                             <li class="summaryItem positive">
-                                <h6 class="summaryItem-title">Yami</h6>
+                                <h6 class="summaryItem-debtor">Yami</h6>
                                 <span class="summaryItem-badge">20 €</span>
                                 <i class="summaryItem-icon bi bi-arrow-right"></i>
-                                <h6 class="summaryItem-price">Sergio</h6>
+                                <h6 class="summaryItem-beneficiary">Sergio</h6>
                             </li>
                             <li class="summaryItem positive">
-                                <h6 class="summaryItem-title">Orelvis</h6>
+                                <h6 class="summaryItem-debtor">Orelvis</h6>
                                 <span class="summaryItem-badge">16 €</span>
                                 <i class="summaryItem-icon bi bi-arrow-right"></i>
-                                <h6 class="summaryItem-price">Oscar</h6>
+                                <h6 class="summaryItem-beneficiary">Oscar</h6>
                             </li> -->
                         </ul>
                     </div>
@@ -259,6 +259,7 @@
             <!-- /Products and Summary -->
         </div>
         
+        <!-- Template guest -->
         <template id="guestItemTemplate">
             <li class="guestsItem positive" data-id="{{guestId}}">
                 <div class="guestsItem-avatar-button">
@@ -272,7 +273,9 @@
                 <span class="guestItem-badge">{{guestDept}} €</span>
             </li>
         </template>
+        <!-- /Template guest -->
         
+        <!-- Template producto -->
         <template id="productItemTemplate">
             <li class="productItem" data-id="{{productId}}" data-userid="{{guestId}}">
                 <h6 class="productItem-title">{{productTitle}}</h6>
@@ -283,5 +286,17 @@
                 </div>
             </li>
         </template>
+        <!-- /Template producto -->
+
+        <!-- Template summary -->
+        <template id="summaryItemTemplate">
+            <li class="summaryItem">
+                <h6 class="summaryItem-debtor">{{guestDebtorName}}</h6>
+                <span class="summaryItem-badge">{{productPrice}} €</span>
+                <i class="summaryItem-icon bi bi-arrow-right"></i>
+                <h6 class="summaryItem-beneficiary">{{guestBeneficiaryName}}</h6>
+            </li>
+        </template>
+        <!-- /Template summary -->
     </body>
 </html>

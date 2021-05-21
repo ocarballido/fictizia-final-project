@@ -22,6 +22,9 @@ class View {
         this.singleProductTemplate = document.querySelector('#productItemTemplate').innerHTML;
         this.productsSumTotal = document.querySelector('#productsSumTotal');
 
+        // Summary elements
+        this.summaryListUl = document.querySelector('#summaryList');
+
         this.ulLists = document.querySelectorAll('ul');
 
         // Summary elements
@@ -156,6 +159,20 @@ class View {
     renderSumOfProductPrices(productSum) {
         this.productsSumTotal.lastElementChild.innerHTML = productSum / 100;
         this.productsSumTotal.classList.toggle('d-none', productSum <= 0);
+    }
+
+    // Render summary list
+    renderSummaryList(debts) {
+        this.summaryListUl.insertAdjacentHTML(
+            'beforeend',
+            this.singleGuestTemplate({
+                guestId: guest.id,
+                guestName: guest.name,
+                guestDedtText: 'Saldo 0',
+                guestDept: '0',
+                guestInitial: guest.getInitialLetter()
+            })
+        );
     }
 };
 
