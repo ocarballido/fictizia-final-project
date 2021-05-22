@@ -1,9 +1,5 @@
 import { apiServices } from '../services/ApiServices';
 
-import { Guest } from './Guest';
-import { Product } from './Product';
-import { ProductAssigned } from './Product';
-
 class Model {
 
     constructor() {
@@ -12,29 +8,22 @@ class Model {
         this._guestsObject = {};
     }
 
-    _insertGuest(guestData) {
-        const guest = new Guest(guestData);
+    _insertGuest(guest) {
         this._guests.push(guest);
         this._guestsObject[guest.id] = guest;
         return guest;
     }
 
-    _insertProduct(productData) {
-        const product = new Product(productData);
+    _insertProduct(product) {
         this._products.push(product);
         return product;
     }
 
     _getProductAssigned(product) {
-        return new ProductAssigned(
-            {
-                id: product.id,
-                title: product.productTitle,
-                price: product.productPrice,
-                buyer: product.productBuyerId
-            },
-            this._guestsObject[product.productBuyerId].name
-        );
+        return {
+            ...product,
+            buyerName: this._guestsObject[product.buyer].name
+        };
     };
 
     loadData() {
@@ -50,7 +39,7 @@ class Model {
             apiServices
                 .loadGuests()
                 .then(guests => {
-                    guests.forEach(guestData => this._insertGuest(guestData));
+                    guests.forEach(guest => this._insertGuest(guest));
                     resolve();
                 })            
                 .catch(error => {
@@ -65,7 +54,7 @@ class Model {
             apiServices
                 .loadProducts()
                 .then((products) => {
-                    products.forEach(productData => this._insertProduct(productData));
+                    products.forEach(product => this._insertProduct(product));
                     resolve();
                 })
                 .catch(error => {
@@ -79,16 +68,16 @@ class Model {
     addGuest(guestName) {
         return apiServices
             .addGuest(guestName)
-            .then(guestData => this._insertGuest(guestData))
+            .then(guest => this._insertGuest(guest))
             .catch(error => console.log(error));     
     }
 
     // Add new product
-    addProduct(productTitle, productPrice, productBuyerId) {
+    addProduct(title, price, buyer) {
         return apiServices
-            .addProduct(productTitle, productPrice, productBuyerId)
-            .then(productData => {
-                const product = this._insertProduct(productData);
+            .addProduct(title, price, buyer)
+            .then(product => {
+                this._insertProduct(product);
                 return this._getProductAssigned(product);
             })
             .catch(error => console.log(error));

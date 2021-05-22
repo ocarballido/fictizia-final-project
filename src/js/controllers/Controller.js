@@ -24,14 +24,14 @@ class Controller {
     }
 
     // addGuestHandler
-    addGuestHandler(guestName) {
-        this.model.addGuest(guestName)
+    addGuestHandler(name) {
+        this.model.addGuest(name)
             .then(guest => this.view.renderSingleGuest(guest));
     }
 
     // addProductHandler
-    addProductHandler(productTitle, productPrice, productBuyerId) {
-        this.model.addProduct(productTitle, productPrice, productBuyerId)
+    addProductHandler(title, price, buyer) {
+        this.model.addProduct(title, price, buyer)
             .then(product => {
 
                 this.view.renderSingleProduct(product);

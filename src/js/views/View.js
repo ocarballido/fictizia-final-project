@@ -1,4 +1,5 @@
 import Handlebars from 'handlebars';
+import * as Templates from './templates';
 
 class View {
     constructor() {
@@ -19,7 +20,6 @@ class View {
         this.addProductPrice = document.querySelector('#productPrizeInput');
         this.bindProductBuyer = document.querySelector('#bindProductBuyer');
         this.addProductButton = document.querySelector('#addProductButton');
-        this.singleProductTemplate = document.querySelector('#productItemTemplate').innerHTML;
         this.productsSumTotal = document.querySelector('#productsSumTotal');
 
         this.ulLists = document.querySelectorAll('ul');
@@ -27,34 +27,51 @@ class View {
         // Summary elements
         this.summaryListUl = document.querySelector('#summaryList');
 
-        // Handlebars templates
-        this.singleGuestTemplate = Handlebars.compile(
-            document.querySelector('#guestItemTemplate').innerHTML
-        );
-        this.singleProductTemplate = Handlebars.compile(
-            document.querySelector('#productItemTemplate').innerHTML
-        );
-    }
+        // Handlebars
+        const guestTemplate = Templates.guestItemTemplate;
+        const productTemplate = Templates.productItemTemplate;
+        const buyerOptionTemplate = Templates.buyerOption;
 
-    // addGuest action
-    addGuestAction(handler) {
-        this.addGuestForm.addEventListener('submit', (event) => {
-            event.preventDefault();
-            const guestName = event.target.elements.guestName.value.trim();
-            if (guestName.length > 0) {
-                handler(guestName);
-                event.target.elements.guestName.value = '';
-                this.addProductForm.classList.remove("was-validated");
-            }
+        this.singleGuestTemplate = Handlebars.compile(guestTemplate);
+        this.guestsListTemplate = Handlebars.compile(Templates.guestListTemplate);
+
+        this.singleProductTemplate = Handlebars.compile(productTemplate);
+        this.productsListTemplate = Handlebars.compile(Templates.productListTemplate);
+
+        this.singleBuyerOption = Handlebars.compile(buyerOptionTemplate);
+        this.buyersOptionsTemplate = Handlebars.compile(Templates.buyerOptions);
+
+        Handlebars.registerHelper('guestInitial', function() {
+            return this.name[0].toUpperCase();
         });
+
+        Handlebars.registerHelper('displayPrice', function() {
+            return this.price / 100;
+        });
+
+        Handlebars.registerPartial('guestRow', guestTemplate);
+        Handlebars.registerPartial('productRow', productTemplate);
+        Handlebars.registerPartial('buyerOption', buyerOptionTemplate);
+        
     }
 
     renderGuests(guests) {
-        guests.forEach(guest => this.renderSingleGuest(guest));
+        const guestsMapped = guests.map(guest => ({
+            ...guest,
+            debt: '0',
+            debtText: 'Saldo 0'
+        }));
+        this.guestListUl.innerHTML = this.guestsListTemplate({
+            guests: guestsMapped
+        });
+        this.bindProductBuyer.insertAdjacentHTML(
+            'beforeend',
+            this.buyersOptionsTemplate({ guests })
+        );
     }
 
     renderProducts(products) {
-        products.forEach(product => this.renderSingleProduct(product));
+        this.productListUl.innerHTML = this.productsListTemplate({products});
     }
 
     // Render single guest
@@ -62,33 +79,38 @@ class View {
         this.guestListUl.insertAdjacentHTML(
             'beforeend',
             this.singleGuestTemplate({
-                guestId: guest.id,
-                guestName: guest.name,
-                guestDedtText: 'Saldo 0',
-                guestDept: '0',
-                guestInitial: guest.getInitialLetter()
+                ...guest,
+                debt: '0',
+                debtText: 'Saldo 0'
             })
         );
 
         // Adding option to add producto select buyer
-        const option = document.createElement("option");
-        option.text = guest.name;
-        option.value = guest.id;
-        this.bindProductBuyer.add(option);
+        this.bindProductBuyer.insertAdjacentHTML(
+            'beforeend',
+            this.singleBuyerOption({...guest})
+        );
     }
 
     // Render single product
     renderSingleProduct(product) {
         this.productListUl.insertAdjacentHTML(
             'beforeend',
-            this.singleProductTemplate({
-                productId: product.id,
-                guestId: product.productBuyerId,
-                productTitle: product.productTitle,
-                productBuyer: product.productBuyerName,
-                productPrice: product.productPrice / 100
-            })
+            this.singleProductTemplate({...product})
         );
+    }
+
+    // addGuest action
+    addGuestAction(handler) {
+        this.addGuestForm.addEventListener('submit', (event) => {
+            event.preventDefault();
+            const name = event.target.elements.guestName.value.trim();
+            if (name.length > 0) {
+                handler(name);
+                event.target.elements.guestName.value = '';
+                this.addProductForm.classList.remove("was-validated");
+            }
+        });
     }
 
     // addProduct action
@@ -100,16 +122,16 @@ class View {
             const productValues = [];
             
             // Declare product title
-            const productTitle = this.addProductInputName.value.trim();
+            const title = this.addProductInputName.value.trim();
 
             // Declare product price
-            const productPrice = parseInt(this.addProductPrice.value * 100);
+            const price = parseInt(this.addProductPrice.value * 100);
 
             // Declare product buyer id
-            const productBuyerId = parseInt(this.bindProductBuyer.value);
+            const buyer = parseInt(this.bindProductBuyer.value);
 
             // Form validation
-            if (productTitle === '' || productPrice === '' || (productBuyerId === '' || isNaN(productBuyerId))) {
+            if (title === '' || price === '' || (buyer === '' || isNaN(buyer))) {
                 event.stopPropagation()
                 this.addProductForm.classList.add('was-validated');
             } else {
@@ -119,7 +141,7 @@ class View {
                 this.bindProductBuyer.value = '';
 
                 // Call handler
-                handler(productTitle, productPrice, productBuyerId);
+                handler(title, price, buyer);
             }
         });
     }
