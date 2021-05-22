@@ -25,6 +25,10 @@ class Controller {
 
         // Update guests debt
         this.calcFuckingDebt();
+
+        // Update summary
+        this.getDebtor(this.calcFuckingDebt());
+
         console.log(apiServices.data);
     }
 
@@ -34,13 +38,16 @@ class Controller {
         const productAdded = this.model.addProduct(productTitle, productPrice, productBuyerId);
 
         // Render product view
-        this.view.renderSingleProduct(productAdded);
+        this.view.renderSingleProduct(productAdded, this.calcFuckingDebt());
 
         // Sum of prices
         this.sumOfProductPricesHandler();
         
         // Update guests debt
         this.calcFuckingDebt();
+
+        // Update summary
+        this.getDebtor(this.calcFuckingDebt());
 
         console.log(apiServices.data);
     }
@@ -51,13 +58,16 @@ class Controller {
         this.model.deleteItem(itemId, itemList);
 
         // Update delete item in view
-        this.view.renderDeleteItem(itemId, itemList);
+        this.view.renderDeleteItem(itemId, itemList, this.calcFuckingDebt());
 
         // Call sumOfProductPricesHandler
         this.sumOfProductPricesHandler();
 
         // Update guests debt
         this.calcFuckingDebt();
+
+        // Update summary
+        this.getDebtor(this.calcFuckingDebt());
     }
 
     // Sum of prices
@@ -69,6 +79,7 @@ class Controller {
         this.view.renderSumOfProductPrices(productSum);
     }
 
+    // Calculate the fucking debt
     calcFuckingDebt() {
         const [guestsList, productsList] = this.model.calcFuckingDebt();
 
@@ -110,6 +121,35 @@ class Controller {
         console.log(debts);
 
         return debts;
+    }
+
+    getDebtor(debtCalc) {
+        const guestsList = this.model.updateSummaryItem();
+
+        const summaryArr = debtCalc.filter(debtor => {
+            return debtor.debtsSum > 0;
+        });
+
+        summaryArr.forEach(debtorObject => {
+            // Find debtor
+            const debtor = guestsList.find(guest => guest.id === debtorObject.id);
+            debtorObject.debtorName = debtor.name;
+
+            // Find beneficiaries
+            for (const beneficiaryId in debtorObject.debts) {
+                // Get beneficiary name
+                const beneficiary = guestsList.find(guest => guest.id == beneficiaryId);
+                debtorObject.beneficiaryName = beneficiary.name;
+
+                // Get beneficiary money
+                const beneficiaryMoney = debtorObject.debts[beneficiaryId]
+                debtorObject.beneficiaryMoney = debtorObject.debts[beneficiaryId]
+            }
+        });
+
+        this.view.renderSummaryItem(summaryArr);
+
+        console.log(summaryArr);
     }
 }
 

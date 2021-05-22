@@ -57,6 +57,11 @@ class ApiServices {
         return this.data.productsList;
     }
 
+    // Add summary item
+    updateSummaryItem() {
+        return this.data.guestsList;
+    }
+
     // calcDebt() {
     //     this.data.productsList.forEach(product => {
     //         this.globalDebt(product.productPrice, product.productBuyerId);

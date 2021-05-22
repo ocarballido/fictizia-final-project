@@ -25,6 +25,11 @@ class Model {
     calcFuckingDebt() {
         return apiServices.calcFuckingDebt();
     }
+
+    // Add summary item
+    updateSummaryItem() {
+        return apiServices.updateSummaryItem();
+    }
 };
 
 export { Model };

@@ -19,7 +19,6 @@ class View {
         this.addProductPrice = document.querySelector('#productPrizeInput');
         this.bindProductBuyer = document.querySelector('#bindProductBuyer');
         this.addProductButton = document.querySelector('#addProductButton');
-        this.singleProductTemplate = document.querySelector('#productItemTemplate').innerHTML;
         this.productsSumTotal = document.querySelector('#productsSumTotal');
 
         // Summary elements
@@ -36,6 +35,9 @@ class View {
         );
         this.singleProductTemplate = Handlebars.compile(
             document.querySelector('#productItemTemplate').innerHTML
+        );
+        this.singleSummaryTemplate = Handlebars.compile(
+            document.querySelector('#summaryItemTemplate').innerHTML
         );
     }
 
@@ -106,10 +108,6 @@ class View {
         });
     }
 
-    renderSummery() {
-        //
-    }
-
     // addProduct action
     addProductAction(handler) {
         this.addProductForm.addEventListener('submit', (event) => {
@@ -144,7 +142,7 @@ class View {
     }
 
     // Render single product
-    renderSingleProduct(product) {
+    renderSingleProduct(product, debtCalc) {
         this.productListUl.insertAdjacentHTML(
             'beforeend',
             this.singleProductTemplate({
@@ -155,6 +153,8 @@ class View {
                 productPrice: product.productPrice / 100
             })
         );
+
+        this.reRenderGuests(debtCalc);
     }
 
     // Delete item action
@@ -176,7 +176,7 @@ class View {
     }
 
     // Render delete item
-    renderDeleteItem(itemId, itemList) {
+    renderDeleteItem(itemId, itemList, debtCalc) {
         if (itemList === this.guestListUl.id || itemList === this.productListUl.id) {
             const itemToDelete = document.querySelector(`#${itemList} [data-id="${itemId}"]`);
             itemToDelete.remove();
@@ -191,6 +191,8 @@ class View {
                 this.productListUl.querySelectorAll(`[data-userid="${itemId}"]`).forEach(el => el.remove());
             }
         }
+
+        this.reRenderGuests(debtCalc);
     }
 
     // Render calc sum of all producto price
@@ -199,19 +201,36 @@ class View {
         this.productsSumTotal.classList.toggle('d-none', productSum <= 0);
     }
 
-    // Render summary list
-    renderSummaryList(debts) {
-        this.summaryListUl.insertAdjacentHTML(
-            'beforeend',
-            this.singleGuestTemplate({
-                guestId: guest.id,
-                guestName: guest.name,
-                guestDebtText: 'Saldo 0',
-                guestDept: '0',
-                guestInitial: guest.getInitialLetter()
-            })
-        );
+    renderSummaryItem(summaryArray) {
+        console.log(summaryArray);
+
+        this.summaryListUl.innerHTML = "";
+
+        for (let i = 0; i < summaryArray.length; i ++) {
+            this.summaryListUl.insertAdjacentHTML(
+                'beforeend',
+                this.singleSummaryTemplate({
+                    guestDebtorName: summaryArray[i].debtorName,
+                    productPrice: summaryArray[i].beneficiaryMoney,
+                    guestBeneficiaryName: summaryArray[i].beneficiaryName
+                })
+            );
+        }
     }
+
+    // Render summary list
+    // renderSummaryList(debts) {
+    //     this.summaryListUl.insertAdjacentHTML(
+    //         'beforeend',
+    //         this.singleGuestTemplate({
+    //             guestId: guest.id,
+    //             guestName: guest.name,
+    //             guestDebtText: 'Saldo 0',
+    //             guestDept: '0',
+    //             guestInitial: guest.getInitialLetter()
+    //         })
+    //     );
+    // }
 
     // sortGuest(debtCalc) {
     //     // Duplicate node
