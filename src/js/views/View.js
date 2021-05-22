@@ -53,23 +53,61 @@ class View {
     }
 
     // Render single guest
-    renderSingleGuest(guest) {
+    renderSingleGuest(guest, debtCalc) {
+        // Find guest debt data in calc
+        const guestDebtData = debtCalc.find(guestData => guestData.id === guest.id);
+        const isGuestDebtor = guestDebtData.debtsSum > 0;
+
+        // Filling template
         this.guestListUl.insertAdjacentHTML(
             'beforeend',
             this.singleGuestTemplate({
                 guestId: guest.id,
                 guestName: guest.name,
-                guestDedtText: 'Saldo 0',
-                guestDept: '0',
+                guestDebtText: isGuestDebtor ? 'Saldo negativo | debe padar' : 'Saldo positivo',
+                guestDept: guestDebtData.debtsSum > 0 ? guestDebtData.debtsSum : 0,
                 guestInitial: guest.getInitialLetter()
             })
         );
+
+        // Adding balance guest clase (positive/negative)
+        isGuestDebtor ? this.guestListUl.lastElementChild.classList.add('negative') : this.guestListUl.lastElementChild.classList.remove('negative');
 
         // Adding option to add producto select buyer
         const option = document.createElement("option");
         option.text = guest.name;
         option.value = guest.id;
         this.bindProductBuyer.add(option);
+
+        this.reRenderGuests(debtCalc);
+    }
+
+    // Rerender all guests styles
+    reRenderGuests(debtCalc) {
+        // Get guests li nodelist
+        const guestsNodeList = this.guestListUl.children;
+        Array.prototype.forEach.call(guestsNodeList, function (guestLi) {
+            // Get guest ID in <ul>
+            const guestIdNode = parseInt(guestLi.dataset.id);
+
+            // Get guest debt data
+            const guestDebtData = debtCalc.find(guestData => guestData.id === guestIdNode);
+            const isGuestDebtor = guestDebtData.debtsSum > 0; 
+
+            // Modify guest <li> styles
+            isGuestDebtor ? guestLi.classList.add('negative') : guestLi.classList.remove('negative');
+
+            // Modify balance money
+            guestLi.querySelector('.guestItem-badge').innerHTML = guestDebtData.debtsSum > 0 ? `${(guestDebtData.debtsSum / 100).toFixed(2)} €` : 0;
+            guestLi.querySelector('.guestItem-badge').classList.toggle('d-none', guestDebtData.debtsSum <= 0);
+
+            // Modify balance text
+            guestLi.querySelector('.guestsItem-info_content').innerHTML = isGuestDebtor ? 'Saldo negativo | debe padar' : 'Saldo positivo';
+        });
+    }
+
+    renderSummery() {
+        //
     }
 
     // addProduct action
@@ -168,12 +206,39 @@ class View {
             this.singleGuestTemplate({
                 guestId: guest.id,
                 guestName: guest.name,
-                guestDedtText: 'Saldo 0',
+                guestDebtText: 'Saldo 0',
                 guestDept: '0',
                 guestInitial: guest.getInitialLetter()
             })
         );
     }
+
+    // sortGuest(debtCalc) {
+    //     // Duplicate node
+    //     const newList = guestsList.cloneNode(false)
+
+    //     // Add guests <li> to array
+    //     const guestArr = [];
+    //     for(let i = guestsList.childNodes.length; i--;){
+    //         if(guestsList.childNodes[i].nodeName === 'LI')
+    //         guestArr.push(guestsList.childNodes[i]);
+    //     }
+
+    //     // Sort the list in descending order
+    //     guestArr.sort((a, b) => {
+    //         const aValue = isNaN(parseInt(a.querySelector('.guestItem-badge').innerHTML.slice(0, b.querySelector('.guestItem-badge').innerHTML.length - 2))) ? 0 : parseInt(a.querySelector('.guestItem-badge').innerHTML.slice(0, b.querySelector('.guestItem-badge').innerHTML.length - 2));
+    //         const bValue = isNaN(parseInt(b.querySelector('.guestItem-badge').innerHTML.slice(0, b.querySelector('.guestItem-badge').innerHTML.length - 2))) ? 0 : parseInt(b.querySelector('.guestItem-badge').innerHTML.slice(0, b.querySelector('.guestItem-badge').innerHTML.length - 2));
+    //         return bValue - aValue
+    //     });
+
+    //     // Add them into the ul in order
+    //     for(let i = 0; i < guestArr.length; i++) {
+    //         newList.appendChild(guestArr[i]);
+    //         console.log(guestsList, newList);
+    //     }
+    //     // guestsList.parentNode.replaceChild(newList, guestsList);
+    //     console.log(guestsList, newList);
+    // }
 };
 
 export { View };

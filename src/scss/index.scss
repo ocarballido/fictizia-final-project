@@ -25,6 +25,7 @@ html, body {
         flex-shrink: 0;
     }
     .guestItem-badge {
+        background-color: $success;
         border-radius: 50rem;
         color: white;
         font-size: .75rem;
@@ -38,6 +39,7 @@ html, body {
             margin: 0;
         }
         .guestsItem-info_content {
+            color: $success;
             margin: 0;
         }
     }
@@ -54,21 +56,22 @@ html, body {
             }
         }
     }
-    &.positive {
-        .avatar {
-            background-color: $success;
-        }
-        .guestItem-badge {
-            background-color: $success;
-        }
-        .guestsItem-info {
-            .guestsItem-info_content {
-                color: $success;
-            }
-        }
-    }
+    // &.positive {
+    //     .avatar {
+    //         background-color: $success;
+    //     }
+    //     .guestItem-badge {
+    //         background-color: $success;
+    //     }
+    //     .guestsItem-info {
+    //         .guestsItem-info_content {
+    //             color: $success;
+    //         }
+    //     }
+    // }
     .avatar {
         align-items: center;
+        background-color: $success;
         border-radius: 50%;
         color: white;
         display: flex;

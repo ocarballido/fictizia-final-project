@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>{{ title }}</title>
+        <meta name="description" content="{{ description }}">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css">
+    </head>
+    <body>
+        <!--[if lt IE 7]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+        <div id="controls">
+            <!-- <button id="addProductButton" class="btn btn-success text-white shadow-lg" type="button">Exportar</button>
+            <button id="addProductButton" class="btn btn-primary shadow-lg" type="button">Nuevo</button> -->
+        </div>
+        <div id="allLists" class="row h-100 g-0">
+            <!-- Users -->
+            <div class="col-md-auto col-xl-4 bg-white p-4">
+                <h3 class="mb-3">Usuarios invitados</h3>
+                <!-- <div id="guestsAlert" class="alert alert-info" role="alert">
+                    <b>Añade invitados a la party.</b><br>Sus saldos se irán actualizando de manera tal que habrán deudores (<span class="fw-bold text-danger"><i class="bi bi-circle-fill"></i></span> <b>quien debe dinero</b>) y beneficiarios (<span class="fw-bold text-success"><i class="bi bi-circle-fill"></i></span> <b>quien recibe dinero</b>).
+                </div> -->
+                <ul id="guestsList" class="list-unstyled">
+                    <!-- <li class="guestsItem negative">
+                        <div class="guestsItem-avatar-button">
+                            <span class="avatar"><span>I</span></span>
+                            <button type="button" class="btn btn-outline-danger btn-remove-guest"><i class="bi bi-x" style="font-size: 1.8rem;"></i></button>
+                        </div>
+                        <div class="guestsItem-info">
+                            <h6 class="guestsItem-info_name">Iván</h6>
+                            <p class="guestsItem-info_content"><small>Saldo negativo | Debe pagar</small></p>
+                        </div>
+                        <span class="guestItem-badge">-24 €</span>
+                    </li>
+                    <li class="guestsItem negative">
+                        <div class="guestsItem-avatar-button">
+                            <span class="avatar"><span>L</span></span>
+                            <button type="button" class="btn btn-outline-danger btn-remove-guest"><i class="bi bi-x" style="font-size: 1.8rem;"></i></button>
+                        </div>
+                        <div class="guestsItem-info">
+                            <h6 class="guestsItem-info_name">Lily</h6>
+                            <p class="guestsItem-info_content"><small>Saldo negativo | Debe pagar</small></p>
+                        </div>
+                        <span class="guestItem-badge">-24 €</span>
+                    </li>
+                    <li class="guestsItem negative">
+                        <div class="guestsItem-avatar-button">
+                            <span class="avatar"><span>Y</span></span>
+                            <button type="button" class="btn btn-outline-danger btn-remove-guest"><i class="bi bi-x" style="font-size: 1.8rem;"></i></button>
+                        </div>
+                        <div class="guestsItem-info">
+                            <h6 class="guestsItem-info_name">Yami</h6>
+                            <p class="guestsItem-info_content"><small>Saldo negativo | Debe pagar</small></p>
+                        </div>
+                        <span class="guestItem-badge">-24 €</span>
+                    </li>
+                    <li class="guestsItem negative">
+                        <div class="guestsItem-avatar-button">
+                            <span class="avatar"><span>O</span></span>
+                            <button type="button" class="btn btn-outline-danger btn-remove-guest"><i class="bi bi-x" style="font-size: 1.8rem;"></i></button>
+                        </div>
+                        <div class="guestsItem-info">
+                            <h6 class="guestsItem-info_name">Orelvis</h6>
+                            <p class="guestsItem-info_content"><small>Saldo negativo | Debe pagar</small></p>
+                        </div>
+                        <span class="guestItem-badge">-18 €</span>
+                    </li>
+                    <li class="guestsItem positive">
+                        <div class="guestsItem-avatar-button">
+                            <span class="avatar"><span>S</span></span>
+                            <button type="button" class="btn btn-outline-danger btn-remove-guest"><i class="bi bi-x" style="font-size: 1.8rem;"></i></button>
+                        </div>
+                        <div class="guestsItem-info">
+                            <h6 class="guestsItem-info_name">Sergio</h6>
+                            <p class="guestsItem-info_content"><small>Saldo negativo | Debe pagar</small></p>
+                        </div>
+                        <span class="guestItem-badge">14 €</span>
+                    </li>
+                    <li class="guestsItem positive">
+                        <div class="guestsItem-avatar-button">
+                            <span class="avatar"><span>S</span></span>
+                            <button type="button" class="btn btn-outline-danger btn-remove-guest"><i class="bi bi-x" style="font-size: 1.8rem;"></i></button>
+                        </div>
+                        <div class="guestsItem-info">
+                            <h6 class="guestsItem-info_name">Susana</h6>
+                            <p class="guestsItem-info_content"><small>Saldo negativo | Debe pagar</small></p>
+                        </div>
+                        <span class="guestItem-badge">12 €</span>
+                    </li>
+                    <li class="guestsItem positive">
+                        <div class="guestsItem-avatar-button">
+                            <span class="avatar"><span>L</span></span>
+                            <button type="button" class="btn btn-outline-danger btn-remove-guest"><i class="bi bi-x" style="font-size: 1.8rem;"></i></button>
+                        </div>
+                        <div class="guestsItem-info">
+                            <h6 class="guestsItem-info_name">Liudmila</h6>
+                            <p class="guestsItem-info_content"><small>Saldo negativo | Debe pagar</small></p>
+                        </div>
+                        <span class="guestItem-badge">8 €</span>
+                    </li>
+                    <li class="guestsItem positive">
+                        <div class="guestsItem-avatar-button">
+                            <span class="avatar"><span>O</span></span>
+                            <button type="button" class="btn btn-outline-danger btn-remove-guest"><i class="bi bi-x" style="font-size: 1.8rem;"></i></button>
+                        </div>
+                        <div class="guestsItem-info">
+                            <h6 class="guestsItem-info_name">Oscar</h6>
+                            <p class="guestsItem-info_content"><small>Saldo negativo | Debe pagar</small></p>
+                        </div>
+                        <span class="guestItem-badge">8 €</span>
+                    </li> -->
+                </ul>
+                <form id="addGuestForm" action="" class="mb-2 d-grid needs-validation" novalidate>
+                    <input type="text" name="guestName" class="form-control mb-2" id="addGuestInpu" placeholder="Añadir un invitado" required>
+                    <div class="invalid-feedback mb-2">Añade usuario</div>
+                    <button id="addGuestButton" class="btn btn-primary" type="submit" id="button-addon2">Añadir</button>
+                </form>
+            </div>
+            <!-- /Users -->
+        
+            <!-- Products and Summary -->
+            <div class="col-md">
+                <div class="row g-0 h-100">
+                    <!-- Products -->
+                    <div id="products" class="col-xl col-12 p-4 bg-dark text-white">
+                        <h3 class="mb-3 text-white fw-light">Lista de compra</h3>
+                        <!-- <div id="productsAlert" class="alert alert-info" role="alert">
+                            <b>Añade productos comprados.</b><br>Deben ser asignados a un usuario (<b>el que hizo la compra</b>) para hacer el cálculo de los saldos. <b>Sólo podrás añadir productos, una vez que hayas añadido, al menos un invitado.</b>
+                        </div> -->
+                        <ul id="productsList" class="list-unstyled">
+                            <!-- <li class="productItem positive">
+                                <h6 class="productItem-title">Havana Club</h6>
+                                <span class="productItem-badge">Oscar</span>
+                                <h6 class="productItem-price">40 €</h6>
+                                <div class="deleteProduct">
+                                    <button type="button" class="btn btn-danger btn-sm btn-deleteProduct">Eliminar</button>
+                                </div>
+                            </li>
+                            <li class="productItem positive">
+                                <h6 class="productItem-title">Tamales</h6>
+                                <span class="productItem-badge">Sergio</span>
+                                <h6 class="productItem-price">14 €</h6>
+                                <div class="deleteProduct">
+                                    <button type="button" class="btn btn-danger btn-sm btn-deleteProduct">Eliminar</button>
+                                </div>
+                            </li>
+                            <li class="productItem positive">
+                                <h6 class="productItem-title">Malanga</h6>
+                                <span class="productItem-badge">Oscar</span>
+                                <h6 class="productItem-price">4.25 €</h6>
+                                <div class="deleteProduct">
+                                    <button type="button" class="btn btn-danger btn-sm btn-deleteProduct">Eliminar</button>
+                                </div>
+                            </li>
+                            <li class="productItem positive">
+                                <h6 class="productItem-title">Cerveza</h6>
+                                <span class="productItem-badge">Iván</span>
+                                <h6 class="productItem-price">15 €</h6>
+                                <div class="deleteProduct">
+                                    <button type="button" class="btn btn-danger btn-sm btn-deleteProduct">Eliminar</button>
+                                </div>
+                            </li>
+                            <li class="productItem positive">
+                                <h6 class="productItem-title">Refrescos</h6>
+                                <span class="productItem-badge">Sergio</span>
+                                <h6 class="productItem-price">6.48 €</h6>
+                                <div class="deleteProduct">
+                                    <button type="button" class="btn btn-danger btn-sm btn-deleteProduct">Eliminar</button>
+                                </div>
+                            </li>
+                            <li class="productItem positive">
+                                <h6 class="productItem-title">Jamón</h6>
+                                <span class="productItem-badge">Sergio</span>
+                                <h6 class="productItem-price">21 €</h6>
+                                <div class="deleteProduct">
+                                    <button type="button" class="btn btn-danger btn-sm btn-deleteProduct">Eliminar</button>
+                                </div>
+                            </li>
+                            <li class="productItem positive">
+                                <h6 class="productItem-title">Queso</h6>
+                                <span class="productItem-badge">Oscar</span>
+                                <h6 class="productItem-price">16 €</h6>
+                                <div class="deleteProduct">
+                                    <button type="button" class="btn btn-danger btn-sm btn-deleteProduct">Eliminar</button>
+                                </div>
+                            </li> -->
+                        </ul>
+                        <h6 id="productsSumTotal" class="productItem-price text-end d-none"><span class="text-left">Total: </span><span></span> €</h6> 
+                        <form id="productsForm" class="mb-2 needs-validation" novalidate>
+                            <div class="row g-2">
+                                <div class="col-lg-12">
+                                    <input type="text" class="form-control" id="addProductInpu" name="productTitle" placeholder="Producto" required>
+                                    <div class="invalid-feedback">Añade nombre de producto</div>
+                                </div>
+                                <div class="col-lg-6 ">
+                                    <input type="number" step="0.01" class="form-control" min="0" id="productPrizeInput" placeholder="Precio euros" name="productPrice" required>
+                                    <div class="invalid-feedback">Añade precio</div>
+                                </div>
+                                <div class="col-lg-12 col-xl col-xl">
+                                    <select id="bindProductBuyer" class="form-select" required>
+                                        <option selected disabled value="">Asigna la compra</option>
+                                        <!-- <option value="oscar">Oscar</option>
+                                        <option value="liudmmila">Liudmila</option>
+                                        <option value="ivan">Iván</option>
+                                        <option value="lily">Lily</option>
+                                        <option value="sergio">Sergio</option>
+                                        <option value="susana">Susana</option>
+                                        <option value="yami">Yami</option>
+                                        <option value="orelvis">Orelvis</option> -->
+                                    </select>
+                                    <div class="invalid-feedback">Asigna la compra a un usuario</div>
+                                </div>
+                                <button id="addProductButton" class="btn btn-primary btn-block" type="submit" id="button-addon2">Añadir</button>
+                            </div>
+                        </form>
+                    </div>
+                    <!-- /Products -->
+        
+                    <!-- Summary -->
+                    <div id="summary" class="col-xl col-12 p-4 text-white">
+                        <h3 class="mb-3 text-white fw-light">Resumen</h3>
+                        <!-- <div id="summaryAlert" class="alert alert-info" role="alert">
+                            Un resumen indicando deudores, beneficiarios y la cantidad a transferir.
+                        </div> -->
+                        <ul id="summaryList" class="list-unstyled">
+                            <!-- <li class="summaryItem positive">
+                                <h6 class="summaryItem-debtor">Iván</h6>
+                                <span class="summaryItem-badge">12 €</span>
+                                <i class="summaryItem-icon bi bi-arrow-right"></i>
+                                <h6 class="summaryItem-beneficiary">Liudmila</h6>
+                            </li>
+                            <li class="summaryItem positive">
+                                <h6 class="summaryItem-debtor">Lily</h6>
+                                <span class="summaryItem-badge">8 €</span>
+                                <i class="summaryItem-icon bi bi-arrow-right"></i>
+                                <h6 class="summaryItem-beneficiary">Susana</h6>
+                            </li>
+                            <li class="summaryItem positive">
+                                <h6 class="summaryItem-debtor">Yami</h6>
+                                <span class="summaryItem-badge">20 €</span>
+                                <i class="summaryItem-icon bi bi-arrow-right"></i>
+                                <h6 class="summaryItem-beneficiary">Sergio</h6>
+                            </li>
+                            <li class="summaryItem positive">
+                                <h6 class="summaryItem-debtor">Orelvis</h6>
+                                <span class="summaryItem-badge">16 €</span>
+                                <i class="summaryItem-icon bi bi-arrow-right"></i>
+                                <h6 class="summaryItem-beneficiary">Oscar</h6>
+                            </li> -->
+                        </ul>
+                    </div>
+                    <!-- /Summary -->
+                </div>
+            </div>
+            <!-- /Products and Summary -->
+        </div>
+        
+        <!-- Template guest -->
+        <template id="guestItemTemplate">
+            <li class="guestsItem" data-id="{{guestId}}">
+                <div class="guestsItem-avatar-button">
+                    <span class="avatar"><span>{{guestInitial}}</span></span>
+                    <button type="button" class="btn btn-outline-danger btn-remove-guest"><i class="bi bi-x" style="font-size: 1.8rem;"></i></button>
+                </div>
+                <div class="guestsItem-info">
+                    <h6 class="guestsItem-info_name">{{guestName}}</h6>
+                    <p class="guestsItem-info_content"><small>{{guestDebtText}}</small></p>
+                </div>
+                <span class="guestItem-badge">{{guestDept}} €</span>
+            </li>
+        </template>
+        <!-- /Template guest -->
+        
+        <!-- Template producto -->
+        <template id="productItemTemplate">
+            <li class="productItem" data-id="{{productId}}" data-userid="{{guestId}}">
+                <h6 class="productItem-title">{{productTitle}}</h6>
+                <span class="productItem-badge">{{productBuyer}}</span>
+                <h6 class="productItem-price">{{productPrice}} €</h6>
+                <div class="deleteProduct">
+                    <button type="button" class="btn btn-danger btn-sm btn-deleteProduct">Eliminar</button>
+                </div>
+            </li>
+        </template>
+        <!-- /Template producto -->
+
+        <!-- Template summary -->
+        <template id="summaryItemTemplate">
+            <li class="summaryItem">
+                <h6 class="summaryItem-debtor">{{guestDebtorName}}</h6>
+                <span class="summaryItem-badge">{{productPrice}} €</span>
+                <i class="summaryItem-icon bi bi-arrow-right"></i>
+                <h6 class="summaryItem-beneficiary">{{guestBeneficiaryName}}</h6>
+            </li>
+        </template>
+        <!-- /Template summary -->
+    </body>
+</html>

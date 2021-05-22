@@ -21,7 +21,7 @@ class Controller {
     addGuestHandler(guestName) {
         // Render
         const guestAdded = this.model.addGuest(guestName);
-        this.view.renderSingleGuest(guestAdded);
+        this.view.renderSingleGuest(guestAdded, this.calcFuckingDebt());
 
         // Update guests debt
         this.calcFuckingDebt();
@@ -88,6 +88,7 @@ class Controller {
 
         const debts = guestsList.map((buyer) => {
             const buyerId = buyer.id;
+            let debtsSum = 0;
             const debts = guestsList.reduce((obj, debtor) => {
                 const debtorId = debtor.id;
                 if (buyerId !== debtorId) {
@@ -95,15 +96,20 @@ class Controller {
                     obj[debtorId] = debt < 0
                         ? 0
                         : debt;
+                    debtsSum = (debtsSum || 0) + obj[debtorId];
                 }
                 return obj;
             }, {});
+
             return {
                 id: buyerId,
-                debts
+                debts,
+                debtsSum,
             };
         });
         console.log(debts);
+
+        return debts;
     }
 }
 
