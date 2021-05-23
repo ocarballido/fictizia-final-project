@@ -23,6 +23,7 @@ class View {
         this.addProductInputName = document.querySelector('#addProductInpu');
         this.addProductPrice = document.querySelector('#productPrizeInput');
         this.bindProductBuyer = document.querySelector('#bindProductBuyer');
+        this.controls = document.getElementById('controls');
         this.addProductButton = document.querySelector('#addProductButton');
         this.productsSumTotal = document.querySelector('#productsSumTotal');
 
@@ -56,7 +57,6 @@ class View {
                 event.target.elements.guestName.value = '';
                 this.addProductForm.classList.remove("was-validated");
             }
-            this.renderWelcomeUI();
         });
     }
 
@@ -88,6 +88,8 @@ class View {
         this.bindProductBuyer.add(option);
 
         this.reRenderGuests(debtCalc);
+
+        this.renderWelcomeUI();
     }
 
     // Rerender all guests styles
@@ -144,7 +146,6 @@ class View {
                 // Call handler
                 handler(productTitle, productPrice, productBuyerId);
             }
-            this.renderWelcomeUI();
         });
     }
 
@@ -162,6 +163,8 @@ class View {
         );
 
         this.reRenderGuests(debtCalc);
+
+        this.renderWelcomeUI();
     }
 
     // Delete item action
@@ -179,7 +182,6 @@ class View {
                 const itemList = event.target.closest('ul').id;
                 handler(itemId, itemList);
             }
-            this.renderWelcomeUI();
         });
     }
 
@@ -201,6 +203,8 @@ class View {
         }
 
         this.reRenderGuests(debtCalc);
+
+        this.renderWelcomeUI();
     }
 
     // Render calc sum of all producto price
@@ -232,7 +236,8 @@ class View {
         this.guestsAlert.classList.toggle('d-none', guestsPopulationChecker > 0);
         this.productsAlert.classList.toggle('d-none', productsPopulationChecker > 0);
         this.summaryAlert.classList.toggle('d-none', productsPopulationChecker > 0);
-        console.log('El ul tiene ', productsPopulationChecker);
+        this.controls.classList.toggle('d-none', guestsPopulationChecker === 0);
+        console.log(guestsPopulationChecker, productsPopulationChecker);
     }
 
     // sortGuest(debtCalc) {
