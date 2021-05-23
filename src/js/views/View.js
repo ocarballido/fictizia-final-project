@@ -106,7 +106,7 @@ class View {
             isGuestDebtor ? guestLi.classList.add('negative') : guestLi.classList.remove('negative');
 
             // Modify balance money
-            guestLi.querySelector('.guestItem-badge').innerHTML = guestDebtData.debtsSum > 0 ? `${(guestDebtData.debtsSum / 100).toFixed(2)} €` : 0;
+            guestLi.querySelector('.guestItem-badge').innerHTML = guestDebtData.debtsSum > 0 ? `${(guestDebtData.debtsSum / 100).toFixed(2)}€` : 0;
             guestLi.querySelector('.guestItem-badge').classList.toggle('d-none', guestDebtData.debtsSum <= 0);
 
             // Modify balance text
