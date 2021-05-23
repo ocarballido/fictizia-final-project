@@ -92,14 +92,22 @@ class Model {
     }
 
     deleteGuest(id) {
-        return apiServices
-            .deleteGuest(id)
-            .then(() => {
-                this._guests = this._guests.filter(guest => guest.id !== id);
-                delete this._guestsObject[id];
-                return true;
-            })
-            .catch(error => console.log(error));
+        return new Promise((resolve, reject) => {
+            const products = this._products.filter(product => product.buyer === id);
+            const deletes = products.map(product => this.deleteProduct(product.id));
+            Promise.all(deletes)
+                .then(() => {
+                    apiServices
+                        .deleteGuest(id)
+                        .then(() => {
+                            this._guests = this._guests.filter(guest => guest.id !== id);
+                            delete this._guestsObject[id];
+                            resolve(true);
+                        })
+                        .catch(error => console.log(error));
+                })
+                .catch(error => reject(error));
+        });
     }
 
     deleteProduct(id) {
