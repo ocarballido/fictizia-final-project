@@ -5,6 +5,11 @@ class View {
         // All
         this.allLists = document.querySelector('#allLists');
 
+        // AlertsUI
+        this.guestsAlert = document.getElementById('guestsAlert');
+        this.productsAlert = document.getElementById('productsAlert');
+        this.summaryAlert = document.getElementById('summaryAlert');
+
         // Guests elements
         this.guestListUl = document.querySelector('#guestsList');
         this.addGuestForm = document.querySelector('#addGuestForm');
@@ -51,6 +56,7 @@ class View {
                 event.target.elements.guestName.value = '';
                 this.addProductForm.classList.remove("was-validated");
             }
+            this.renderWelcomeUI();
         });
     }
 
@@ -138,6 +144,7 @@ class View {
                 // Call handler
                 handler(productTitle, productPrice, productBuyerId);
             }
+            this.renderWelcomeUI();
         });
     }
 
@@ -172,6 +179,7 @@ class View {
                 const itemList = event.target.closest('ul').id;
                 handler(itemId, itemList);
             }
+            this.renderWelcomeUI();
         });
     }
 
@@ -216,6 +224,15 @@ class View {
                 guestBeneficiaryName: beneficiaryName
             })
         );
+    }
+
+    renderWelcomeUI() {
+        const guestsPopulationChecker = this.guestListUl.children.length;
+        const productsPopulationChecker = this.productListUl.children.length;
+        this.guestsAlert.classList.toggle('d-none', guestsPopulationChecker > 0);
+        this.productsAlert.classList.toggle('d-none', productsPopulationChecker > 0);
+        this.summaryAlert.classList.toggle('d-none', productsPopulationChecker > 0);
+        console.log('El ul tiene ', productsPopulationChecker);
     }
 
     // sortGuest(debtCalc) {
