@@ -99,26 +99,33 @@ class Controller {
 
         const debts = guestsList.map((buyer) => {
             const buyerId = buyer.id;
+            const buyerName = guestsList.find(debtor => debtor.id === buyerId);
             let debtsSum = 0;
             const debts = guestsList.reduce((obj, debtor) => {
                 const debtorId = debtor.id;
                 if (buyerId !== debtorId) {
                     const debt = shouldReceiveFromBuyers[debtorId] - shouldReceiveFromBuyers[buyerId];
-                    obj[debtorId] = debt < 0
-                        ? 0
-                        : debt;
-                    debtsSum = (debtsSum || 0) + obj[debtorId];
+                    const debtorName = guestsList.find(debtor => debtor.id === debtorId);
+                    if (debt > 0) {
+                        obj[debtorName.name] = debt;
+                        debtsSum = (debtsSum || 0) + obj[debtorName.name];
+                    }
+                    // obj[debtorName.name] = debt < 0
+                    //     ? 0
+                    //     : debt;
+                    // debtsSum = (debtsSum || 0) + obj[debtorName.name];
                 }
                 return obj;
             }, {});
 
             return {
                 id: buyerId,
+                name: buyerName.name,
                 debts,
                 debtsSum,
             };
         });
-        console.log(debts);
+        // console.log(debts);
 
         return debts;
     }
@@ -130,26 +137,13 @@ class Controller {
             return debtor.debtsSum > 0;
         });
 
-        summaryArr.forEach(debtorObject => {
-            // Find debtor
-            const debtor = guestsList.find(guest => guest.id === debtorObject.id);
-            debtorObject.debtorName = debtor.name;
+        this.view.clearSummary();
 
-            // Find beneficiaries
-            for (const beneficiaryId in debtorObject.debts) {
-                // Get beneficiary name
-                const beneficiary = guestsList.find(guest => guest.id == beneficiaryId);
-                debtorObject.beneficiaryName = beneficiary.name;
-
-                // Get beneficiary money
-                const beneficiaryMoney = debtorObject.debts[beneficiaryId]
-                debtorObject.beneficiaryMoney = debtorObject.debts[beneficiaryId]
+        summaryArr.forEach(debtor => {
+            for (const debt in debtor.debts) {
+                this.view.renderSummaryItem(debtor.name, debt, debtor.debts[debt]);
             }
         });
-
-        this.view.renderSummaryItem(summaryArr);
-
-        console.log(summaryArr);
     }
 }
 

@@ -201,36 +201,22 @@ class View {
         this.productsSumTotal.classList.toggle('d-none', productSum <= 0);
     }
 
-    renderSummaryItem(summaryArray) {
-        console.log(summaryArray);
-
+    clearSummary() {
         this.summaryListUl.innerHTML = "";
-
-        for (let i = 0; i < summaryArray.length; i ++) {
-            this.summaryListUl.insertAdjacentHTML(
-                'beforeend',
-                this.singleSummaryTemplate({
-                    guestDebtorName: summaryArray[i].debtorName,
-                    productPrice: summaryArray[i].beneficiaryMoney,
-                    guestBeneficiaryName: summaryArray[i].beneficiaryName
-                })
-            );
-        }
     }
 
-    // Render summary list
-    // renderSummaryList(debts) {
-    //     this.summaryListUl.insertAdjacentHTML(
-    //         'beforeend',
-    //         this.singleGuestTemplate({
-    //             guestId: guest.id,
-    //             guestName: guest.name,
-    //             guestDebtText: 'Saldo 0',
-    //             guestDept: '0',
-    //             guestInitial: guest.getInitialLetter()
-    //         })
-    //     );
-    // }
+    renderSummaryItem(debtorName, beneficiaryName, beneficiaryMoney) {
+        console.log(debtorName, beneficiaryName, beneficiaryMoney);
+
+        this.summaryListUl.insertAdjacentHTML(
+            'beforeend',
+            this.singleSummaryTemplate({
+                guestDebtorName: debtorName,
+                productPrice: (beneficiaryMoney / 100).toFixed(2),
+                guestBeneficiaryName: beneficiaryName
+            })
+        );
+    }
 
     // sortGuest(debtCalc) {
     //     // Duplicate node
