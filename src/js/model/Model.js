@@ -18,7 +18,7 @@ class Model {
 
     // Sum of all prices
     sumOfProductPrices() {
-        return apiServices.sumOfProductPrices();
+        return apiServices.getProductsList();
     }
 
     // Calc debt
@@ -28,7 +28,7 @@ class Model {
 
     // Add summary item
     updateSummaryItem() {
-        return apiServices.updateSummaryItem();
+        return apiServices.getGuestsList();
     }
 };
 

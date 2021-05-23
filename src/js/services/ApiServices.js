@@ -52,15 +52,25 @@ class ApiServices {
         return [this.data.guestsList, this.data.productsList];
     }
 
-    // Calc sum og products prices
-    sumOfProductPrices() {
+    // Getting guests list
+    getGuestsList() {
+        return this.data.guestsList;
+    }
+
+    // Getting products list
+    getProductsList() {
         return this.data.productsList;
     }
 
-    // Add summary item
-    updateSummaryItem() {
-        return this.data.guestsList;
-    }
+    // // Calc sum og products prices
+    // sumOfProductPrices() {
+    //     return this.data.productsList;
+    // }
+
+    // // Add summary item
+    // updateSummaryItem() {
+    //     return this.data.guestsList;
+    // }
 
     // calcDebt() {
     //     this.data.productsList.forEach(product => {
