@@ -23,9 +23,12 @@ class View {
         this.addProductInputName = document.querySelector('#addProductInpu');
         this.addProductPrice = document.querySelector('#productPrizeInput');
         this.bindProductBuyer = document.querySelector('#bindProductBuyer');
-        this.controls = document.getElementById('controls');
         this.addProductButton = document.querySelector('#addProductButton');
         this.productsSumTotal = document.querySelector('#productsSumTotal');
+
+        // Controls
+        this.controls = document.getElementById('controls');
+        this.reStartApp = document.getElementById('reStartApp');
 
         // Summary elements
         this.summaryListUl = document.querySelector('#summaryList');
@@ -213,10 +216,12 @@ class View {
         this.productsSumTotal.classList.toggle('d-none', productSum <= 0);
     }
 
+    // Empty summatu ul
     clearSummary() {
         this.summaryListUl.innerHTML = "";
     }
 
+    // Render summary items
     renderSummaryItem(debtorName, beneficiaryName, beneficiaryMoney) {
         console.log(debtorName, beneficiaryName, beneficiaryMoney);
 
@@ -230,6 +235,7 @@ class View {
         );
     }
 
+    // Render welcome UI elements
     renderWelcomeUI() {
         const guestsPopulationChecker = this.guestListUl.children.length;
         const productsPopulationChecker = this.productListUl.children.length;
@@ -238,6 +244,31 @@ class View {
         this.summaryAlert.classList.toggle('d-none', productsPopulationChecker > 0);
         this.controls.classList.toggle('d-none', guestsPopulationChecker === 0);
         console.log(guestsPopulationChecker, productsPopulationChecker);
+    }
+
+    // Restart app action
+    reStartAppAction(handler) {
+        this.reStartApp.addEventListener('click', (event) => {
+            event.preventDefault();
+            handler();
+            console.log('click');
+        });
+    }
+
+    // Restart app render
+    renderReStartApp() {
+        this.guestListUl.innerHTML = '';
+        this.productListUl.innerHTML = '';
+        this.summaryListUl.innerHTML = '';
+        this.productsSumTotal.lastElementChild.innerHTML = '';
+        this.productsSumTotal.classList.add('d-none');
+        // this.bindProductBuyer.innerHTML = '';
+        this.bindProductBuyer.querySelectorAll('option').forEach((option, index) => {
+            if (option.value !== '') {
+                option.remove()
+            }
+        });
+        this.renderWelcomeUI();
     }
 
     // sortGuest(debtCalc) {

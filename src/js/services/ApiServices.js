@@ -62,6 +62,12 @@ class ApiServices {
         return this.data.productsList;
     }
 
+    // Clear data
+    clearData() {
+        this.data.guestsList = [];
+        this.data.productsList = [];
+    }
+
     // // Calc sum og products prices
     // sumOfProductPrices() {
     //     return this.data.productsList;

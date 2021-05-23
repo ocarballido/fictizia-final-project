@@ -15,6 +15,9 @@ class Controller {
 
         // Binding view deleteItem action
         this.view.deleteItemAction(this.deleteItemHandler.bind(this));
+
+        // Binding view restart app action
+        this.view.reStartAppAction(this.reStartAppHandler.bind(this));
     }
 
     // addGuestHandler
@@ -144,6 +147,13 @@ class Controller {
                 this.view.renderSummaryItem(debtor.name, debt, debtor.debts[debt]);
             }
         });
+    }
+
+    reStartAppHandler() {
+        // const [guestsList, productsList] = this.model.renderReStartApp();
+        this.model.clearData();
+        this.view.renderReStartApp();
+        this.calcFuckingDebt();
     }
 }
 

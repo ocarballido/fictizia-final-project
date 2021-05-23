@@ -30,6 +30,11 @@ class Model {
     updateSummaryItem() {
         return apiServices.getGuestsList();
     }
+
+    // Clear data
+    clearData() {
+        apiServices.clearData();
+    }
 };
 
 export { Model };
