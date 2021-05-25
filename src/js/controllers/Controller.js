@@ -45,7 +45,7 @@ class Controller {
         this.sumOfProductPricesHandler();
 
         // Update summary
-        this.getDebtor(debtObject);
+        this.getDebtsObject(debtObject);
 
         console.log(apiServices.data);
     }
@@ -65,7 +65,7 @@ class Controller {
         this.view.renderDeleteItem(itemId, itemList, debtObject);
 
         // Update summary
-        this.getDebtor(debtObject);
+        this.getDebtsObject(debtObject);
     }
 
     // Sum of prices
@@ -74,60 +74,7 @@ class Controller {
         this.view.renderSumOfProductPrices(productSum);
     }
 
-    // // Calculate the fucking debt
-    // calcFuckingDebt() {
-    //     const [guestsList, productsList] = this.model.calcFuckingDebt();
-
-    //     const expensesByBuyer = productsList.reduce((obj, product) => {
-    //         const buyerId = product.productBuyerId;
-    //         obj[buyerId] = obj[buyerId] || 0;
-    //         obj[buyerId] += product.productPrice
-    //         return obj;
-    //     }, {});
-
-    //     const totalBuyers = guestsList.length;
-    //     const shouldReceiveFromBuyers = guestsList.reduce((obj, buyer) => {
-    //         const buyerId = buyer.id;
-    //         obj[buyerId] = (expensesByBuyer[buyerId] || 0) / totalBuyers;
-    //         return obj;
-    //     }, {});
-
-    //     const debts = guestsList.map((buyer) => {
-    //         const buyerId = buyer.id;
-    //         const buyerName = guestsList.find(debtor => debtor.id === buyerId);
-    //         let debtsSum = 0;
-    //         const debts = guestsList.reduce((obj, debtor) => {
-    //             const debtorId = debtor.id;
-    //             if (buyerId !== debtorId) {
-    //                 const debt = shouldReceiveFromBuyers[debtorId] - shouldReceiveFromBuyers[buyerId];
-    //                 const debtorName = guestsList.find(debtor => debtor.id === debtorId);
-    //                 if (debt > 0) {
-    //                     obj[debtorName.name] = debt;
-    //                     debtsSum = (debtsSum || 0) + obj[debtorName.name];
-    //                 }
-    //                 // obj[debtorName.name] = debt < 0
-    //                 //     ? 0
-    //                 //     : debt;
-    //                 // debtsSum = (debtsSum || 0) + obj[debtorName.name];
-    //             }
-    //             return obj;
-    //         }, {});
-
-    //         return {
-    //             id: buyerId,
-    //             name: buyerName.name,
-    //             debts,
-    //             debtsSum,
-    //         };
-    //     });
-    //     // console.log(debts);
-
-    //     return debts;
-    // }
-
-    getDebtor(debtCalc) {
-        const guestsList = this.model.updateSummaryItem();
-
+    getDebtsObject(debtCalc) {
         const summaryArr = debtCalc.filter(debtor => {
             return debtor.debtsSum > 0;
         });
@@ -142,7 +89,6 @@ class Controller {
     }
 
     reStartAppHandler() {
-        // const [guestsList, productsList] = this.model.renderReStartApp();
         this.model.clearData();
         this.view.renderReStartApp();
     }

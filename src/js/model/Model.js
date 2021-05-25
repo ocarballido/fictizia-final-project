@@ -59,7 +59,6 @@ class Model {
         return productSum;
     }
 
-    // Calc debt
     // Calculate the fucking debt
     calcFuckingDebt() {
         const guestsList = apiServices.getGuestsList();
@@ -111,9 +110,6 @@ class Model {
 
         return debts;
     }
-    // calcFuckingDebt() {
-    //     return apiServices.calcFuckingDebt();
-    // }
 
     // Add summary item
     updateSummaryItem() {
