@@ -18,12 +18,7 @@ class ApiServices {
 
     // Add new product
     addProduct(productTitle, productPrice, productBuyerId, productBuyerName) {
-        // Find guest based on productBuyer
-        const guestBuyerIndex = this.data.guestsList.findIndex(guest => {
-            return guest.id === productBuyerId;
-        });
-        const guestBuyerId = this.data.guestsList[guestBuyerIndex].name;
-        const product = new Product(productTitle, productPrice, productBuyerId, productBuyerName = guestBuyerId);
+        const product = new Product(productTitle, productPrice, productBuyerId, productBuyerName);
         this.data.productsList.push(product);
         return product;
     }

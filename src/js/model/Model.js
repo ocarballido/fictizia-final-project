@@ -7,8 +7,14 @@ class Model {
     }
 
     // Add new product
-    addProduct(productTitle, productPrice, productBuyerId) {
-        return apiServices.addProduct(productTitle, productPrice, productBuyerId);
+    addProduct(productTitle, productPrice, productBuyerId, productBuyerName) {
+        // Find guest based on productBuyer
+        const guestsList = apiServices.getGuestsList();
+        const guestBuyerIndex = guestsList.findIndex(guest => {
+            return guest.id === productBuyerId;
+        });
+        const guestBuyerId = guestsList[guestBuyerIndex].name;
+        return apiServices.addProduct(productTitle, productPrice, productBuyerId, productBuyerName = guestBuyerId);
     }
 
     // Delete guest/peoduct from list
