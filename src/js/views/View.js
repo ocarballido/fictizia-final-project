@@ -50,6 +50,18 @@ class View {
         );
     }
 
+    // First app render action
+    firstAppRenderAction(handler) {
+        document.addEventListener("DOMContentLoaded", (event) => {
+            handler();
+        });
+    }
+
+    // First app render action
+    firstAppRender(data) {
+        console.log(data);
+    }
+
     // addGuest action
     addGuestAction(handler) {
         this.addGuestForm.addEventListener('submit', (event) => {
@@ -77,7 +89,7 @@ class View {
                 guestName: guest.name,
                 guestDebtText: isGuestDebtor ? 'Saldo negativo | debe padar' : 'Saldo positivo',
                 guestDept: guestDebtData.debtsSum > 0 ? guestDebtData.debtsSum : 0,
-                guestInitial: guest.getInitialLetter()
+                guestInitial: guest.name[0].toUpperCase()
             })
         );
 

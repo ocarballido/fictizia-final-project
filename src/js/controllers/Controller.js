@@ -18,7 +18,31 @@ class Controller {
 
         // Binding view restart app action
         this.view.reStartAppAction(this.reStartAppHandler.bind(this));
+
+        // Binding view first app render
+        this.view.firstAppRenderAction(this.firstAppRenderHandler.bind(this));
     }
+
+    // First app render
+    firstAppRenderHandler() {
+        const data = this.model.getDataFromLocalStogare();
+        const debtObject = this.model.calcFuckingDebtTwo();
+
+        data.guestsList.forEach(guest => {
+            this.view.renderSingleGuest(guest, debtObject);
+        });
+
+        data.productsList.forEach(product => {
+            this.view.renderSingleProduct(product, debtObject);
+        });
+
+        this.getDebtsObject(debtObject);
+
+        // data.productsList.forEach(product => {
+        //     this.view.renderSingleProduct(product, debtObject);
+        // });renderSummaryItem
+    }
+
 
     // addGuestHandler
     addGuestHandler(guestName) {
