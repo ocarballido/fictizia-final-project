@@ -25,18 +25,20 @@ class Controller {
 
     // First app render
     firstAppRenderHandler() {
-        const data = this.model.getDataFromLocalStogare();
-        const debtObject = this.model.calcFuckingDebtTwo();
+        // const data = this.model.getDataFromLocalStogare();
+        // const debtObject = this.model.calcFuckingDebt();
 
-        data.guestsList.forEach(guest => {
-            this.view.renderSingleGuest(guest, debtObject);
-        });
+        // data.guestsList.forEach(guest => {
+        //     this.view.renderSingleGuest(guest, debtObject);
+        // });
 
-        data.productsList.forEach(product => {
-            this.view.renderSingleProduct(product, debtObject);
-        });
+        // data.productsList.forEach(product => {
+        //     this.view.renderSingleProduct(product, debtObject);
+        // });
 
-        this.getDebtsObject(debtObject);
+        // this.getDebtsObject(debtObject);
+
+        // this.sumOfProductPricesHandler();
 
         // data.productsList.forEach(product => {
         //     this.view.renderSingleProduct(product, debtObject);

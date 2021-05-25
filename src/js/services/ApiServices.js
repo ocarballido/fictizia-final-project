@@ -18,39 +18,24 @@ class ApiServices {
     // Add new guest
     addGuest(guestName) {
         const guest = new Guest(guestName);
-        // this.data.guestsList.push(guest);
-
-        // Adding local storage
-        this.dataStorage.guestsList.push(guest);
-        localStorage.setItem('dataStorage', JSON.stringify(this.dataStorage));
-
+        this.data.guestsList.push(guest);
         return guest;
     }
 
     // Add new product
     addProduct(productTitle, productPrice, productBuyerId, productBuyerName) {
         const product = new Product(productTitle, productPrice, productBuyerId, productBuyerName);
-        // this.data.productsList.push(product);
-
-        // Adding local storage
-        this.dataStorage.productsList.push(product);
-        localStorage.setItem('dataStorage', JSON.stringify(this.dataStorage));
-
+        this.data.productsList.push(product);
         return product;
     }
 
     // Delete guest
     deleteGuest(guestToDelete, productAsociated) {
         // Removing guest
-        // this.data.guestsList.splice(guestToDelete, 1);
+        this.data.guestsList.splice(guestToDelete, 1);
 
         // Removing product asociated
-        // this.data.productsList.splice(productAsociated, 1);
-
-        // Adding local storage
-        this.dataStorage.guestsList.splice(guestToDelete, 1);
-        this.dataStorage.productsList.splice(productAsociated, 1);
-        localStorage.setItem('dataStorage', JSON.stringify(this.dataStorage));
+        this.data.productsList.splice(productAsociated, 1);
 
         return guestToDelete;
     }
@@ -58,34 +43,29 @@ class ApiServices {
     // Delete product
     deleteProduct(productToDelete) {
         // Removing product
-        // this.data.productsList.splice(productToDelete, 1);
-
-        // Adding local storage
-        this.dataStorage.productsList.splice(productToDelete, 1);
-        localStorage.setItem('dataStorage', JSON.stringify(this.dataStorage));
+        this.data.productsList.splice(productToDelete, 1);
 
         return productToDelete;
     }
 
     // Getting guests list
     getGuestsList() {
-        return this.dataStorage.guestsList;
+        return this.data.guestsList;
     }
 
     // Getting products list
     getProductsList() {
-        return this.dataStorage.productsList;
+        return this.data.productsList;
     }
 
     getDataFromLocalStogare() {
-        return this.dataStorage;
+        //
     }
 
     // Clear data
     clearData() {
-        this.dataStorage.guestsList = [];
-        this.dataStorage.productsList = [];
-        localStorage.setItem('dataStorage', JSON.stringify(this.dataStorage));
+        this.data.guestsList = [];
+        this.data.productsList = [];
     }
 }
 
