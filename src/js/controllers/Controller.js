@@ -75,10 +75,7 @@ class Controller {
 
     // Sum of prices
     sumOfProductPricesHandler() {
-        const productsList = this.model.sumOfProductPrices();
-        const productSum = productsList.reduce((acc, currentProduct) => {
-            return (acc + currentProduct.productPrice);
-        }, 0);
+        const productSum = this.model.sumOfProductPrices();
         this.view.renderSumOfProductPrices(productSum);
     }
 

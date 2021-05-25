@@ -49,7 +49,12 @@ class Model {
 
     // Sum of all prices
     sumOfProductPrices() {
-        return apiServices.getProductsList();
+        // Get value
+        const productsList = apiServices.getProductsList();
+        const productSum = productsList.reduce((acc, currentProduct) => {
+            return (acc + currentProduct.productPrice);
+        }, 0);
+        return productSum;
     }
 
     // Calc debt
