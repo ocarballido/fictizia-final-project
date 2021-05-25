@@ -7,18 +7,39 @@ class ApiServices {
             guestsList: [],
             productsList: [],
         };
-        this.dataStorage = JSON.parse(localStorage.getItem('dataStorage'))
-        ||
+        this.dataStorage = localStorage.getItem('dataStorage')
+        ? JSON.parse(localStorage.getItem('dataStorage'))
+        :
         {
             guestsList: [],
             productsList: [],
         }
     }
 
+    // Save in localStorage
+    saveDataStorage(dataStorage) {
+        if (dataStorage.guestsList.length === 0 && dataStorage.productsList.length === 0) {
+            localStorage.setItem('dataStorage', '');
+        } else {
+            localStorage.setItem('dataStorage', JSON.stringify(dataStorage));
+        }
+    }
+
+    // Get in localStorage
+    getDataStorage() {
+        return this.dataStorage;
+    }
+
     // Add new guest
     addGuest(guestName) {
         const guest = new Guest(guestName);
         this.data.guestsList.push(guest);
+
+        // Testing localStorage
+        this.dataStorage.guestsList.push(guest);
+        this.saveDataStorage(this.dataStorage);
+        console.log(this.getDataStorage());
+
         return guest;
     }
 
@@ -26,6 +47,12 @@ class ApiServices {
     addProduct(productTitle, productPrice, productBuyerId, productBuyerName) {
         const product = new Product(productTitle, productPrice, productBuyerId, productBuyerName);
         this.data.productsList.push(product);
+
+        // Testing localStorage
+        this.dataStorage.productsList.push(product);
+        this.saveDataStorage(this.dataStorage);
+        console.log(this.getDataStorage());
+
         return product;
     }
 
@@ -37,6 +64,12 @@ class ApiServices {
         // Removing product asociated
         this.data.productsList.splice(productAsociated, 1);
 
+        // Testing localStorage
+        this.dataStorage.guestsList.splice(guestToDelete, 1);
+        this.dataStorage.productsList.splice(productAsociated, 1);
+        this.saveDataStorage(this.dataStorage);
+        console.log(this.getDataStorage());
+
         return guestToDelete;
     }
 
@@ -44,6 +77,11 @@ class ApiServices {
     deleteProduct(productToDelete) {
         // Removing product
         this.data.productsList.splice(productToDelete, 1);
+
+        // Testing localStorage
+        this.dataStorage.productsList.splice(productToDelete, 1);
+        this.saveDataStorage(this.dataStorage);
+        console.log(this.getDataStorage());
 
         return productToDelete;
     }
@@ -58,14 +96,15 @@ class ApiServices {
         return this.data.productsList;
     }
 
-    getDataFromLocalStogare() {
-        //
-    }
-
     // Clear data
     clearData() {
         this.data.guestsList = [];
         this.data.productsList = [];
+
+        // Testing localStorage
+        this.dataStorage.guestsList = [];
+        this.dataStorage.productsList = [];
+        this.saveDataStorage(this.dataStorage);
     }
 }
 

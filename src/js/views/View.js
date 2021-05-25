@@ -263,7 +263,7 @@ class View {
         this.reStartApp.addEventListener('click', (event) => {
             event.preventDefault();
             handler();
-            console.log('click');
+            window.location.reload();
         });
     }
 
