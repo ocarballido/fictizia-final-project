@@ -23,23 +23,23 @@ class ApiServices {
         return product;
     }
 
-    // Delete guest/peoduct from list
-    deleteItem(itemId, itemList) {
-        // Find item index on corresponding list
-        const itemToDeleteIndex = this.data[itemList].findIndex(item => {
-            return item.id === itemId;
-        });
+    // Delete guest
+    deleteGuest(guestToDelete, productAsociated) {
+        // Removing guest
+        this.data.guestsList.splice(guestToDelete, 1);
 
-        // Removing item depending on item id
-        this.data[itemList].splice(itemToDeleteIndex, 1);
+        // Removing product asociated
+        this.data.productsList.splice(productAsociated, 1);
 
-        // Removing products depending on user id
-        if (itemList === 'guestsList') {
-            this.data.productsList = this.data.productsList.filter(product => {
-                return product.productBuyerId !== itemId;
-            });
-        }
-        return itemToDeleteIndex;
+        return guestToDelete;
+    }
+
+    // Delete product
+    deleteProduct(productToDelete) {
+        // Removing product
+        this.data.productsList.splice(productToDelete, 1);
+
+        return productToDelete;
     }
 
     // Calc debt

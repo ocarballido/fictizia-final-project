@@ -19,7 +19,32 @@ class Model {
 
     // Delete guest/peoduct from list
     deleteItem(itemId, itemList) {
-        return apiServices.deleteItem(itemId, itemList);
+        const guestsList = apiServices.getGuestsList();
+        const productsList = apiServices.getProductsList();
+
+        // Find item index on corresponding list
+        const itemToDeleteIndex = [itemList].findIndex(item => {
+            return item.id === itemId;
+        });
+
+        if (itemList === 'guestsList') {
+            // Find guest index
+            const guestToDelete = guestsList.findIndex(item => {
+                return item.id === itemId;
+            });
+            // Find product asociated
+            const productAsociated = productsList.filter(product => {
+                return product.productBuyerId !== itemId;
+            });
+
+            return apiServices.deleteGuest(guestToDelete, productAsociated);
+        } else {
+            // Find product index
+            const productToDelete = productsList.findIndex(item => {
+                return item.id === itemId;
+            });
+            return apiServices.deleteProduct(productToDelete);
+        }
     }
 
     // Sum of all prices
