@@ -25,24 +25,20 @@ class Controller {
 
     // First app render
     firstAppRenderHandler() {
-        // const data = this.model.getDataFromLocalStogare();
-        // const debtObject = this.model.calcFuckingDebt();
+        const data = this.model.getDataFromLocalStogare();
+        const debtObject = this.model.calcDebt();
 
-        // data.guestsList.forEach(guest => {
-        //     this.view.renderSingleGuest(guest, debtObject);
-        // });
+        data.guestsList.forEach(guest => {
+            this.view.renderSingleGuest(guest, debtObject);
+        });
 
-        // data.productsList.forEach(product => {
-        //     this.view.renderSingleProduct(product, debtObject);
-        // });
+        data.productsList.forEach(product => {
+            this.view.renderSingleProduct(product, debtObject);
+        });
 
-        // this.getDebtsObject(debtObject);
+        this.getDebtsObject(debtObject);
 
-        // this.sumOfProductPricesHandler();
-
-        // data.productsList.forEach(product => {
-        //     this.view.renderSingleProduct(product, debtObject);
-        // });renderSummaryItem
+        this.sumOfProductPricesHandler();
     }
 
 
@@ -50,8 +46,10 @@ class Controller {
     addGuestHandler(guestName) {
         const guestAdded = this.model.addGuest(guestName);
         // Get debt object from model
-        const debtObject = this.model.calcFuckingDebt();
+        const debtObject = this.model.calcDebt();
         this.view.renderSingleGuest(guestAdded, debtObject);
+
+        this.getDebtsObject(debtObject);
 
         console.log(apiServices.data);
     }
@@ -62,7 +60,7 @@ class Controller {
         const productAdded = this.model.addProduct(productTitle, productPrice, productBuyerId);
 
         // Get debt object from model
-        const debtObject = this.model.calcFuckingDebt();
+        const debtObject = this.model.calcDebt();
 
         // Render product view
         this.view.renderSingleProduct(productAdded, debtObject);
@@ -85,7 +83,7 @@ class Controller {
         this.sumOfProductPricesHandler();
 
         // Get debt object from model
-        const debtObject = this.model.calcFuckingDebt();
+        const debtObject = this.model.calcDebt();
 
         // Update delete item in view
         this.view.renderDeleteItem(itemId, itemList, debtObject);

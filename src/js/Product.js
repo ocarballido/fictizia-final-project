@@ -1,8 +1,8 @@
-let id = 0;
+import { IdGenerator } from './IdGenerator';
 
-class Product {
+class Product extends IdGenerator {
     constructor(productTitle, productPrice, productBuyerId, productBuyerName) {
-        this.id = ++id;
+        super();
         this.productTitle = productTitle;
         this.productPrice = productPrice;
         this.productBuyerId = productBuyerId;

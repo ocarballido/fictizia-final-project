@@ -1,15 +1,9 @@
-let id = 0;
+import { IdGenerator } from './IdGenerator';
 
-class Guest {
+class Guest extends IdGenerator {
     constructor(name) {
-        this.id = ++id;
+        super();
         this.name = name;
-        this.expenses = 0;
-    }
-
-    // Get initial letter
-    getInitialLetter() {
-        return this.name[0].toUpperCase();
     }
 }
 

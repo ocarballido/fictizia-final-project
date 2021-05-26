@@ -67,7 +67,9 @@ class ApiServices {
 
         // Testing localStorage
         this.dataStorage.guestsList.splice(guestToDelete, 1);
-        this.dataStorage.productsList.splice(productAsociated, 1);
+        if (productAsociated >= 0) {
+            this.dataStorage.productsList.splice(productAsociated, 1);
+        }
         this.saveDataStorage(this.dataStorage);
         console.log(this.getDataStorage());
 

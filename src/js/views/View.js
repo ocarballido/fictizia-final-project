@@ -113,11 +113,11 @@ class View {
         const guestsNodeList = this.guestListUl.children;
         Array.prototype.forEach.call(guestsNodeList, function (guestLi) {
             // Get guest ID in <ul>
-            const guestIdNode = parseInt(guestLi.dataset.id);
+            const guestIdNode = guestLi.dataset.id;
 
             // Get guest debt data
             const guestDebtData = debtCalc.find(guestData => guestData.id === guestIdNode);
-            const isGuestDebtor = guestDebtData.debtsSum > 0; 
+            const isGuestDebtor = guestDebtData.debtsSum > 0;
 
             // Modify guest <li> styles
             isGuestDebtor ? guestLi.classList.add('negative') : guestLi.classList.remove('negative');
@@ -146,10 +146,10 @@ class View {
             const productPrice = parseInt(this.addProductPrice.value * 100);
 
             // Declare product buyer id
-            const productBuyerId = parseInt(this.bindProductBuyer.value);
+            const productBuyerId = this.bindProductBuyer.value;
 
             // Form validation
-            if (productTitle === '' || productPrice === '' || (productBuyerId === '' || isNaN(productBuyerId))) {
+            if (productTitle === '' || productPrice === '' || (productBuyerId === '' || productBuyerId === '')) {
                 event.stopPropagation()
                 this.addProductForm.classList.add('was-validated');
             } else {
@@ -193,9 +193,10 @@ class View {
                 classes.contains('btn-deleteProduct')
             );
             if (isDeletButton) {
-                const itemId = parseInt(event.target.closest('li').dataset.id);
+                const itemId = event.target.closest('li').dataset.id;
                 const itemList = event.target.closest('ul').id;
                 handler(itemId, itemList);
+                console.log(itemId);
             }
         });
     }
@@ -235,8 +236,6 @@ class View {
 
     // Render summary items
     renderSummaryItem(debtorName, beneficiaryName, beneficiaryMoney) {
-        console.log(debtorName, beneficiaryName, beneficiaryMoney);
-
         this.summaryListUl.insertAdjacentHTML(
             'beforeend',
             this.singleSummaryTemplate({
@@ -255,7 +254,6 @@ class View {
         this.productsAlert.classList.toggle('d-none', productsPopulationChecker > 0);
         this.summaryAlert.classList.toggle('d-none', productsPopulationChecker > 0);
         this.controls.classList.toggle('d-none', guestsPopulationChecker === 0);
-        console.log(guestsPopulationChecker, productsPopulationChecker);
     }
 
     // Restart app action
