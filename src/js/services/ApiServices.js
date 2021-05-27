@@ -57,16 +57,6 @@ class ApiServices {
         return product;
     }
 
-    // Getting guests list
-    getGuestsList() {
-        return this.dataStorage.guestsList;
-    }
-
-    // Getting products list
-    getProductsList() {
-        return this.dataStorage.productsList;
-    }
-
     // Clear data
     clearData() {
         // Testing localStorage

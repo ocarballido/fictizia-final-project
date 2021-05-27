@@ -21,8 +21,6 @@ class Model {
     // Delete guest/peoduct from list
     deleteItem(itemId, itemList) {
         const data = apiServices.getDataStorage();
-        // const guestsList = data.guestsList;
-        // const productsList = data.productsList;
 
         if (itemList === 'guestsList') {
             // Find guest index
@@ -64,8 +62,9 @@ class Model {
 
     // Calculate the fucking debt
     calcFuckingDebt() {
-        const guestsList = apiServices.getGuestsList();
-        const productsList = apiServices.getProductsList();
+        const data = apiServices.getDataStorage();
+        const guestsList = data.guestsList;
+        const productsList = data.productsList;
 
         const expensesByBuyer = productsList.reduce((obj, product) => {
             const buyerId = product.productBuyerId;
