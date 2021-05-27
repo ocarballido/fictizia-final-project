@@ -1,25 +1,49 @@
 import { apiServices } from '../services/ApiServices';
+import { Guest } from '../Guest';
+import { Product } from '../Product';
 
 class Model {
     // Add new guest
     addGuest(guestName) {
-        return apiServices.addGuest(guestName);
+        // Get data
+        const data = apiServices.getDataStorage();
+
+        // Create guest instance
+        const guest = new Guest(guestName);
+
+        // Add tu data
+        data.guestsList.push(guest);
+        apiServices.saveDataStorage(data);
+
+        return guest;
     }
 
     // Add new product
     addProduct(productTitle, productPrice, productBuyerId, productBuyerName) {
-        // Find guest based on productBuyer
+        // Get data
         const data = apiServices.getDataStorage();
-        const guestsList = data.guestsList;
-        const guestBuyerIndex = guestsList.findIndex(guest => {
+
+        // Find index guest based on productBuyer
+        const guestBuyerIndex = data.guestsList.findIndex(guest => {
             return guest.id === productBuyerId;
         });
-        const guestBuyerId = guestsList[guestBuyerIndex].name;
-        return apiServices.addProduct(productTitle, productPrice, productBuyerId, productBuyerName = guestBuyerId);
+
+        // Find guest
+        const guestBuyerId = data.guestsList[guestBuyerIndex].name;
+
+        // Create instance
+        const product = new Product(productTitle, productPrice, productBuyerId, productBuyerName = guestBuyerId);
+
+        // Add to data
+        data.productsList.push(product);
+        apiServices.saveDataStorage(data);
+
+        return product;
     }
 
     // Delete guest/peoduct from list
     deleteItem(itemId, itemList) {
+        // Get data
         const data = apiServices.getDataStorage();
 
         if (itemList === 'guestsList') {
@@ -50,7 +74,7 @@ class Model {
 
     // Sum of all prices
     sumOfProductPrices() {
-        // Get value
+        // Get data
         const data = apiServices.getDataStorage();
         const productsList = data.productsList;
         // console.log(productsList);
@@ -62,6 +86,7 @@ class Model {
 
     // Calculate the fucking debt
     calcFuckingDebt() {
+        // Get data
         const data = apiServices.getDataStorage();
         const guestsList = data.guestsList;
         const productsList = data.productsList;
@@ -115,6 +140,7 @@ class Model {
 
     // Calculate debt
     calcDebt() {
+        // Get data
         const data = apiServices.getDataStorage();
         const guestsList = data.guestsList;
         const productsList = data.productsList;
@@ -168,9 +194,9 @@ class Model {
 
     // Add summary item
     updateSummaryItem() {
+        // Get data
         const data = apiServices.getDataStorage();
         const guestsList = data.guestsList;
-        const productsList = data.productsList;
         return guestsList;
     }
 

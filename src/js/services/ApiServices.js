@@ -32,30 +32,30 @@ class ApiServices {
     }
 
     // Add new guest
-    addGuest(guestName) {
-        const guest = new Guest(guestName);
-        this.data.guestsList.push(guest);
+    // addGuest(guestName) {
+    //     const guest = new Guest(guestName);
+    //     this.data.guestsList.push(guest);
 
-        // Testing localStorage
-        this.dataStorage.guestsList.push(guest);
-        this.saveDataStorage(this.dataStorage);
-        console.log(this.getDataStorage());
+    //     // Testing localStorage
+    //     this.dataStorage.guestsList.push(guest);
+    //     this.saveDataStorage(this.dataStorage);
+    //     console.log(this.getDataStorage());
 
-        return guest;
-    }
+    //     return guest;
+    // }
 
     // Add new product
-    addProduct(productTitle, productPrice, productBuyerId, productBuyerName) {
-        const product = new Product(productTitle, productPrice, productBuyerId, productBuyerName);
-        this.data.productsList.push(product);
+    // addProduct(productTitle, productPrice, productBuyerId, productBuyerName) {
+    //     const product = new Product(productTitle, productPrice, productBuyerId, productBuyerName);
+    //     this.data.productsList.push(product);
 
-        // Testing localStorage
-        this.dataStorage.productsList.push(product);
-        this.saveDataStorage(this.dataStorage);
-        console.log(this.getDataStorage());
+    //     // Testing localStorage
+    //     this.dataStorage.productsList.push(product);
+    //     this.saveDataStorage(this.dataStorage);
+    //     console.log(this.getDataStorage());
 
-        return product;
-    }
+    //     return product;
+    // }
 
     // Clear data
     clearData() {
