@@ -3,10 +3,6 @@ import { Product } from '../Product';
 
 class ApiServices {
     constructor() {
-        this.data = {
-            guestsList: [],
-            productsList: [],
-        };
         this.dataStorage = localStorage.getItem('dataStorage')
         ? 
         JSON.parse(localStorage.getItem('dataStorage'))
