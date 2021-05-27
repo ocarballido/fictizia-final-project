@@ -1,6 +1,3 @@
-import { Guest } from '../Guest';
-import { Product } from '../Product';
-
 class ApiServices {
     constructor() {
         this.data = {
@@ -25,6 +22,14 @@ class ApiServices {
     // Get in localStorage
     getDataStorage() {
         return this.dataStorage;
+    }
+
+    // Clear data
+    clearData() {
+        // Testing localStorage
+        this.dataStorage.guestsList = [];
+        this.dataStorage.productsList = [];
+        this.saveDataStorage(this.dataStorage);
     }
 
     // Add new guest
@@ -52,14 +57,6 @@ class ApiServices {
 
     //     return product;
     // }
-
-    // Clear data
-    clearData() {
-        // Testing localStorage
-        this.dataStorage.guestsList = [];
-        this.dataStorage.productsList = [];
-        this.saveDataStorage(this.dataStorage);
-    }
 }
 
 const apiServices = new ApiServices();
