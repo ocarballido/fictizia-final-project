@@ -3,6 +3,10 @@ import { Product } from '../Product';
 
 class ApiServices {
     constructor() {
+        this.data = {
+            guestsList: [],
+            productsList: [],
+        };
         this.dataStorage = localStorage.getItem('dataStorage')
         ? 
         JSON.parse(localStorage.getItem('dataStorage'))
@@ -15,11 +19,7 @@ class ApiServices {
 
     // Save in localStorage
     saveDataStorage(dataStorage) {
-        if (dataStorage.guestsList.length === 0 && dataStorage.productsList.length === 0) {
-            localStorage.setItem('dataStorage', '');
-        } else {
-            localStorage.setItem('dataStorage', JSON.stringify(dataStorage));
-        }
+        localStorage.setItem('dataStorage', JSON.stringify(dataStorage));
     }
 
     // Get in localStorage
