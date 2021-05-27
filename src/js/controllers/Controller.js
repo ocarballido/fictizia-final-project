@@ -50,8 +50,6 @@ class Controller {
         this.view.renderSingleGuest(guestAdded, debtObject);
 
         this.getDebtsObject(debtObject);
-
-        console.log(apiServices.data);
     }
 
     // addProductHandler
@@ -70,8 +68,6 @@ class Controller {
 
         // Update summary
         this.getDebtsObject(debtObject);
-
-        console.log(apiServices.data);
     }
 
     // deleteGuestHandler
