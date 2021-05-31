@@ -67,10 +67,18 @@ class View {
         this.addGuestForm.addEventListener('submit', (event) => {
             event.preventDefault();
             const guestName = event.target.elements.guestName.value.trim();
-            if (guestName.length > 0) {
-                handler(guestName);
-                event.target.elements.guestName.value = '';
+
+             // Form validation
+            if (guestName === '') {
+                event.stopPropagation()
+                this.addGuestForm.classList.add('was-validated');
+            } else {
                 this.addProductForm.classList.remove("was-validated");
+                this.addGuestForm.classList.remove('was-validated');
+                this.addGuestInput.value = '';
+
+                // Call handler
+                handler(guestName);
             }
         });
     }
