@@ -1,6 +1,5 @@
-import { Model } from '../model/Model';
-import { View } from '../views/View';
-import { apiServices } from '../services/ApiServices';
+import { Model } from './Model';
+import { View } from './View';
 
 class Controller {
     constructor(model, view) {

@@ -1,6 +1,6 @@
-import { apiServices } from '../services/ApiServices';
-import { Guest } from '../Guest';
-import { Product } from '../Product';
+import { apiServices } from './ApiServices';
+import { Guest } from './classes/Guest';
+import { Product } from './classes/Product';
 
 class Model {
     constructor() {

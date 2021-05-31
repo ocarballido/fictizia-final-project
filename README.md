@@ -23,23 +23,23 @@ $ npm run dev
 Estructura del proyecto:
 ```sh
 app
-├── dist
-│   ├── sdsdsd
-│   ├── sdsdsd
-│   └── sdsdsd
 ├── src
 │   ├── assets
 │   ├── js
+│   │   ├── classes
+│   │   │   ├── Guest.js
+│   │   │   ├── IdGenerator.js
+│   │   │   └── Product.js
+│   │   ├── ApiServices.js
 │   │   ├── controller.js
-│   │   ├── model.js
-│   │   └── view.js
+│   │   ├── index.js
+│   │   ├── Model.js
+│   │   └── View.js
 │   ├── scss
 │   │   ├── index.scss
 │   │   └── theme.js
 │   └── templates
-│       ├── partials
-│       │   └── index.hbs
-│       └── base.hbs
+│       └── index.html
 └── index.js
 ```
 
