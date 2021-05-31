@@ -1,9 +1,5 @@
 class ApiServices {
     constructor() {
-        this.data = {
-            guestsList: [],
-            productsList: [],
-        };
         this.dataStorage = localStorage.getItem('dataStorage')
         ? 
         JSON.parse(localStorage.getItem('dataStorage'))
@@ -26,37 +22,10 @@ class ApiServices {
 
     // Clear data
     clearData() {
-        // Testing localStorage
         this.dataStorage.guestsList = [];
         this.dataStorage.productsList = [];
         this.saveDataStorage(this.dataStorage);
     }
-
-    // Add new guest
-    // addGuest(guestName) {
-    //     const guest = new Guest(guestName);
-    //     this.data.guestsList.push(guest);
-
-    //     // Testing localStorage
-    //     this.dataStorage.guestsList.push(guest);
-    //     this.saveDataStorage(this.dataStorage);
-    //     console.log(this.getDataStorage());
-
-    //     return guest;
-    // }
-
-    // Add new product
-    // addProduct(productTitle, productPrice, productBuyerId, productBuyerName) {
-    //     const product = new Product(productTitle, productPrice, productBuyerId, productBuyerName);
-    //     this.data.productsList.push(product);
-
-    //     // Testing localStorage
-    //     this.dataStorage.productsList.push(product);
-    //     this.saveDataStorage(this.dataStorage);
-    //     console.log(this.getDataStorage());
-
-    //     return product;
-    // }
 }
 
 const apiServices = new ApiServices();
