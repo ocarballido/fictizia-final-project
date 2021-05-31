@@ -226,9 +226,27 @@ html, body {
 }
 #controls {
     bottom: 0;
-    padding: 1rem;
+    padding: 0;
     position: fixed;
     text-align: right;
     width: 100%;
     z-index: 9999;
+    #reStartApp {
+        border-radius: 0;
+        width: 100%;
+    }
 }
+
+// Small devices (landscape phones, 576px and up)
+@media (min-width: 576px) {
+    #controls {
+        padding: 1rem;
+        #reStartApp {
+            border-radius: 5px;
+            width: auto;
+        }
+    }
+}
+
+// Medium devices (tablets, 768px and up)
+@media (min-width: 768px) {}
