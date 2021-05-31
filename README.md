@@ -5,6 +5,9 @@ Calcular presupuesto de una actividad, dependiendo de la cantidad de invitados y
 - Añade gastos
 - Calcula que usuarios deben aportar dinero, y a que usuarios en concreto
 
+## Demo
+[Party budget](https://ocarballido.github.io/fictizia-final-project/)
+
 ## Tecnologías
 - [Webpack](https://webpack.js.org/)
 - [Bootstrap 5](https://getbootstrap.com/)
