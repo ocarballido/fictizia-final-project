@@ -54,6 +54,8 @@ class View {
     firstAppRenderAction(handler) {
         document.addEventListener("DOMContentLoaded", (event) => {
             handler();
+
+            this.sortGuest()
         });
     }
 
@@ -79,6 +81,8 @@ class View {
 
                 // Call handler
                 handler(guestName);
+
+                this.sortGuest()
             }
         });
     }
@@ -136,6 +140,9 @@ class View {
 
             // Modify balance text
             guestLi.querySelector('.guestsItem-info_content').innerHTML = isGuestDebtor ? 'Saldo negativo | debe padar' : 'Saldo positivo';
+
+            // Add data-debt to <li>
+            isGuestDebtor ? guestLi.dataset.debt = `${Math.ceil(guestDebtData.debtsSum)}` : guestLi.dataset.debt = `${0}`;
         });
     }
 
@@ -168,6 +175,8 @@ class View {
 
                 // Call handler
                 handler(productTitle, productPrice, productBuyerId);
+
+                this.sortGuest()
             }
         });
     }
@@ -204,6 +213,8 @@ class View {
                 const itemId = event.target.closest('li').dataset.id;
                 const itemList = event.target.closest('ul').id;
                 handler(itemId, itemList);
+
+                this.sortGuest();
                 console.log(itemId);
             }
         });
@@ -289,32 +300,29 @@ class View {
         this.renderWelcomeUI();
     }
 
-    // sortGuest(debtCalc) {
-    //     // Duplicate node
-    //     const newList = guestsList.cloneNode(false)
-
-    //     // Add guests <li> to array
-    //     const guestArr = [];
-    //     for(let i = guestsList.childNodes.length; i--;){
-    //         if(guestsList.childNodes[i].nodeName === 'LI')
-    //         guestArr.push(guestsList.childNodes[i]);
-    //     }
-
-    //     // Sort the list in descending order
-    //     guestArr.sort((a, b) => {
-    //         const aValue = isNaN(parseInt(a.querySelector('.guestItem-badge').innerHTML.slice(0, b.querySelector('.guestItem-badge').innerHTML.length - 2))) ? 0 : parseInt(a.querySelector('.guestItem-badge').innerHTML.slice(0, b.querySelector('.guestItem-badge').innerHTML.length - 2));
-    //         const bValue = isNaN(parseInt(b.querySelector('.guestItem-badge').innerHTML.slice(0, b.querySelector('.guestItem-badge').innerHTML.length - 2))) ? 0 : parseInt(b.querySelector('.guestItem-badge').innerHTML.slice(0, b.querySelector('.guestItem-badge').innerHTML.length - 2));
-    //         return bValue - aValue
-    //     });
-
-    //     // Add them into the ul in order
-    //     for(let i = 0; i < guestArr.length; i++) {
-    //         newList.appendChild(guestArr[i]);
-    //         console.log(guestsList, newList);
-    //     }
-    //     // guestsList.parentNode.replaceChild(newList, guestsList);
-    //     console.log(guestsList, newList);
-    // }
+    sortGuest() {
+        const list = this.guestListUl;
+        let shouldSwitch;
+        let switching = true;
+        let counter;
+        
+        while (switching) {
+            switching = false;
+            const guest = list.getElementsByTagName("LI");
+            
+            for (counter = 0; counter < (guest.length - 1); counter ++) {
+                shouldSwitch = false;
+                if (guest[counter].dataset.debt / 100 < guest[counter + 1].dataset.debt / 100) {
+                    shouldSwitch = true;
+                    break;
+                }
+            }
+            if (shouldSwitch) {
+                guest[counter].parentNode.insertBefore(guest[counter + 1], guest[counter]);
+                switching = true;
+            }
+        }
+    }
 };
 
 export { View };
