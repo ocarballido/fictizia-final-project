@@ -50,7 +50,6 @@ class Model {
         
         // Remove products asociated
         const includesGuestIdOnProduct = this.data.productsList.some(product => product.productBuyerId === itemId);
-        // console.log(includesGuestIdOnProduct);
         if (includesGuestIdOnProduct) {
             this.data.productsList = this.data.productsList.filter(product => {
                 return product.productBuyerId !== itemId
