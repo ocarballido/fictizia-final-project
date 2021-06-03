@@ -99,7 +99,7 @@ class View {
             this.singleGuestTemplate({
                 guestId: guest.id,
                 guestName: guest.name,
-                guestDebtText: isGuestDebtor ? 'Saldo negativo | debe pagar' : 'Saldo positivo',
+                guestDebtText: isGuestDebtor ? 'Saldo negativo | debe padar' : 'Saldo positivo',
                 guestDept: guestDebtData.debtsSum > 0 ? guestDebtData.debtsSum : 0,
                 guestInitial: guest.name[0].toUpperCase()
             })
@@ -139,7 +139,7 @@ class View {
             guestLi.querySelector('.guestItem-badge').classList.toggle('d-none', guestDebtData.debtsSum <= 0);
 
             // Modify balance text
-            guestLi.querySelector('.guestsItem-info_content').innerHTML = isGuestDebtor ? 'Saldo negativo | debe pagar' : 'Saldo positivo';
+            guestLi.querySelector('.guestsItem-info_content').innerHTML = isGuestDebtor ? 'Saldo negativo | debe padar' : 'Saldo positivo';
 
             // Add data-debt to <li>
             isGuestDebtor ? guestLi.dataset.debt = `${Math.ceil(guestDebtData.debtsSum)}` : guestLi.dataset.debt = `${0}`;

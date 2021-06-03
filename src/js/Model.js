@@ -40,27 +40,21 @@ class Model {
 
     // Delete guest/peoduct from list
     deleteItem(itemId, itemList) {
-        if (itemList === 'guestsList') {
-            // Find guest index
-            const guestToDelete = this.data.guestsList.findIndex(item => {
-                return item.id === itemId;
-            });
+        // Find guest index
+        const guestToDelete = this.data[itemList].findIndex(item => {
+            return item.id === itemId;
+        });
 
-            // Remove guest
-            this.data.guestsList.splice(guestToDelete, 1);
-            
-            // Remove products asociated
+        // Remove guest
+        this.data[itemList].splice(guestToDelete, 1);
+        
+        // Remove products asociated
+        const includesGuestIdOnProduct = this.data.productsList.some(product => product.productBuyerId === itemId);
+        // console.log(includesGuestIdOnProduct);
+        if (includesGuestIdOnProduct) {
             this.data.productsList = this.data.productsList.filter(product => {
                 return product.productBuyerId !== itemId
             })
-        } else {
-            // Find product index
-            const productToDelete = this.data.productsList.findIndex(item => {
-                return item.id === itemId;
-            });
-
-            // Remove product
-            this.data.productsList.splice(productToDelete, 1);
         }
 
         apiServices.saveDataStorage(this.data);
