@@ -131,7 +131,7 @@ html, body {
     animation-name: showWithOpacity;
     align-items: center;
     background-color: transparent;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.075);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.125);
     color: white;
     display: flex;
     min-height: 56px;
@@ -204,7 +204,7 @@ html, body {
     min-height: 56px;
     padding: 16px 0;
     &[data-border="true"] {
-        border-bottom: 1px solid rgba(255, 255, 255, 0.075);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.125);
     }
     .summaryItem-debtor {
         flex-grow: 1;
