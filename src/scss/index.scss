@@ -197,15 +197,15 @@ html, body {
 }
 
 .summaryItem {
-    // animation-duration: .5s;
-    // animation-name: showWithOpacity;
     align-items: center;
     background-color: transparent;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.075);
     color: white;
     display: flex;
     min-height: 56px;
     padding: 16px 0;
+    &[data-border="true"] {
+        border-bottom: 1px solid rgba(255, 255, 255, 0.075);
+    }
     .summaryItem-debtor {
         flex-grow: 1;
         margin: 0;
@@ -238,10 +238,6 @@ html, body {
     }
 }
 
-.summeryList-item {
-    background-color: transparent;
-    border-color: #6c757d;
-}
 #controls {
     bottom: 0;
     padding: 0;

@@ -254,13 +254,14 @@ class View {
     }
 
     // Render summary items
-    renderSummaryItem(debtorName, beneficiaryName, beneficiaryMoney) {
+    renderSummaryItem(debtorName, beneficiaryName, beneficiaryMoney, dataBorder) {
         this.summaryListUl.insertAdjacentHTML(
             'beforeend',
             this.singleSummaryTemplate({
                 guestDebtorName: debtorName,
                 productPrice: (beneficiaryMoney / 100).toFixed(2),
-                guestBeneficiaryName: beneficiaryName
+                guestBeneficiaryName: beneficiaryName,
+                dataBorder: dataBorder
             })
         );
     }

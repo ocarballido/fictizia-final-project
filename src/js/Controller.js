@@ -101,8 +101,12 @@ class Controller {
         this.view.clearSummary();
 
         summaryArr.forEach(debtor => {
+            let count = 0;
             for (const debt in debtor.debts) {
-                this.view.renderSummaryItem(debtor.name, debt, debtor.debts[debt]);
+                count ++;
+                const dataBorder = count === Object.keys(debtor.debts).length;
+                const debtorName = count === 1 ? debtor.name : '';
+                this.view.renderSummaryItem(debtorName, debt, debtor.debts[debt], dataBorder);
             }
         });
     }
